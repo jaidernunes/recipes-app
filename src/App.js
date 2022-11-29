@@ -8,8 +8,7 @@ import Routes from './Routes';
 function App() {
   return (
     <BrowserRouter>
-      <h1>Vamo timee!</h1>
-      <Routes></Routes>
+      <Routes />
     </BrowserRouter>
   );
 }
