@@ -19,6 +19,7 @@ describe('<Header />', () => {
     act(() => history.push('/meals'));
 
     const title = screen.getByTestId('page-title');
+
     expect(title).toBeInTheDocument();
   });
 });
