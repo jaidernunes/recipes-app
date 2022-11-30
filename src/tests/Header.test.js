@@ -10,5 +10,6 @@ describe('<Header />', () => {
     });
 
     const title = screen.getAllByText('Meals');
+    console.log(title);
   });
 });
