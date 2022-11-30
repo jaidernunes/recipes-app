@@ -11,7 +11,6 @@ function Login() {
     const handleLoginValidator = () => {
       const minimumPassword = 6;
       const emailValidator = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+$/i;
-
       if (emailValidator.test(email) && password.length > minimumPassword) {
         setLoginValidator(false);
       } else {
