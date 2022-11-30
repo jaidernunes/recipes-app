@@ -10,5 +10,6 @@ describe('<Header />', () => {
     });
 
     const title = screen.getAllByText('Meals');
+    expect(title).toBeInTheDocument();
   });
 });
