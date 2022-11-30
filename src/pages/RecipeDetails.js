@@ -12,19 +12,19 @@ function RecipeDetails() {
     const recipeId = 52772;
     const getMeal = await getMealDetails(recipeId);
     console.log(getMeal);
-    setRecipe(getMeal[0].strlMeal);
-    console.log(recipe);
+    setRecipe(getMeal);
   };
 
   useEffect(() => {
     fetchMeal();
   }, []);
 
+  console.log(recipe);
   return (
-    <h1>Receita</h1>
-    // <h1>
-    //   {`Receita de ${recipe[0].strMeal}`}
-    // </h1>
+    // <h1>Receita</h1>
+    <h1>
+      { recipe.length > 0 && `Receita de ${recipe[0].strMeal}`}
+    </h1>
   );
 }
 
