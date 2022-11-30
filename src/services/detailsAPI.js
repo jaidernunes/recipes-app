@@ -8,5 +8,6 @@ export const getMealDetails = async (mealId) => {
 export const getCocktailDetails = async (cocktailId) => {
   const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${cocktailId}`);
   const json = await response.json();
-  return json;
+  const { drinks } = json;
+  return drinks;
 };
