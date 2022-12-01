@@ -7,7 +7,7 @@ import './Header.css';
 function Header() {
   const { path, url } = useRouteMatch();
   console.log(path, url);
-  const [showSearchBar, setShowSearchBar] = useState(true);
+  const [showSearchBar, setShowSearchBar] = useState(false);
   const [query, setQuery] = useState('');
 
   function showTitle() {

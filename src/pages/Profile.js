@@ -4,7 +4,8 @@ import Header from '../components/Header';
 
 function Profile() {
   const history = useHistory();
-  const user = JSON.parse(localStorage.getItem('user')).email;
+  const user = JSON.parse(localStorage.getItem('user'))?.email;
+  console.log(user);
 
   const clear = () => {
     history.push('/');
