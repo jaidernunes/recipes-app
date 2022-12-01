@@ -9,7 +9,7 @@ function Drinks() {
   return (
     <main>
       <Header />
-      { drinksRequest.slice(0, number).map((e, index) => (
+      { drinksRequest?.slice(0, number).map((e, index) => (
         <div
           key={ index }
           data-testid={ `${index}-recipe-card` }
