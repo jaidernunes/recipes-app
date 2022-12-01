@@ -30,7 +30,6 @@ function DoneRecipes() {
 
   localStorage.setItem('doneRecipes', JSON.stringify({ doneRecipes1 }));
   const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes')).doneRecipes1;
-
   return (
     <div>
       <Header />
@@ -64,14 +63,7 @@ function DoneRecipes() {
               src={ done.image }
               alt="Imagem Receita"
             />
-            <h1 data-testid={ `${index}-horizontal-top-text` }>
-              {done.nationality}
-              {' '}
-              -
-              {' '}
-              {done.category}
-            </h1>
-            <h2 data-testid={ `${index}-horizontal-name` }>{done.name}</h2>
+            <h1 data-testid={ `${index}-horizontal-name` }>{done.name}</h1>
             <p data-testid={ `${index}-horizontal-done-date` }>
               Done in:
               {' '}
@@ -82,6 +74,23 @@ function DoneRecipes() {
               src={ shareIcon }
               alt="shareIcon"
             />
+
+            {done.type === 'drink'
+              ? (
+                <p
+                  data-testid={ `${index}-horizontal-top-text` }
+                >
+                  {done.alcoholicOrNot}
+                </p>
+              ) : (
+                <p data-testid={ `${index}-horizontal-top-text` }>
+                  {done.nationality}
+                  {' '}
+                  -
+                  {' '}
+                  {done.category}
+                </p>
+              )}
             {done.tags.map((tag) => (
               <p
                 key={ tag }
@@ -94,7 +103,6 @@ function DoneRecipes() {
         ))
       }
     </div>
-
   );
 }
 
