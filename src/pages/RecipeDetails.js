@@ -23,7 +23,7 @@ function RecipeDetails() {
   useEffect(() => {
     fetchMeal();
   }, []);
-  
+
   const defineRecipe = () => {
     let recipeInfo = {
       recipeTitle: '',
@@ -36,17 +36,16 @@ function RecipeDetails() {
     const ingredientsArr = [];
     const measuresArr = [];
 
-    for (const [key, value] of Object.entries(recipe[0])) {
-      // console.log(`${key}: ${value}`);
-  
-      if(key.includes('strIngredient') && value !== null && value.length > 0) {
+    Object.entries(recipe[0]).forEach(([key, value]) => {
+      if (key.includes('strIngredient') && value !== null && value.length > 0) {
         ingredientsArr.push(value);
       }
-      if(key.includes('strMeasure') && value !== null && value.length > 0) {
+
+      if (key.includes('strMeasure') && value !== null && value.length > 0) {
         measuresArr.push(value);
       }
-    }
-      
+    });
+
     if (recipe[0].strMeal) {
       recipeInfo = {
         recipeTitle: recipe[0].strMeal,
@@ -68,9 +67,8 @@ function RecipeDetails() {
         recipeVideo: recipe[0].strYoutube,
         recipeInstructions: recipe[0].strInstructions,
       };
-      
     }
-    console.log(recipe[0])
+    console.log(recipe[0]);
     return recipeInfo;
   };
 
@@ -95,12 +93,11 @@ function RecipeDetails() {
             <ul>
               Ingredients:
               {defineRecipe().recipeMeasures.map((measure, index) => (
-                <li data-testid={`${index}-ingredient-name-and-measure`} key={index}>
-                  {measure} 
+                <li data-testid={ `${index}-ingredient-name-and-measure` } key={ index }>
+                  {measure}
                   {' of '}
                   {defineRecipe().recipeIngredients[index]}
-                </li>))
-              }
+                </li>))}
             </ul>
 
             <p data-testid="instructions">
