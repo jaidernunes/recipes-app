@@ -23,7 +23,7 @@ function RecipeDetails() {
   useEffect(() => {
     fetchMeal();
   }, []);
-
+  
   const defineRecipe = () => {
     let recipeInfo = {
       recipeTitle: '',
@@ -33,19 +33,44 @@ function RecipeDetails() {
       recipeCategory: '',
       recipeVideo: '',
     };
+    const ingredientsArr = [];
+    const measuresArr = [];
+
+    for (const [key, value] of Object.entries(recipe[0])) {
+      // console.log(`${key}: ${value}`);
+  
+      if(key.includes('strIngredient') && value !== null && value.length > 0) {
+        ingredientsArr.push(value);
+      }
+      if(key.includes('strMeasure') && value !== null && value.length > 0) {
+        measuresArr.push(value);
+      }
+    }
+      
     if (recipe[0].strMeal) {
       recipeInfo = {
         recipeTitle: recipe[0].strMeal,
         recipeImage: recipe[0].strMealThumb,
-        recipeIngredients: recipe[0].strIngredient1,
-        recipeMeasures: recipe[0].strMeasure1,
+        recipeIngredients: ingredientsArr,
+        recipeMeasures: measuresArr,
         recipeCategory: recipe[0].strCategory,
         recipeVideo: recipe[0].strYoutube,
         recipeInstructions: recipe[0].strInstructions,
       };
     } else if (recipe[0].strDrink) {
-      mealTitle = recipe[0].strDrink;
+      // mealTitle = recipe[0].strDrink;
+      recipeInfo = {
+        recipeTitle: recipe[0].strDrink,
+        recipeImage: recipe[0].strDrinkThumb,
+        recipeIngredients: ingredientsArr,
+        recipeMeasures: measuresArr,
+        recipeCategory: `${recipe[0].strAlcoholic} ${recipe[0].strCategory}`,
+        recipeVideo: recipe[0].strYoutube,
+        recipeInstructions: recipe[0].strInstructions,
+      };
+      
     }
+    console.log(recipe[0])
     return recipeInfo;
   };
 
@@ -58,6 +83,7 @@ function RecipeDetails() {
               {`Recipe: ${defineRecipe().recipeTitle}`}
             </h1>
             <img
+              data-testid="recipe-photo"
               src={ defineRecipe().recipeImage }
               alt={ defineRecipe().recipeTitle }
               width="300"
@@ -65,10 +91,23 @@ function RecipeDetails() {
             <h2 data-testid="recipe-category">
               { `Category: ${defineRecipe().recipeCategory}`}
             </h2>
+
+            <ul>
+              Ingredients:
+              {defineRecipe().recipeMeasures.map((measure, index) => (
+                <li data-testid={`${index}-ingredient-name-and-measure`} key={index}>
+                  {measure} 
+                  {' of '}
+                  {defineRecipe().recipeIngredients[index]}
+                </li>))
+              }
+            </ul>
+
             <p data-testid="instructions">
               { `Instructions: ${defineRecipe().recipeInstructions}`}
             </p>
             <iframe
+              data-testid="video"
               src={ defineRecipe().recipeVideo }
               title={ defineRecipe().recipeTitle }
             />
