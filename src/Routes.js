@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Meals from './pages/Meals';
 import Profile from './pages/Profile';
 import RecipeDetails from './pages/RecipeDetails';
+import RecipeInProgress from './pages/RecipeInProgress';
 
 function Routes() {
   return (
@@ -19,6 +20,12 @@ function Routes() {
       </Route>
       <Route exact path="/drinks/:id">
         <RecipeDetails />
+      </Route>
+      <Route exact path="/meals/:id/in-progress">
+        <RecipeInProgress />
+      </Route>
+      <Route exact path="/drinks/:id/in-progress">
+        <RecipeInProgress />
       </Route>
       <Route exact path="/meals">
         <Meals />
