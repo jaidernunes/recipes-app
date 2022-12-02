@@ -9,3 +9,8 @@ img {
 .card {
   width: 18rem;
 }
+
+button {
+  bottom: 0;
+  position: fixed;
+}

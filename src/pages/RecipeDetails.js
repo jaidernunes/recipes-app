@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { Card, Carousel } from 'react-bootstrap';
+import { Card, Carousel, Button } from 'react-bootstrap';
 import recipesContext from '../context/RecipesContext';
 import { getCocktailDetails, getMealDetails } from '../services/detailsAPI';
 import './RecipeDetails.css';
@@ -143,6 +143,7 @@ function RecipeDetails() {
                 ))}
               </Carousel>
             )}
+            <Button data-testid="start-recipe-btn">Start recipe</Button>
           </>
         )}
     </div>
