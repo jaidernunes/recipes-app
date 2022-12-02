@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import Carousel from 'react-bootstrap/Carousel';
+// import Carousel from 'react-bootstrap/Carousel';
+import { Card, Carousel } from 'react-bootstrap';
 import recipesContext from '../context/RecipesContext';
 import { getCocktailDetails, getMealDetails } from '../services/detailsAPI';
+import './RecipeDetails.css';
 
 function RecipeDetails() {
   const numberSuggestions = 6;
@@ -116,14 +118,28 @@ function RecipeDetails() {
                 {mealsRequest?.slice(0, numberSuggestions).map((meal, index) => (
                   <Carousel.Item
                     key={ index }
-                    data-testid={ `${index}-recommendation-card` }
                   >
-                    <img src={ meal.strMealThumb } alt={ meal.strMeal } width="200" />
-                    <Carousel.Caption>
-                      <h3 data-testid={ `${index}-recommendation-title` }>
-                        { meal.strMeal }
-                      </h3>
-                    </Carousel.Caption>
+                    <div className="card">
+                      <img
+                        src={ meal.strMealThumb }
+                        className="card-img-top"
+                        alt={ meal.strMeal }
+                        width="300"
+                      />
+                      <div
+                        className="card-body"
+                        data-testid={ `${index}-recommendation-card` }
+                      >
+                        <h5
+                          className="card-title"
+                          data-testid={ `${index}-recommendation-title` }
+                        >
+                          {meal.strMeal}
+                        </h5>
+                        <p className="card-text">Exemplo</p>
+                        {/* <a href="#" className="btn btn-primary">Do it now!</a> */}
+                      </div>
+                    </div>
                   </Carousel.Item>
                 ))}
               </Carousel>
