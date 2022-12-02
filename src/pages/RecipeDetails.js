@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-// import Carousel from 'react-bootstrap/Carousel';
 import { Card, Carousel } from 'react-bootstrap';
 import recipesContext from '../context/RecipesContext';
 import { getCocktailDetails, getMealDetails } from '../services/detailsAPI';
@@ -119,7 +118,7 @@ function RecipeDetails() {
                   <Carousel.Item
                     key={ index }
                   >
-                    <div className="card">
+                    <Card>
                       <img
                         src={ meal.strMealThumb }
                         className="card-img-top"
@@ -137,9 +136,9 @@ function RecipeDetails() {
                           {meal.strMeal}
                         </h5>
                         <p className="card-text">Exemplo</p>
-                        {/* <a href="#" className="btn btn-primary">Do it now!</a> */}
+                        {/* <a href={ meal.mealId } className="btn btn-primary">Do it now!</a> */}
                       </div>
-                    </div>
+                    </Card>
                   </Carousel.Item>
                 ))}
               </Carousel>
