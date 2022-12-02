@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { Carousel } from 'react-bootstrap';
+import Carousel from 'react-bootstrap/Carousel';
 import recipesContext from '../context/RecipesContext';
 import { getCocktailDetails, getMealDetails } from '../services/detailsAPI';
 
@@ -111,24 +111,25 @@ function RecipeDetails() {
               src={ defineRecipe().recipeVideo }
               title={ defineRecipe().recipeTitle }
             />
+            {mealsRequest.length > 0 && (
+              <Carousel>
+                {mealsRequest?.slice(0, numberSuggestions).map((meal, index) => (
+                  <Carousel.Item
+                    key={ index }
+                    data-testid={ `${index}-recommendation-card` }
+                  >
+                    <img src={ meal.strMealThumb } alt={ meal.strMeal } width="200" />
+                    <Carousel.Caption>
+                      <h3 data-testid={ `${index}-recommendation-title` }>
+                        { meal.strMeal }
+                      </h3>
+                    </Carousel.Caption>
+                  </Carousel.Item>
+                ))}
+              </Carousel>
+            )}
           </>
         )}
-      {mealsRequest.length > 0 && (
-        <Carousel>
-          {mealsRequest?.slice(0, numberSuggestions).map((meal, index) => (
-            <>
-              <Carousel.Item key={ index } data-testid={ `${index}-recommendation-card` }>
-                <img src={ meal.strMealThumb } alt={ meal.strMeal } width="200" />
-              </Carousel.Item>
-              <Carousel.Caption>
-                <h3 data-testid={ `${index}-recommendation-title` }>
-                  { meal.strMeal }
-                </h3>
-              </Carousel.Caption>
-            </>
-          ))}
-        </Carousel>
-      )}
     </div>
   );
 }
