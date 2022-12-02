@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import ButtonsDone from '../components/ButtonsDone';
 import Header from '../components/Header';
+import RecipesContext from '../context/RecipesContext';
 import shareIcon from '../images/shareIcon.svg';
 
+// const copy = require('clipboard-copy');
+
 function DoneRecipes() {
+  const { doneRecipes, setDoneRecipes } = useContext(RecipesContext);
+
   const doneRecipes1 = [
     {
       id: '52771',
@@ -29,30 +35,19 @@ function DoneRecipes() {
   ];
 
   localStorage.setItem('doneRecipes', JSON.stringify({ doneRecipes1 }));
-  const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes')).doneRecipes1;
+
+  useEffect(() => {
+    setDoneRecipes(JSON.parse(localStorage.getItem('doneRecipes')).doneRecipes1);
+  }, [setDoneRecipes]);
+
+  const share = () => {
+    global.alert('Link copied!');
+  };
+
   return (
     <div>
       <Header />
-      <div>
-        <button
-          type="button"
-          data-testid="filter-by-all-btn"
-        >
-          All
-        </button>
-        <button
-          type="button"
-          data-testid="filter-by-meal-btn"
-        >
-          Meals
-        </button>
-        <button
-          type="button"
-          data-testid="filter-by-drink-btn"
-        >
-          Drinks
-        </button>
-      </div>
+      <ButtonsDone />
       {
         doneRecipes.map((done, index) => (
           <div
@@ -69,12 +64,17 @@ function DoneRecipes() {
               {' '}
               {done.doneDate}
             </p>
-            <img
-              data-testid={ `${index}-horizontal-share-btn` }
-              src={ shareIcon }
-              alt="shareIcon"
-            />
-
+            <button
+              type="button"
+              onClick={ share }
+              // copy(`http://localhost:3000/${done.type}/:${done.id}`)
+            >
+              <img
+                data-testid={ `${index}-horizontal-share-btn` }
+                src={ shareIcon }
+                alt="shareIcon"
+              />
+            </button>
             {done.type === 'drink'
               ? (
                 <p

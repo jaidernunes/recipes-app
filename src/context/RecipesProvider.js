@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import RecipesContext from './RecipesContext';
 
 function RecipesProvider({ children }) {
-  const [teste, setTeste] = useState([]);
+  const [doneRecipes, setDoneRecipes] = useState([]);
 
   const providerProps = useMemo(() => ({
-    teste,
-    setTeste,
-  }), [teste,
+    doneRecipes,
+    setDoneRecipes,
+  }), [doneRecipes,
   ]);
 
   return (
