@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import { Carousel } from 'react-bootstrap';
+import recipesContext from '../context/RecipesContext';
 import { getCocktailDetails, getMealDetails } from '../services/detailsAPI';
 
 function RecipeDetails() {
+  const numberSuggestions = 6;
+  const { mealsRequest } = useContext(recipesContext);
   const { id } = useParams();
   const history = useHistory();
   const [recipe, setRecipe] = useState([]);
@@ -68,7 +72,6 @@ function RecipeDetails() {
         recipeInstructions: recipe[0].strInstructions,
       };
     }
-    console.log(recipe[0]);
     return recipeInfo;
   };
 
@@ -110,6 +113,22 @@ function RecipeDetails() {
             />
           </>
         )}
+      {mealsRequest.length > 0 && (
+        <Carousel>
+          {mealsRequest?.slice(0, numberSuggestions).map((meal, index) => (
+            <>
+              <Carousel.Item key={ index } data-testid={ `${index}-recommendation-card` }>
+                <img src={ meal.strMealThumb } alt={ meal.strMeal } width="200" />
+              </Carousel.Item>
+              <Carousel.Caption>
+                <h3 data-testid={ `${index}-recommendation-title` }>
+                  { meal.strMeal }
+                </h3>
+              </Carousel.Caption>
+            </>
+          ))}
+        </Carousel>
+      )}
     </div>
   );
 }
