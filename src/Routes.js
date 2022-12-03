@@ -6,6 +6,7 @@ import FavoriteRecipes from './pages/FavoriteRecipes';
 import Login from './pages/Login';
 import Meals from './pages/Meals';
 import Profile from './pages/Profile';
+import RecipeDetails from './pages/RecipeDetails';
 
 function Routes() {
   return (
@@ -13,10 +14,16 @@ function Routes() {
       <Route exact path="/">
         <Login />
       </Route>
-      <Route path="/meals">
+      <Route exact path="/meals/:id">
+        <RecipeDetails />
+      </Route>
+      <Route exact path="/drinks/:id">
+        <RecipeDetails />
+      </Route>
+      <Route exact path="/meals">
         <Meals />
       </Route>
-      <Route path="/drinks">
+      <Route exact path="/drinks">
         <Drinks />
       </Route>
       <Route path="/profile">
