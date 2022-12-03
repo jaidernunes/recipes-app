@@ -25,8 +25,18 @@ function RecipeDetails() {
     setRecipe(getRecipe);
   };
 
+  const getSuggestions = () => {
+    const random = 0.5;
+    if (mealsRequest.length > 0) {
+      const meals = mealsRequest.sort(() => random - Math.random())
+        .slice(0, numberSuggestions);
+      return meals;
+    }
+  };
+
   useEffect(() => {
     fetchMeal();
+    console.log(getSuggestions());
   }, []);
 
   const defineRecipe = () => {
@@ -114,7 +124,7 @@ function RecipeDetails() {
             />
             {mealsRequest.length > 0 && (
               <Carousel>
-                {mealsRequest?.slice(0, numberSuggestions).map((meal, index) => (
+                {getSuggestions().map((meal, index) => (
                   <Carousel.Item
                     key={ index }
                   >
@@ -123,7 +133,6 @@ function RecipeDetails() {
                         src={ meal.strMealThumb }
                         className="card-img-top"
                         alt={ meal.strMeal }
-                        width="300"
                       />
                       <div
                         className="card-body"
@@ -136,7 +145,7 @@ function RecipeDetails() {
                           {meal.strMeal}
                         </h5>
                         <p className="card-text">Exemplo</p>
-                        {/* <a href={ meal.mealId } className="btn btn-primary">Do it now!</a> */}
+                        {/* <a href={ meal.mealId } className="btn btn-primary">Ver detalhes</a> */}
                       </div>
                     </Card>
                   </Carousel.Item>
