@@ -1,14 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { Carousel, Button } from 'react-bootstrap';
 import RecipeCard from '../components/RecipeCard';
-import recipesContext from '../context/RecipesContext';
 import { getCocktailDetails, getMealDetails } from '../services/detailsAPI';
 import './RecipeDetails.css';
 
 function RecipeDetails() {
   const numberSuggestions = 6;
-  const { mealsRequest } = useContext(recipesContext);
+  // const { mealsRequest } = useContext(recipesContext);
   const { id } = useParams();
   const history = useHistory();
   const [recipe, setRecipe] = useState([]);
@@ -27,22 +26,21 @@ function RecipeDetails() {
     setRecipe(getRecipe);
   };
 
-  const getSuggestions = () => {
+  const fetchSuggestions = async () => {
     const random = 0.5;
-    let meals = suggestions;
-    if (mealsRequest.length > 0) {
-      meals = mealsRequest.sort(() => random - Math.random())
+    const requestMeals = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+    const results = await requestMeals.json();
+    const { meals } = results;
+    if (meals.length > 0) {
+      const getMeals = meals.sort(() => random - Math.random())
         .slice(0, numberSuggestions);
+      return setSuggestions(getMeals);
     }
-    return meals;
   };
 
   useEffect(() => {
     fetchMeal();
-  }, []);
-
-  useEffect(() => {
-    setSuggestions(getSuggestions());
+    fetchSuggestions();
   }, []);
 
   const defineRecipe = () => {
@@ -129,7 +127,9 @@ function RecipeDetails() {
               title={ defineRecipe().recipeTitle }
             />
             {suggestions.length > 0 && (
-              <Carousel>
+              <Carousel
+                data-interval="false"
+              >
                 <Carousel.Item>
                   <RecipeCard
                     index={ 0 }
