@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { Card, Carousel, Button } from 'react-bootstrap';
+import { Carousel, Button } from 'react-bootstrap';
+import RecipeCard from '../components/RecipeCard';
 import recipesContext from '../context/RecipesContext';
 import { getCocktailDetails, getMealDetails } from '../services/detailsAPI';
 import './RecipeDetails.css';
@@ -11,6 +12,7 @@ function RecipeDetails() {
   const { id } = useParams();
   const history = useHistory();
   const [recipe, setRecipe] = useState([]);
+  const [suggestions, setSuggestions] = useState([]);
 
   const fetchMeal = async () => {
     const { pathname } = history.location;
@@ -27,16 +29,20 @@ function RecipeDetails() {
 
   const getSuggestions = () => {
     const random = 0.5;
+    let meals = suggestions;
     if (mealsRequest.length > 0) {
-      const meals = mealsRequest.sort(() => random - Math.random())
+      meals = mealsRequest.sort(() => random - Math.random())
         .slice(0, numberSuggestions);
-      return meals;
     }
+    return meals;
   };
 
   useEffect(() => {
     fetchMeal();
-    console.log(getSuggestions());
+  }, []);
+
+  useEffect(() => {
+    setSuggestions(getSuggestions());
   }, []);
 
   const defineRecipe = () => {
@@ -122,34 +128,38 @@ function RecipeDetails() {
               src={ defineRecipe().recipeVideo }
               title={ defineRecipe().recipeTitle }
             />
-            {mealsRequest.length > 0 && (
+            {suggestions.length > 0 && (
               <Carousel>
-                {getSuggestions().map((meal, index) => (
-                  <Carousel.Item
-                    key={ index }
-                  >
-                    <Card>
-                      <img
-                        src={ meal.strMealThumb }
-                        className="card-img-top"
-                        alt={ meal.strMeal }
-                      />
-                      <div
-                        className="card-body"
-                        data-testid={ `${index}-recommendation-card` }
-                      >
-                        <h5
-                          className="card-title"
-                          data-testid={ `${index}-recommendation-title` }
-                        >
-                          {meal.strMeal}
-                        </h5>
-                        <p className="card-text">Exemplo</p>
-                        {/* <a href={ meal.mealId } className="btn btn-primary">Ver detalhes</a> */}
-                      </div>
-                    </Card>
-                  </Carousel.Item>
-                ))}
+                <Carousel.Item>
+                  <RecipeCard
+                    index={ 0 }
+                    photo={ suggestions[0].strMealThumb }
+                    name={ suggestions[0].strMeal }
+                    index2={ 1 }
+                    photo2={ suggestions[1].strMealThumb }
+                    name2={ suggestions[1].strMeal }
+                  />
+                </Carousel.Item>
+                <Carousel.Item>
+                  <RecipeCard
+                    index={ 2 }
+                    photo={ suggestions[2].strMealThumb }
+                    name={ suggestions[2].strMeal }
+                    index2={ 3 }
+                    photo2={ suggestions[3].strMealThumb }
+                    name2={ suggestions[3].strMeal }
+                  />
+                </Carousel.Item>
+                <Carousel.Item>
+                  <RecipeCard
+                    index={ 4 }
+                    photo={ suggestions[4].strMealThumb }
+                    name={ suggestions[4].strMeal }
+                    index2={ 5 }
+                    photo2={ suggestions[5].strMealThumb }
+                    name2={ suggestions[5].strMeal }
+                  />
+                </Carousel.Item>
               </Carousel>
             )}
             <Button data-testid="start-recipe-btn">Start recipe</Button>
