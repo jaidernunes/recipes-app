@@ -27,7 +27,6 @@ function RecipeDetails() {
   };
 
   const fetchSuggestions = async () => {
-    // const random = 0.5;
     const requestMeals = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
     const results = await requestMeals.json();
     const { meals } = results;
