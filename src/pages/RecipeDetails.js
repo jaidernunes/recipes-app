@@ -27,13 +27,12 @@ function RecipeDetails() {
   };
 
   const fetchSuggestions = async () => {
-    const random = 0.5;
+    // const random = 0.5;
     const requestMeals = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
     const results = await requestMeals.json();
     const { meals } = results;
     if (meals.length > 0) {
-      const getMeals = meals.sort(() => random - Math.random())
-        .slice(0, numberSuggestions);
+      const getMeals = meals.slice(0, numberSuggestions);
       return setSuggestions(getMeals);
     }
   };
@@ -128,7 +127,7 @@ function RecipeDetails() {
             />
             {suggestions.length > 0 && (
               <Carousel
-                data-interval="false"
+                interval={ null }
               >
                 <Carousel.Item>
                   <RecipeCard
