@@ -5,6 +5,7 @@ import RecipeCard from '../components/RecipeCard';
 import { getCocktailDetails, getMealDetails } from '../services/detailsAPI';
 import { fetchDrinks, fetchMeals } from '../services/recipesAPI';
 import './RecipeDetails.css';
+import { addInProgress } from '../services/localStorage';
 
 function RecipeDetails() {
   const numberSuggestions = 6;
@@ -100,10 +101,20 @@ function RecipeDetails() {
     const { pathname } = history.location;
     if (pathname.includes('/meals')) {
       history.push(`/meals/${id}/in-progress`);
+      const inProgress = { meals: { [id]: [] } };
+      addInProgress(inProgress);
     } else if (pathname.includes('drinks')) {
       history.push(`/drinks/${id}/in-progress`);
+      window.localStorage
+        .setItem('inProgressRecipes', JSON.stringify({ drinks: { [id]: [] } }));
     }
   };
+
+  // const inProgress = () => {
+  //   const localProgress = JSON.parse(window.localStorage.getItem('inProgressRecipes'));
+  //   const keys = Object.keys(localProgress).some((localId) => localId === id);
+  //   return keys;
+  // }
 
   return (
     <div>
