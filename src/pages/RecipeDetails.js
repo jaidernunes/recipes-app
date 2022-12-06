@@ -3,6 +3,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { Carousel, Button } from 'react-bootstrap';
 import RecipeCard from '../components/RecipeCard';
 import { getCocktailDetails, getMealDetails } from '../services/detailsAPI';
+import { fetchDrinks, fetchMeals } from '../services/recipesAPI';
 import './RecipeDetails.css';
 
 function RecipeDetails() {
@@ -12,6 +13,7 @@ function RecipeDetails() {
   const history = useHistory();
   const [recipe, setRecipe] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
+  const [isMeal, setIsMeal] = useState(true);
 
   const fetchMeal = async () => {
     const { pathname } = history.location;
@@ -27,13 +29,19 @@ function RecipeDetails() {
   };
 
   const fetchSuggestions = async () => {
-    const requestMeals = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
-    const results = await requestMeals.json();
-    const { meals } = results;
-    if (meals.length > 0) {
-      const getMeals = meals.slice(0, numberSuggestions);
-      return setSuggestions(getMeals);
+    const { pathname } = history.location;
+    let getSuggestions = suggestions;
+    if (pathname.includes('/meals')) {
+      const getDrinksList = await fetchDrinks();
+      const drinks = getDrinksList.slice(0, numberSuggestions);
+      getSuggestions = drinks;
+      setIsMeal(false);
+    } else if (pathname.includes('/drinks')) {
+      const getMealsList = await fetchMeals();
+      const meals = getMealsList.slice(0, numberSuggestions);
+      getSuggestions = meals;
     }
+    setSuggestions(getSuggestions);
   };
 
   useEffect(() => {
@@ -131,31 +139,43 @@ function RecipeDetails() {
                 <Carousel.Item>
                   <RecipeCard
                     index={ 0 }
-                    photo={ suggestions[0].strMealThumb }
-                    name={ suggestions[0].strMeal }
+                    photo={ isMeal ? suggestions[0].strMealThumb
+                      : suggestions[0].strDrinkThumb }
+                    name={ isMeal ? suggestions[0].strMeal
+                      : suggestions[0].strDrink }
                     index2={ 1 }
-                    photo2={ suggestions[1].strMealThumb }
-                    name2={ suggestions[1].strMeal }
+                    photo2={ isMeal ? suggestions[1].strMealThumb
+                      : suggestions[1].strDrinkThumb }
+                    name2={ isMeal ? suggestions[1].strMeal
+                      : suggestions[1].strDrink }
                   />
                 </Carousel.Item>
                 <Carousel.Item>
                   <RecipeCard
                     index={ 2 }
-                    photo={ suggestions[2].strMealThumb }
-                    name={ suggestions[2].strMeal }
+                    photo={ isMeal ? suggestions[2].strMealThumb
+                      : suggestions[2].strDrinkThumb }
+                    name={ isMeal ? suggestions[2].strMeal
+                      : suggestions[2].strDrink }
                     index2={ 3 }
-                    photo2={ suggestions[3].strMealThumb }
-                    name2={ suggestions[3].strMeal }
+                    photo2={ isMeal ? suggestions[3].strMealThumb
+                      : suggestions[3].strDrinkThumb }
+                    name2={ isMeal ? suggestions[3].strMeal
+                      : suggestions[3].strDrink }
                   />
                 </Carousel.Item>
                 <Carousel.Item>
                   <RecipeCard
                     index={ 4 }
-                    photo={ suggestions[4].strMealThumb }
-                    name={ suggestions[4].strMeal }
+                    photo={ isMeal ? suggestions[4].strMealThumb
+                      : suggestions[4].strDrinkThumb }
+                    name={ isMeal ? suggestions[4].strMeal
+                      : suggestions[4].strDrink }
                     index2={ 5 }
-                    photo2={ suggestions[5].strMealThumb }
-                    name2={ suggestions[5].strMeal }
+                    photo2={ isMeal ? suggestions[5].strMealThumb
+                      : suggestions[5].strDrinkThumb }
+                    name2={ isMeal ? suggestions[5].strMeal
+                      : suggestions[5].strDrink }
                   />
                 </Carousel.Item>
               </Carousel>
