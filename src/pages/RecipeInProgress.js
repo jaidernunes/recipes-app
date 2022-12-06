@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import Checkboxes from '../components/Checkboxes';
 import { getCocktailDetails, getMealDetails } from '../services/detailsAPI';
+// import './RecipeInProgress.css';
 
 function RecipeInProgress() {
   const { id } = useParams();
@@ -32,10 +34,11 @@ function RecipeInProgress() {
       recipeMeasures: [],
       recipeCategory: '',
       recipeVideo: '',
+      checkboxesObj: {},
     };
+
     const ingredientsArr = [];
     const measuresArr = [];
-
     Object.entries(recipe[0]).forEach(([key, value]) => {
       if (key.includes('strIngredient') && value !== null && value.length > 0) {
         ingredientsArr.push(value);
@@ -57,7 +60,6 @@ function RecipeInProgress() {
         recipeInstructions: recipe[0].strInstructions,
       };
     } else if (recipe[0].strDrink) {
-      // mealTitle = recipe[0].strDrink;
       recipeInfo = {
         recipeTitle: recipe[0].strDrink,
         recipeImage: recipe[0].strDrinkThumb,
@@ -68,7 +70,7 @@ function RecipeInProgress() {
         recipeInstructions: recipe[0].strInstructions,
       };
     }
-    console.log(recipe[0]);
+
     return recipeInfo;
   };
 
@@ -90,32 +92,7 @@ function RecipeInProgress() {
               { `Category: ${defineRecipe().recipeCategory}`}
             </h2>
 
-            {/* <ul>
-                Ingredients:
-                {defineRecipe().recipeMeasures.map((measure, index) => (
-                  <li data-testid={ `${index}-ingredient-name-and-measure` } key={ index }>
-                    {measure}
-                    {' of '}
-                    {defineRecipe().recipeIngredients[index]}
-                  </li>))}
-              </ul> */}
-            Ingredients:
-            {defineRecipe().recipeMeasures.map((measure, index) => (
-              <label
-                htmlFor={ `ingredient-${index}` }
-                data-testid={ `${index}-ingredient-step` }
-                key={ index }
-              >
-                <input
-                  type="checkbox"
-                  name={ `ingredient-${index}` }
-                  id={ `ingredient-${index}` }
-                />
-                {measure}
-                {' of '}
-                {defineRecipe().recipeIngredients[index]}
-              </label>
-            ))}
+            <Checkboxes recipeData={ defineRecipe() } />
 
             <p data-testid="instructions">
               { `Instructions: ${defineRecipe().recipeInstructions}`}
