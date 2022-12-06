@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import { Carousel, Button } from 'react-bootstrap';
+import RecipeCard from '../components/RecipeCard';
 import { getCocktailDetails, getMealDetails } from '../services/detailsAPI';
+import { fetchDrinks, fetchMeals } from '../services/recipesAPI';
+import './RecipeDetails.css';
 
 function RecipeDetails() {
+  const numberSuggestions = 6;
+  // const { mealsRequest } = useContext(recipesContext);
   const { id } = useParams();
   const history = useHistory();
   const [recipe, setRecipe] = useState([]);
+  const [suggestions, setSuggestions] = useState([]);
+  const [isMeal, setIsMeal] = useState(true);
 
   const fetchMeal = async () => {
     const { pathname } = history.location;
@@ -20,8 +28,25 @@ function RecipeDetails() {
     setRecipe(getRecipe);
   };
 
+  const fetchSuggestions = async () => {
+    const { pathname } = history.location;
+    let getSuggestions = suggestions;
+    if (pathname.includes('/meals')) {
+      const getDrinksList = await fetchDrinks();
+      const drinks = getDrinksList.slice(0, numberSuggestions);
+      getSuggestions = drinks;
+      setIsMeal(false);
+    } else if (pathname.includes('/drinks')) {
+      const getMealsList = await fetchMeals();
+      const meals = getMealsList.slice(0, numberSuggestions);
+      getSuggestions = meals;
+    }
+    setSuggestions(getSuggestions);
+  };
+
   useEffect(() => {
     fetchMeal();
+    fetchSuggestions();
   }, []);
 
   const defineRecipe = () => {
@@ -68,7 +93,6 @@ function RecipeDetails() {
         recipeInstructions: recipe[0].strInstructions,
       };
     }
-    console.log(recipe[0]);
     return recipeInfo;
   };
 
@@ -108,6 +132,55 @@ function RecipeDetails() {
               src={ defineRecipe().recipeVideo }
               title={ defineRecipe().recipeTitle }
             />
+            {suggestions.length > 0 && (
+              <Carousel
+                interval={ null }
+              >
+                <Carousel.Item>
+                  <RecipeCard
+                    index={ 0 }
+                    photo={ isMeal ? suggestions[0].strMealThumb
+                      : suggestions[0].strDrinkThumb }
+                    name={ isMeal ? suggestions[0].strMeal
+                      : suggestions[0].strDrink }
+                    index2={ 1 }
+                    photo2={ isMeal ? suggestions[1].strMealThumb
+                      : suggestions[1].strDrinkThumb }
+                    name2={ isMeal ? suggestions[1].strMeal
+                      : suggestions[1].strDrink }
+                  />
+                </Carousel.Item>
+                <Carousel.Item>
+                  <RecipeCard
+                    index={ 2 }
+                    photo={ isMeal ? suggestions[2].strMealThumb
+                      : suggestions[2].strDrinkThumb }
+                    name={ isMeal ? suggestions[2].strMeal
+                      : suggestions[2].strDrink }
+                    index2={ 3 }
+                    photo2={ isMeal ? suggestions[3].strMealThumb
+                      : suggestions[3].strDrinkThumb }
+                    name2={ isMeal ? suggestions[3].strMeal
+                      : suggestions[3].strDrink }
+                  />
+                </Carousel.Item>
+                <Carousel.Item>
+                  <RecipeCard
+                    index={ 4 }
+                    photo={ isMeal ? suggestions[4].strMealThumb
+                      : suggestions[4].strDrinkThumb }
+                    name={ isMeal ? suggestions[4].strMeal
+                      : suggestions[4].strDrink }
+                    index2={ 5 }
+                    photo2={ isMeal ? suggestions[5].strMealThumb
+                      : suggestions[5].strDrinkThumb }
+                    name2={ isMeal ? suggestions[5].strMeal
+                      : suggestions[5].strDrink }
+                  />
+                </Carousel.Item>
+              </Carousel>
+            )}
+            <Button data-testid="start-recipe-btn">Start recipe</Button>
           </>
         )}
     </div>

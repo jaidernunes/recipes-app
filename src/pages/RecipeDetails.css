@@ -1,0 +1,16 @@
+h3 {
+  color: black;
+}
+
+img {
+  text-align: center;
+}
+
+.card {
+  width: 10rem;
+}
+
+button {
+  bottom: 0;
+  position: fixed;
+}
