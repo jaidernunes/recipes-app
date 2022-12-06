@@ -1,0 +1,7 @@
+.checked {
+  text-decoration: line-through solid black;
+}
+
+.unchecked {
+  color: black;
+}
