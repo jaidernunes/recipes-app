@@ -96,6 +96,15 @@ function RecipeDetails() {
     return recipeInfo;
   };
 
+  const startRecipeOnClick = () => {
+    const { pathname } = history.location;
+    if (pathname.includes('/meals')) {
+      history.push(`/meals/${id}/in-progress`);
+    } else if (pathname.includes('drinks')) {
+      history.push(`/drinks/${id}/in-progress`);
+    }
+  };
+
   return (
     <div>
       {recipe.length > 0
@@ -180,7 +189,12 @@ function RecipeDetails() {
                 </Carousel.Item>
               </Carousel>
             )}
-            <Button data-testid="start-recipe-btn">Start recipe</Button>
+            <Button
+              data-testid="start-recipe-btn"
+              onClick={ startRecipeOnClick }
+            >
+              Start recipe
+            </Button>
           </>
         )}
     </div>
