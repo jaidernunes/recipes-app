@@ -8,7 +8,7 @@ function RecipeInProgress() {
   const { id } = useParams();
   const history = useHistory();
   const [recipe, setRecipe] = useState([]);
-  const { pathname } = history.location;
+  // const { pathname } = history.location;
   // console.log(history);
 
   const fetchMeal = async () => {
@@ -76,18 +76,17 @@ function RecipeInProgress() {
     return recipeInfo;
   };
 
-  const startRecipeOnClick = () => {
-
-    if (pathname.includes('/meals')) {
-      history.push(`/meals/${id}/in-progress`);
-      window.localStorage
-        .setItem('inProgressRecipes', JSON.stringify({ meals: { [id]: [] } }));
-    } else if (pathname.includes('drinks')) {
-      history.push(`/drinks/${id}/in-progress`);
-      window.localStorage
-        .setItem('inProgressRecipes', JSON.stringify({ drinks: { [id]: [] } }));
-    }
-  };
+  // const startRecipeOnClick = () => {
+  //   if (pathname.includes('/meals')) {
+  //     history.push(`/meals/${id}/in-progress`);
+  //     window.localStorage
+  //       .setItem('inProgressRecipes', JSON.stringify({ meals: { [id]: [] } }));
+  //   } else if (pathname.includes('drinks')) {
+  //     history.push(`/drinks/${id}/in-progress`);
+  //     window.localStorage
+  //       .setItem('inProgressRecipes', JSON.stringify({ drinks: { [id]: [] } }));
+  //   }
+  // };
 
   return (
     <div>

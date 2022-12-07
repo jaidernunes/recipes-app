@@ -1,11 +1,11 @@
 if (!JSON.parse(localStorage.getItem('inProgressRecipes'))) {
-  localStorage.setItem('inProgressRecipes', JSON.stringify([{ meals: {}, drinks: {} }]));
+  localStorage.setItem('inProgressRecipes', JSON.stringify([]));
 }
 
-const readInProgress = () => JSON.parse(localStorage.getItem('inProgressRecipes'));
+export const readInProgress = () => JSON.parse(localStorage.getItem('inProgressRecipes'));
 
-export const saveInProgress = (inProgress) => localStorage
-  .setItem('inProgressRecipes', JSON.stringify(inProgress));
+export const saveInProgress = (getInProgress) => localStorage
+  .setItem('inProgressRecipes', JSON.stringify(getInProgress));
 
 export const addInProgress = (newInProgress) => {
   const inProgress = readInProgress();
