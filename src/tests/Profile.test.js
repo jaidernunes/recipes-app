@@ -8,7 +8,7 @@ import renderWithRouter from './helpers/renderWithRouter';
 const VALID_EMAIL = 'alguem@email.com';
 const VALID_PASSWORD = '12345678';
 
-describe('Implemente os elementos da tela de perfil respeitando os atributos descritos no protótipo', () => {
+describe('1 - Implemente os elementos da tela de perfil respeitando os atributos descritos no protótipo', () => {
   it('Todos o data-testid do email e de todos os botões', () => {
     const { history } = renderWithRouter(<App />);
     const inputEmail = screen.getByTestId('email-input');
@@ -34,7 +34,7 @@ describe('Implemente os elementos da tela de perfil respeitando os atributos des
   });
 });
 
-describe('Implemente a solução de maneira que o e-mail da pessoa usuária deve estar visível', () => {
+describe('2 - Implemente a solução de maneira que o e-mail da pessoa usuária deve estar visível', () => {
   it('O e-mail armazenado em localStorage está visível', () => {
     renderWithRouter(<Profile />);
     const dataTestidEmail = screen.getByTestId('profile-email');
@@ -42,7 +42,7 @@ describe('Implemente a solução de maneira que o e-mail da pessoa usuária deve
   });
 });
 
-describe('Implemente 3 botões: um de nome "Done Recipes", um de nome "Favorite Recipes" e um de nome "Logout"', () => {
+describe('3 - Implemente 3 botões: um de nome "Done Recipes", um de nome "Favorite Recipes" e um de nome "Logout"', () => {
   it('A tela contêm todos os 3 botões', () => {
     renderWithRouter(<Profile />);
     const buttonDone = screen.getByRole('button', { name: 'Done Recipes' });
@@ -54,7 +54,7 @@ describe('Implemente 3 botões: um de nome "Done Recipes", um de nome "Favorite 
   });
 });
 
-describe('Redirecione a pessoa usuária que, ao clicar no botão de "Done Recipes", a rota deve mudar para a tela de receitas feitas', () => {
+describe('4 - Redirecione a pessoa usuária que, ao clicar no botão de "Done Recipes", a rota deve mudar para a tela de receitas feitas', () => {
   it('Redireciona para a rota correta', () => {
     const { history } = renderWithRouter(<Profile />);
     const buttonDone = screen.getByRole('button', { name: 'Done Recipes' });
@@ -64,7 +64,7 @@ describe('Redirecione a pessoa usuária que, ao clicar no botão de "Done Recipe
   });
 });
 
-describe('Redirecione a pessoa usuária que, ao clicar no botão de "Favorite Recipes", a rota deve mudar para a tela de receitas favoritas', () => {
+describe('5 - Redirecione a pessoa usuária que, ao clicar no botão de "Favorite Recipes", a rota deve mudar para a tela de receitas favoritas', () => {
   it('Redireciona para a rota correta', () => {
     const { history } = renderWithRouter(<Profile />);
     const buttonFavorite = screen.getByRole('button', { name: 'Favorite Recipes' });
@@ -74,7 +74,7 @@ describe('Redirecione a pessoa usuária que, ao clicar no botão de "Favorite Re
   });
 });
 
-describe('Redirecione a pessoa usuária que ao clicar no botão de "Logout", o `localStorage` deve ser limpo e a rota deve mudar para a tela de login', () => {
+describe('6 - Redirecione a pessoa usuária que ao clicar no botão de "Logout", o `localStorage` deve ser limpo e a rota deve mudar para a tela de login', () => {
   it('A rota muda para a tela de login', () => {
     const { history } = renderWithRouter(<Profile />);
     const buttonLogout = screen.getByRole('button', { name: 'Logout' });

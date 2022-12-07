@@ -36,7 +36,7 @@ const doneRecipes1 = [
 ];
 localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes1));
 
-describe('Implemente os elementos da tela de receitas feitas respeitando os atributos descritos no protótipo', () => {
+describe('1 - Implemente os elementos da tela de receitas feitas respeitando os atributos descritos no protótipo', () => {
   it('Todos os data-testids estão disponíveis', () => {
     renderWithRouter(
       <RecipesProvider>
@@ -62,7 +62,7 @@ describe('Implemente os elementos da tela de receitas feitas respeitando os atri
   });
 });
 
-describe('Desenvolva a tela de modo que, caso a receita do card seja uma comida, ela deve possuir: a foto da receita,  nome, categoria, nacionalidade, a data em que a pessoa fez a receita, as 2 primeiras tags retornadas pela API e um botão de compartilhar', () => {
+describe('2 - Desenvolva a tela de modo que, caso a receita do card seja uma comida, ela deve possuir: a foto da receita,  nome, categoria, nacionalidade, a data em que a pessoa fez a receita, as 2 primeiras tags retornadas pela API e um botão de compartilhar', () => {
   it('O card possui os atributos corretos de uma comida', () => {
     renderWithRouter(
       <RecipesProvider>
@@ -79,7 +79,7 @@ describe('Desenvolva a tela de modo que, caso a receita do card seja uma comida,
   });
 });
 
-describe('Desenvolva a tela de maneira que, caso a receita do card seja uma bebida, ela deve possuir: a foto da receita, o nome, se é alcoólica, a data em que a pessoa fez a receita e um botão de compartilhar', () => {
+describe('3 - Desenvolva a tela de maneira que, caso a receita do card seja uma bebida, ela deve possuir: a foto da receita, o nome, se é alcoólica, a data em que a pessoa fez a receita e um botão de compartilhar', () => {
   it('O card possui os atributos corretos de uma bebida', () => {
     renderWithRouter(
       <RecipesProvider>
@@ -94,7 +94,7 @@ describe('Desenvolva a tela de maneira que, caso a receita do card seja uma bebi
   });
 });
 
-describe('Desenvolva a solução de modo que o botão de compartilhar deve copiar a URL da tela de detalhes da receita para o clipboard', () => {
+describe('4 - Desenvolva a solução de modo que o botão de compartilhar deve copiar a URL da tela de detalhes da receita para o clipboard', () => {
   it('Ao clicar no botão de compartilhar deve aparecer a mensagem "Link copied!"', () => {
     window.document.execCommand = jest.fn(() => true);
     renderWithRouter(
@@ -107,17 +107,9 @@ describe('Desenvolva a solução de modo que o botão de compartilhar deve copia
     const msg = screen.getAllByText(/Link copied!/i);
     waitFor(() => expect(msg).toBeInTheDocument());
   });
-
-//   it('A URL da tela de detalhes da receita é copiada para o clipboard', () => {
-//     renderWithRouter(
-//       <RecipesProvider>
-//         <DoneRecipes />
-//       </RecipesProvider>,
-//     );
-//   });
 });
 
-describe('Implemente 2 botões que filtram as receitas por comida ou bebida e um terceiro que remove todos os filtros', () => {
+describe('5 - Implemente 2 botões que filtram as receitas por comida ou bebida e um terceiro que remove todos os filtros', () => {
   it('Ao clicar no botão "Meal" as receitas devem ser filtradas por comidas', () => {
     renderWithRouter(
       <RecipesProvider>
@@ -155,7 +147,7 @@ describe('Implemente 2 botões que filtram as receitas por comida ou bebida e um
   });
 });
 
-describe('Redirecione para a tela de detalhes da receita caso seja clicado na foto ou no nome da receita', () => {
+describe('6 - Redirecione para a tela de detalhes da receita caso seja clicado na foto ou no nome da receita', () => {
   it('Ao clicar na foto da receita, a rota deve mudar para a tela de detalhes daquela receita', () => {
     const { history } = renderWithRouter(
       <RecipesProvider>
