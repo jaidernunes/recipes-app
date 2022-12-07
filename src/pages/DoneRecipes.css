@@ -1,3 +1,10 @@
+.done {
+  align-items: center;
+  display: inline-block;
+  justify-content: space-around;
+  width: 360px;
+}
+
 .img {
   width: 50%;
 }

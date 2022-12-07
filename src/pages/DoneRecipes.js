@@ -52,7 +52,7 @@ function DoneRecipes() {
   }, [setDoneRecipes]);
 
   return (
-    <div>
+    <div className="done">
       <Header />
       <ButtonsDone />
       {
