@@ -5,6 +5,7 @@ import ButtonsDone from '../components/ButtonsDone';
 import Header from '../components/Header';
 import RecipesContext from '../context/RecipesContext';
 import shareIcon from '../images/shareIcon.svg';
+import './DoneRecipes.css';
 
 function DoneRecipes() {
   const {
@@ -43,7 +44,11 @@ function DoneRecipes() {
   localStorage.setItem('doneRecipes', JSON.stringify({ doneRecipes1 }));
 
   useEffect(() => {
-    setDoneRecipes(JSON.parse(localStorage.getItem('doneRecipes')).doneRecipes1);
+    const InfoLocalSotrage = () => {
+      const local = JSON.parse(localStorage.getItem('doneRecipes')).doneRecipes1;
+      setDoneRecipes(local);
+    };
+    InfoLocalSotrage();
   }, [setDoneRecipes]);
 
   return (
@@ -51,7 +56,7 @@ function DoneRecipes() {
       <Header />
       <ButtonsDone />
       {
-        doneRecipes.map((done, index) => (
+        doneRecipes?.map((done, index) => (
           <div
             key={ index }
           >
@@ -63,6 +68,7 @@ function DoneRecipes() {
                 data-testid={ `${index}-horizontal-image` }
                 src={ done.image }
                 alt="Imagem Receita"
+                className="img"
               />
             </button>
             <button
