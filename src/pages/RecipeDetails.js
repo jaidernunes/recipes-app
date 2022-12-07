@@ -1,14 +1,19 @@
 import React from 'react';
-// import { useHistory } from 'react-router-dom';
-// import MealsRecipe from './MealsRecipe';
-// import DrinksRecipe from './DrinksRecipe';
+import { useLocation } from 'react-router-dom';
+import MealsRecipe from './MealsRecipe';
+import DrinksRecipe from './DrinksRecipe';
 
 function RecipeDetails() {
+  // const { history } = useHistory();
+  const { pathname } = useLocation();
+
   return (
     <div>
-      <h1>Details</h1>
+      {
+        pathname.includes('meals') ? <MealsRecipe /> : <DrinksRecipe />
+      }
     </div>
   );
 }
 
-export default RecipeDetails();
+export default RecipeDetails;

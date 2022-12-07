@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { Carousel, Button } from 'react-bootstrap';
 import RecipeCard from '../components/RecipeCard';
 import Recipe from '../components/Recipe';
 import { getMealDetails } from '../services/detailsAPI';
 import { fetchDrinks } from '../services/recipesAPI';
 import './RecipeDetails.css';
-import { addInProgress } from '../services/localStorage';
+import { addInProgressMeals } from '../services/localStorage';
 
 function MealsRecipe() {
   const numberSuggestions = 6;
-  const { history } = useHistory();
+  const history = useHistory();
   const { id } = useParams();
   const [suggestions, setSuggestions] = useState([]);
   const [recipe, setRecipe] = useState([]);
@@ -51,16 +51,16 @@ function MealsRecipe() {
     fetchMealAndSuggestions();
   }, []);
 
-  const startRecipeOnClick = () => {
-    history.push(`/meals/${id}/in-progress`);
-    addInProgress(id);
-  };
-
   // const inProgress = () => {
   //   const localProgress = readInProgress();
-  //   const getInProgress = localProgress.some((localId) => localId === id);
-  //   return getInProgress;
+  //   console.log(localProgress);
+  //   return localProgress;
   // };
+
+  const startRecipeOnClick = () => {
+    history.push(`/meals/${id}/in-progress`);
+    addInProgressMeals({ [id]: [] });
+  };
 
   return (
     <div>
@@ -116,7 +116,7 @@ function MealsRecipe() {
               data-testid="start-recipe-btn"
               onClick={ startRecipeOnClick }
             >
-              Start Recipe
+              Start recipe
               {/* { inProgress() ? 'Continue recipe' : 'Start recipe' } */}
             </Button>
           </>

@@ -8,8 +8,9 @@ import Meals from './pages/Meals';
 import Profile from './pages/Profile';
 import RecipeInProgress from './pages/RecipeInProgress';
 // import RecipeDetails from './pages/RecipeDetails';
-import DrinksRecipe from './pages/DrinksRecipe';
-import MealsRecipe from './pages/MealsRecipe';
+// import DrinksRecipe from './pages/DrinksRecipe';
+// import MealsRecipe from './pages/MealsRecipe';
+import RecipeDetails from './pages/RecipeDetails';
 
 function Routes() {
   return (
@@ -17,12 +18,8 @@ function Routes() {
       <Route exact path="/">
         <Login />
       </Route>
-      <Route exact path="/meals/:id">
-        <MealsRecipe />
-      </Route>
-      <Route exact path="/drinks/:id">
-        <DrinksRecipe />
-      </Route>
+      <Route exact path="/meals/:id" component={ RecipeDetails } />
+      <Route exact path="/drinks/:id" component={ RecipeDetails } />
       <Route exact path="/meals/:id/in-progress">
         <RecipeInProgress />
       </Route>

@@ -6,11 +6,11 @@ import Recipe from '../components/Recipe';
 import { getCocktailDetails } from '../services/detailsAPI';
 import { fetchMeals } from '../services/recipesAPI';
 import './RecipeDetails.css';
-import { addInProgress } from '../services/localStorage';
+// import readInProgress from '../services/localStorage';
 
 function DrinksRecipe() {
   const numberSuggestions = 6;
-  const { history } = useHistory();
+  const history = useHistory();
   const { id } = useParams();
   const [suggestions, setSuggestions] = useState([]);
   const [recipe, setRecipe] = useState([]);
@@ -53,14 +53,8 @@ function DrinksRecipe() {
 
   const startRecipeOnClick = () => {
     history.push(`/drinks/${id}/in-progress`);
-    addInProgress(id);
+    // addInProgress(id);
   };
-
-  // const inProgress = () => {
-  //   const localProgress = readInProgress();
-  //   const getInProgress = localProgress.some((localId) => localId === id);
-  //   return getInProgress;
-  // };
 
   return (
     <div>
