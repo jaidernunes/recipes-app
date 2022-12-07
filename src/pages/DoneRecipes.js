@@ -45,7 +45,7 @@ function DoneRecipes() {
 
   useEffect(() => {
     const InfoLocalSotrage = () => {
-      const local = JSON.parse(localStorage.getItem('doneRecipes')).doneRecipes1;
+      const local = JSON.parse(localStorage.getItem('doneRecipes')).doneRecipes1 || [];
       setDoneRecipes(local);
     };
     InfoLocalSotrage();
@@ -93,6 +93,7 @@ function DoneRecipes() {
                 data-testid={ `${index}-horizontal-share-btn` }
                 src={ shareIcon }
                 alt="shareIcon"
+                className="btnShare"
               />
             </button>
             { buttonShare === 'sim' && (<p>Link copied!</p>)}
