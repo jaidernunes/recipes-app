@@ -10,28 +10,12 @@ import { addInProgress } from '../services/localStorage';
 
 function DrinksRecipe() {
   const numberSuggestions = 6;
-  const { id } = useParams();
   const { history } = useHistory();
-  const [drink, setDrink] = useState([]);
+  const { id } = useParams();
   const [suggestions, setSuggestions] = useState([]);
-  const [recipe, setRecipe] = useState({
-    recipeTitle: '',
-    recipeImage: '',
-    recipeIngredients: [],
-    recipeMeasures: [],
-    recipeCategory: '',
-    recipeVideo: '',
-  });
+  const [recipe, setRecipe] = useState([]);
 
-  const fetchRecipeAndSuggestions = async () => {
-    const getDrink = await getCocktailDetails(id);
-    const getMealsList = await fetchMeals();
-    const meals = getMealsList.slice(0, numberSuggestions);
-    setDrink(getDrink);
-    setSuggestions(meals);
-  };
-
-  const defineRecipe = () => {
+  const defineRecipe = (drink) => {
     const ingredientsArr = [];
     const measuresArr = [];
 
@@ -45,32 +29,38 @@ function DrinksRecipe() {
       }
     });
 
-    setRecipe({
-      recipeTitle: recipe[0].strDrink,
-      recipeImage: recipe[0].strDrinkThumb,
+    setRecipe([{
+      recipeTitle: drink[0].strDrink,
+      recipeImage: drink[0].strDrinkThumb,
       recipeIngredients: ingredientsArr,
       recipeMeasures: measuresArr,
-      recipeCategory: `${recipe[0].strAlcoholic} ${recipe[0].strCategory}`,
-      recipeVideo: recipe[0].strYoutube,
-      recipeInstructions: recipe[0].strInstructions,
-    });
+      recipeCategory: `${drink[0].strAlcoholic} ${drink[0].strCategory}`,
+      recipeVideo: drink[0].strYoutube,
+      recipeInstructions: drink[0].strInstructions,
+    }]);
   };
+
+  useEffect(() => {
+    const fetchRecipeAndSuggestions = async () => {
+      const getDrink = await getCocktailDetails(id);
+      const getMealsList = await fetchMeals();
+      const meals = getMealsList.slice(0, numberSuggestions);
+      setSuggestions(meals);
+      defineRecipe(getDrink);
+    };
+    fetchRecipeAndSuggestions();
+  }, []);
 
   const startRecipeOnClick = () => {
     history.push(`/drinks/${id}/in-progress`);
     addInProgress(id);
   };
 
-  const inProgress = () => {
-    const localProgress = readInProgress();
-    const getInProgress = localProgress.some((localId) => localId === id);
-    return getInProgress;
-  };
-
-  useEffect(() => {
-    fetchRecipeAndSuggestions();
-    defineRecipe();
-  }, []);
+  // const inProgress = () => {
+  //   const localProgress = readInProgress();
+  //   const getInProgress = localProgress.some((localId) => localId === id);
+  //   return getInProgress;
+  // };
 
   return (
     <div>
@@ -78,13 +68,13 @@ function DrinksRecipe() {
         && (
           <>
             <Recipe
-              title={ recipe.recipeTitle }
-              image={ recipe.recipeImage }
-              category={ recipe.recipeCategory }
-              measures={ recipe.recipeMeasures }
-              ingredients={ recipe.recipeIngredients }
-              instructions={ recipe.recipeInstructions }
-              video={ recipe.recipeVideo }
+              title={ recipe[0].recipeTitle }
+              image={ recipe[0].recipeImage }
+              category={ recipe[0].recipeCategory }
+              measures={ recipe[0].recipeMeasures }
+              ingredients={ recipe[0].recipeIngredients }
+              instructions={ recipe[0].recipeInstructions }
+              video={ recipe[0].recipeVideo }
             />
             {suggestions.length > 0 && (
               <Carousel
@@ -126,7 +116,8 @@ function DrinksRecipe() {
               data-testid="start-recipe-btn"
               onClick={ startRecipeOnClick }
             >
-              {inProgress() ? 'Continue recipe' : 'Start recipe'}
+              Start recipe
+              {/* {inProgress() ? 'Continue recipe' : 'Start recipe'} */}
             </Button>
           </>
         )}

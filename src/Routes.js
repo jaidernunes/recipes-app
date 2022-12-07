@@ -6,9 +6,10 @@ import FavoriteRecipes from './pages/FavoriteRecipes';
 import Login from './pages/Login';
 import Meals from './pages/Meals';
 import Profile from './pages/Profile';
-import MealsRecipe from './pages/MealsRecipe';
-import DrinksRecipe from './pages/DrinksRecipe';
 import RecipeInProgress from './pages/RecipeInProgress';
+// import RecipeDetails from './pages/RecipeDetails';
+import DrinksRecipe from './pages/DrinksRecipe';
+import MealsRecipe from './pages/MealsRecipe';
 
 function Routes() {
   return (

@@ -12,28 +12,10 @@ function MealsRecipe() {
   const numberSuggestions = 6;
   const { history } = useHistory();
   const { id } = useParams();
-  const [meal, setMeal] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
-  const [recipe, setRecipe] = useState({
-    recipeTitle: '',
-    recipeImage: '',
-    recipeIngredients: [],
-    recipeMeasures: [],
-    recipeCategory: '',
-    recipeVideo: '',
-  });
-  const [ingredients, setIngredients] = useState([]);
-  const [measures, setMeasures] = useState([]);
+  const [recipe, setRecipe] = useState([]);
 
-  const fetchMealAndSuggestions = async () => {
-    const getMeal = await getMealDetails(id);
-    const getDrinksList = await fetchDrinks();
-    const drinks = getDrinksList.slice(0, numberSuggestions);
-    setMeal(getMeal);
-    setSuggestions(drinks);
-  };
-
-  const getIngredients = () => {
+  const defineRecipe = (meal) => {
     const ingredientsArr = [];
     const measuresArr = [];
 
@@ -46,26 +28,27 @@ function MealsRecipe() {
         measuresArr.push(value);
       }
     });
-    setIngredients(ingredientsArr);
-    setMeasures(measuresArr);
-  };
 
-  const defineRecipe = () => {
-    setRecipe({
+    setRecipe([{
       recipeTitle: meal[0].strMeal,
       recipeImage: meal[0].strMealThumb,
-      recipeIngredients: ingredients,
-      recipeMeasures: measures,
+      recipeIngredients: ingredientsArr,
+      recipeMeasures: measuresArr,
       recipeCategory: meal[0].strCategory,
       recipeVideo: meal[0].strYoutube,
       recipeInstructions: meal[0].strInstructions,
-    });
+    }]);
   };
 
   useEffect(() => {
+    const fetchMealAndSuggestions = async () => {
+      const getMeal = await getMealDetails(id);
+      const getDrinksList = await fetchDrinks();
+      const drinks = getDrinksList.slice(0, numberSuggestions);
+      setSuggestions(drinks);
+      defineRecipe(getMeal);
+    };
     fetchMealAndSuggestions();
-    defineRecipe();
-    getIngredients();
   }, []);
 
   const startRecipeOnClick = () => {
@@ -73,11 +56,11 @@ function MealsRecipe() {
     addInProgress(id);
   };
 
-  const inProgress = () => {
-    const localProgress = readInProgress();
-    const getInProgress = localProgress.some((localId) => localId === id);
-    return getInProgress;
-  };
+  // const inProgress = () => {
+  //   const localProgress = readInProgress();
+  //   const getInProgress = localProgress.some((localId) => localId === id);
+  //   return getInProgress;
+  // };
 
   return (
     <div>
@@ -85,15 +68,15 @@ function MealsRecipe() {
         && (
           <>
             <Recipe
-              title={ recipe.recipeTitle }
-              image={ recipe.recipeImage }
-              category={ recipe.recipeCategory }
-              measures={ recipe.recipeMeasures }
-              ingredients={ recipe.recipeIngredients }
-              instructions={ recipe.recipeInstructions }
-              video={ recipe.recipeVideo }
+              title={ recipe[0].recipeTitle }
+              image={ recipe[0].recipeImage }
+              category={ recipe[0].recipeCategory }
+              measures={ recipe[0].recipeMeasures }
+              ingredients={ recipe[0].recipeIngredients }
+              instructions={ recipe[0].recipeInstructions }
+              video={ recipe[0].recipeVideo }
             />
-            {suggestions?.length > 0 && (
+            {suggestions.length > 0 && (
               <Carousel
                 interval={ null }
               >
@@ -133,7 +116,8 @@ function MealsRecipe() {
               data-testid="start-recipe-btn"
               onClick={ startRecipeOnClick }
             >
-              { inProgress() ? 'Continue recipe' : 'Start recipe' }
+              Start Recipe
+              {/* { inProgress() ? 'Continue recipe' : 'Start recipe' } */}
             </Button>
           </>
         )}
