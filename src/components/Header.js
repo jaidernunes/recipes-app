@@ -6,8 +6,8 @@ import './Header.css';
 import SearchBar from './SearchBar';
 
 function Header() {
-  const { path, url } = useRouteMatch();
-  console.log(path, url);
+  const { path } = useRouteMatch();
+  // console.log(path);
   const [showSearchBar, setShowSearchBar] = useState(false);
 
   function showTitle() {
