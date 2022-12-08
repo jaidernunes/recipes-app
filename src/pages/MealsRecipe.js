@@ -6,7 +6,7 @@ import Recipe from '../components/Recipe';
 import { getMealDetails } from '../services/detailsAPI';
 import { fetchDrinks } from '../services/recipesAPI';
 import './RecipeDetails.css';
-import { addInProgressMeals } from '../services/localStorage';
+import { readInProgress, saveInProgress } from '../services/localStorage';
 
 function MealsRecipe() {
   const numberSuggestions = 6;
@@ -51,15 +51,18 @@ function MealsRecipe() {
     fetchMealAndSuggestions();
   }, []);
 
-  // const inProgress = () => {
-  //   const localProgress = readInProgress();
-  //   console.log(localProgress);
-  //   return localProgress;
-  // };
-
   const startRecipeOnClick = () => {
     history.push(`/meals/${id}/in-progress`);
-    addInProgressMeals({ [id]: [] });
+    const localProgress = readInProgress();
+    localProgress.meals[id] = recipe[0].recipeIngredients;
+    saveInProgress(localProgress);
+  };
+
+  const inProgress = () => {
+    const localProgress = readInProgress();
+    const keysId = Object.keys(localProgress.meals);
+    const isInProgress = keysId.some((keyId) => keyId === id);
+    return isInProgress;
   };
 
   return (
@@ -76,6 +79,16 @@ function MealsRecipe() {
               instructions={ recipe[0].recipeInstructions }
               video={ recipe[0].recipeVideo }
             />
+            <Button
+              data-testid="share-btn"
+            >
+              Compartilhar
+            </Button>
+            <Button
+              data-testid="favorite-btn"
+            >
+              Favoritar
+            </Button>
             {suggestions.length > 0 && (
               <Carousel
                 interval={ null }
@@ -116,8 +129,7 @@ function MealsRecipe() {
               data-testid="start-recipe-btn"
               onClick={ startRecipeOnClick }
             >
-              Start recipe
-              {/* { inProgress() ? 'Continue recipe' : 'Start recipe' } */}
+              { inProgress() ? 'Continue Recipe' : 'Start Recipe' }
             </Button>
           </>
         )}

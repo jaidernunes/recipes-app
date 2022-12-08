@@ -6,7 +6,7 @@ import Recipe from '../components/Recipe';
 import { getCocktailDetails } from '../services/detailsAPI';
 import { fetchMeals } from '../services/recipesAPI';
 import './RecipeDetails.css';
-// import readInProgress from '../services/localStorage';
+import { readInProgress, saveInProgress } from '../services/localStorage';
 
 function DrinksRecipe() {
   const numberSuggestions = 6;
@@ -53,7 +53,16 @@ function DrinksRecipe() {
 
   const startRecipeOnClick = () => {
     history.push(`/drinks/${id}/in-progress`);
-    // addInProgress(id);
+    const localProgress = readInProgress();
+    localProgress.drinks[id] = recipe[0].recipeIngredients;
+    saveInProgress(localProgress);
+  };
+
+  const inProgress = () => {
+    const localProgress = readInProgress();
+    const keysId = Object.keys(localProgress.drinks);
+    const isInProgress = keysId.some((keyId) => keyId === id);
+    return isInProgress;
   };
 
   return (
@@ -70,6 +79,16 @@ function DrinksRecipe() {
               instructions={ recipe[0].recipeInstructions }
               video={ recipe[0].recipeVideo }
             />
+            <Button
+              data-testid="share-btn"
+            >
+              Compartilhar
+            </Button>
+            <Button
+              data-testid="favorite-btn"
+            >
+              Favoritar
+            </Button>
             {suggestions.length > 0 && (
               <Carousel
                 interval={ null }
@@ -110,8 +129,7 @@ function DrinksRecipe() {
               data-testid="start-recipe-btn"
               onClick={ startRecipeOnClick }
             >
-              Start recipe
-              {/* {inProgress() ? 'Continue recipe' : 'Start recipe'} */}
+              { inProgress() ? 'Continue Recipe' : 'Start Recipe' }
             </Button>
           </>
         )}
