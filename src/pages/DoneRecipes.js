@@ -56,7 +56,7 @@ function DoneRecipes() {
       <Header />
       <ButtonsDone />
       {
-        doneRecipes?.map((done) => (
+        doneRecipes?.map((done, index) => (
           <div
             key={ done.id }
           >
@@ -123,7 +123,7 @@ function DoneRecipes() {
           </div>
         ))
       }
-      { buttonShare === 'sim' && (<div>Link copied!</div>)}
+      { buttonShare === 'sim' && (<p>Link copied!</p>)}
     </div>
   );
 }
