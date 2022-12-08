@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import RecipesContext from './RecipesContext';
 
 function RecipesProvider({ children }) {
-  const [teste, setTeste] = useState([]);
+  const [doneRecipes, setDoneRecipes] = useState([]);
+  const [buttonShare, setButtonShare] = useState([]);
 
   // estado da primeira requisição
   const [mealsRequest, setMealsRequest] = useState([]);
@@ -26,11 +27,13 @@ function RecipesProvider({ children }) {
   }, []);
 
   const providerProps = useMemo(() => ({
-    teste,
-    setTeste,
+    doneRecipes,
+    setDoneRecipes,
+    buttonShare,
+    setButtonShare,
     mealsRequest,
     drinksRequest,
-  }), [teste, drinksRequest, mealsRequest,
+  }), [doneRecipes, buttonShare, drinksRequest, mealsRequest,
   ]);
 
   return (

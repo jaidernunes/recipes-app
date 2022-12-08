@@ -7,7 +7,6 @@ import SearchBar from './SearchBar';
 
 function Header() {
   const { path } = useRouteMatch();
-  // console.log(path);
   const [showSearchBar, setShowSearchBar] = useState(false);
 
   function showTitle() {
