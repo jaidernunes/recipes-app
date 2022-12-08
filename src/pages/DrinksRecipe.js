@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import copy from 'clipboard-copy';
-import { Carousel, Button, Alert } from 'react-bootstrap';
+import { Carousel, ButtonGroup, Alert, Button } from 'react-bootstrap';
 import RecipeCard from '../components/RecipeCard';
 import Recipe from '../components/Recipe';
 import { getCocktailDetails } from '../services/detailsAPI';
@@ -41,7 +41,8 @@ function DrinksRecipe() {
       recipeImage: drink[0].strDrinkThumb,
       recipeIngredients: ingredientsArr,
       recipeMeasures: measuresArr,
-      recipeCategory: `${drink[0].strAlcoholic} ${drink[0].strCategory}`,
+      recipeCategory: drink[0].strCategory,
+      recipeAlcoholic: drink[0].strAlcoholic,
       recipeVideo: drink[0].strYoutube,
       recipeInstructions: drink[0].strInstructions,
     }]);
@@ -70,7 +71,7 @@ function DrinksRecipe() {
       type: 'drink',
       nationality: '',
       category: recipe[0].recipeCategory,
-      alcoholicOrNot: recipe[0].strAlcoholic,
+      alcoholicOrNot: recipe[0].recipeAlcoholic,
       name: recipe[0].recipeTitle,
       image: recipe[0].recipeImage,
     });
@@ -122,6 +123,7 @@ function DrinksRecipe() {
               ingredients={ recipe[0].recipeIngredients }
               instructions={ recipe[0].recipeInstructions }
               video={ recipe[0].recipeVideo }
+              alcoholic={ recipe[0].recipeAlcoholic }
             />
             <Button
               onClick={ shareOnClick }
@@ -132,22 +134,22 @@ function DrinksRecipe() {
             {
               isFavorite
                 ? (
-                  <Button onClick={ removeFavorite }>
+                  <ButtonGroup className="btn btn-danger" onClick={ removeFavorite }>
                     <img
                       data-testid="favorite-btn"
                       src={ BlackHeartIcon }
                       alt="black heart"
                     />
-                  </Button>
+                  </ButtonGroup>
                 )
                 : (
-                  <Button onClick={ saveFavorite }>
+                  <ButtonGroup className="btn btn-danger" onClick={ saveFavorite }>
                     <img
                       data-testid="favorite-btn"
                       src={ WhiteHeartIcon }
                       alt="white heart"
                     />
-                  </Button>
+                  </ButtonGroup>
                 )
             }
             {

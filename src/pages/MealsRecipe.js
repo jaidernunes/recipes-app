@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { Carousel, Button, Alert } from 'react-bootstrap';
+import { Carousel, Button, Alert, ButtonGroup } from 'react-bootstrap';
 import copy from 'clipboard-copy';
 import RecipeCard from '../components/RecipeCard';
 import Recipe from '../components/Recipe';
@@ -133,22 +133,22 @@ function MealsRecipe() {
             {
               isFavorite
                 ? (
-                  <Button onClick={ removeFavorite }>
+                  <ButtonGroup className="btn btn-danger" onClick={ removeFavorite }>
                     <img
                       data-testid="favorite-btn"
                       src={ BlackHeartIcon }
                       alt="black heart"
                     />
-                  </Button>
+                  </ButtonGroup>
                 )
                 : (
-                  <Button onClick={ saveFavorite }>
+                  <ButtonGroup className="btn btn-danger" onClick={ saveFavorite }>
                     <img
                       data-testid="favorite-btn"
                       src={ WhiteHeartIcon }
                       alt="white heart"
                     />
-                  </Button>
+                  </ButtonGroup>
                 )
             }
             {
