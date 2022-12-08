@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import { Carousel, Button } from 'react-bootstrap';
+import copy from 'clipboard-copy';
+import { Carousel, ButtonGroup, Alert, Button } from 'react-bootstrap';
 import RecipeCard from '../components/RecipeCard';
 import Recipe from '../components/Recipe';
 import { getCocktailDetails } from '../services/detailsAPI';
 import { fetchMeals } from '../services/recipesAPI';
 import './RecipeDetails.css';
-import { readInProgress, saveInProgress } from '../services/localStorage';
+import { readInProgress, saveInProgress,
+  readFavoriteRecipes, saveFavoriteRecipes } from '../services/localStorage';
+import ShareLogo from '../images/shareIcon.svg';
+import WhiteHeartIcon from '../images/whiteHeartIcon.svg';
+import BlackHeartIcon from '../images/blackHeartIcon.svg';
 
 function DrinksRecipe() {
   const numberSuggestions = 6;
@@ -14,6 +19,8 @@ function DrinksRecipe() {
   const { id } = useParams();
   const [suggestions, setSuggestions] = useState([]);
   const [recipe, setRecipe] = useState([]);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [isCopy, setIsCopy] = useState(false);
 
   const defineRecipe = (drink) => {
     const ingredientsArr = [];
@@ -34,22 +41,12 @@ function DrinksRecipe() {
       recipeImage: drink[0].strDrinkThumb,
       recipeIngredients: ingredientsArr,
       recipeMeasures: measuresArr,
-      recipeCategory: `${drink[0].strAlcoholic} ${drink[0].strCategory}`,
+      recipeCategory: drink[0].strCategory,
+      recipeAlcoholic: drink[0].strAlcoholic,
       recipeVideo: drink[0].strYoutube,
       recipeInstructions: drink[0].strInstructions,
     }]);
   };
-
-  useEffect(() => {
-    const fetchRecipeAndSuggestions = async () => {
-      const getDrink = await getCocktailDetails(id);
-      const getMealsList = await fetchMeals();
-      const meals = getMealsList.slice(0, numberSuggestions);
-      setSuggestions(meals);
-      defineRecipe(getDrink);
-    };
-    fetchRecipeAndSuggestions();
-  }, []);
 
   const startRecipeOnClick = () => {
     history.push(`/drinks/${id}/in-progress`);
@@ -65,6 +62,54 @@ function DrinksRecipe() {
     return isInProgress;
   };
 
+  const saveFavorite = () => {
+    setIsFavorite(true);
+    const localFavorites = readFavoriteRecipes();
+    const drinkId = id;
+    localFavorites.push({
+      id: drinkId,
+      type: 'drink',
+      nationality: '',
+      category: recipe[0].recipeCategory,
+      alcoholicOrNot: recipe[0].recipeAlcoholic,
+      name: recipe[0].recipeTitle,
+      image: recipe[0].recipeImage,
+    });
+    saveFavoriteRecipes(localFavorites);
+  };
+
+  const getFavorites = () => {
+    const favorites = readFavoriteRecipes();
+    const getFavorite = favorites.some((favorite) => favorite.id === id);
+    if (getFavorite) {
+      setIsFavorite(true);
+    }
+  };
+
+  const removeFavorite = () => {
+    const favorites = readFavoriteRecipes();
+    const newFavorites = favorites.filter((favorite) => favorite.id !== id);
+    saveFavoriteRecipes(newFavorites);
+    setIsFavorite(false);
+  };
+
+  const shareOnClick = () => {
+    setIsCopy(true);
+    copy(`http://localhost:3000/drinks/${id}`);
+  };
+
+  useEffect(() => {
+    const fetchRecipeAndSuggestions = async () => {
+      const getDrink = await getCocktailDetails(id);
+      const getMealsList = await fetchMeals();
+      const meals = getMealsList.slice(0, numberSuggestions);
+      setSuggestions(meals);
+      defineRecipe(getDrink);
+    };
+    fetchRecipeAndSuggestions();
+    getFavorites();
+  }, []);
+
   return (
     <div>
       {recipe.length > 0
@@ -78,17 +123,38 @@ function DrinksRecipe() {
               ingredients={ recipe[0].recipeIngredients }
               instructions={ recipe[0].recipeInstructions }
               video={ recipe[0].recipeVideo }
+              alcoholic={ recipe[0].recipeAlcoholic }
             />
             <Button
+              onClick={ shareOnClick }
               data-testid="share-btn"
             >
-              Compartilhar
+              <img src={ ShareLogo } alt="share logo" />
             </Button>
-            <Button
-              data-testid="favorite-btn"
-            >
-              Favoritar
-            </Button>
+            {
+              isFavorite
+                ? (
+                  <ButtonGroup className="btn btn-danger" onClick={ removeFavorite }>
+                    <img
+                      data-testid="favorite-btn"
+                      src={ BlackHeartIcon }
+                      alt="black heart"
+                    />
+                  </ButtonGroup>
+                )
+                : (
+                  <ButtonGroup className="btn btn-danger" onClick={ saveFavorite }>
+                    <img
+                      data-testid="favorite-btn"
+                      src={ WhiteHeartIcon }
+                      alt="white heart"
+                    />
+                  </ButtonGroup>
+                )
+            }
+            {
+              isCopy && <Alert>Link copied!</Alert>
+            }
             {suggestions.length > 0 && (
               <Carousel
                 interval={ null }

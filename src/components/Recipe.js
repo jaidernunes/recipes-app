@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Recipe({ title, image, category, measures, ingredients, instructions, video }) {
+function Recipe({ title, image, category, measures, ingredients,
+  instructions, video, alcoholic }) {
   return (
     <div className="recipe">
       <h1 data-testid="recipe-title">
@@ -14,7 +15,7 @@ function Recipe({ title, image, category, measures, ingredients, instructions, v
         width="300"
       />
       <h2 data-testid="recipe-category">
-        {`Category: ${category}`}
+        {`Category: ${alcoholic} ${category}`}
       </h2>
       <ul>
         Ingredients:
@@ -39,6 +40,7 @@ function Recipe({ title, image, category, measures, ingredients, instructions, v
 }
 
 Recipe.propTypes = ({
+  alcoholic: PropTypes.string,
   title: PropTypes.string,
   image: PropTypes.string,
   category: PropTypes.string,

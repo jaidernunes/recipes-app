@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { Carousel, Button } from 'react-bootstrap';
+import { Carousel, Button, Alert, ButtonGroup } from 'react-bootstrap';
+import copy from 'clipboard-copy';
 import RecipeCard from '../components/RecipeCard';
 import Recipe from '../components/Recipe';
 import { getMealDetails } from '../services/detailsAPI';
 import { fetchDrinks } from '../services/recipesAPI';
 import './RecipeDetails.css';
-import { readInProgress, saveInProgress } from '../services/localStorage';
+import { readInProgress, saveInProgress,
+  readFavoriteRecipes, saveFavoriteRecipes } from '../services/localStorage';
+import ShareLogo from '../images/shareIcon.svg';
+import WhiteHeartIcon from '../images/whiteHeartIcon.svg';
+import BlackHeartIcon from '../images/blackHeartIcon.svg';
 
 function MealsRecipe() {
   const numberSuggestions = 6;
@@ -14,6 +19,8 @@ function MealsRecipe() {
   const { id } = useParams();
   const [suggestions, setSuggestions] = useState([]);
   const [recipe, setRecipe] = useState([]);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [isCopy, setIsCopy] = useState(false);
 
   const defineRecipe = (meal) => {
     const ingredientsArr = [];
@@ -37,19 +44,9 @@ function MealsRecipe() {
       recipeCategory: meal[0].strCategory,
       recipeVideo: meal[0].strYoutube,
       recipeInstructions: meal[0].strInstructions,
+      recipeNationality: meal[0].strArea,
     }]);
   };
-
-  useEffect(() => {
-    const fetchMealAndSuggestions = async () => {
-      const getMeal = await getMealDetails(id);
-      const getDrinksList = await fetchDrinks();
-      const drinks = getDrinksList.slice(0, numberSuggestions);
-      setSuggestions(drinks);
-      defineRecipe(getMeal);
-    };
-    fetchMealAndSuggestions();
-  }, []);
 
   const startRecipeOnClick = () => {
     history.push(`/meals/${id}/in-progress`);
@@ -64,6 +61,54 @@ function MealsRecipe() {
     const isInProgress = keysId.some((keyId) => keyId === id);
     return isInProgress;
   };
+
+  const saveFavorite = () => {
+    setIsFavorite(true);
+    const localFavorites = readFavoriteRecipes();
+    const mealId = id;
+    localFavorites.push({
+      id: mealId,
+      type: 'meal',
+      nationality: recipe[0].recipeNationality,
+      category: recipe[0].recipeCategory,
+      alcoholicOrNot: '',
+      name: recipe[0].recipeTitle,
+      image: recipe[0].recipeImage,
+    });
+    saveFavoriteRecipes(localFavorites);
+  };
+
+  const getFavorites = () => {
+    const favorites = readFavoriteRecipes();
+    const getFavorite = favorites.some((favorite) => favorite.id === id);
+    if (getFavorite) {
+      setIsFavorite(true);
+    }
+  };
+
+  const removeFavorite = () => {
+    const favorites = readFavoriteRecipes();
+    const newFavorites = favorites.filter((favorite) => favorite.id !== id);
+    saveFavoriteRecipes(newFavorites);
+    setIsFavorite(false);
+  };
+
+  const shareOnClick = () => {
+    setIsCopy(true);
+    copy(`http://localhost:3000/meals/${id}`);
+  };
+
+  useEffect(() => {
+    const fetchMealAndSuggestions = async () => {
+      const getMeal = await getMealDetails(id);
+      const getDrinksList = await fetchDrinks();
+      const drinks = getDrinksList.slice(0, numberSuggestions);
+      setSuggestions(drinks);
+      defineRecipe(getMeal);
+    };
+    fetchMealAndSuggestions();
+    getFavorites();
+  }, []);
 
   return (
     <div>
@@ -81,16 +126,37 @@ function MealsRecipe() {
             />
             <Button
               data-testid="share-btn"
+              onClick={ shareOnClick }
             >
-              Compartilhar
+              <img src={ ShareLogo } alt="share logo" />
             </Button>
-            <Button
-              data-testid="favorite-btn"
-            >
-              Favoritar
-            </Button>
+            {
+              isFavorite
+                ? (
+                  <ButtonGroup className="btn btn-danger" onClick={ removeFavorite }>
+                    <img
+                      data-testid="favorite-btn"
+                      src={ BlackHeartIcon }
+                      alt="black heart"
+                    />
+                  </ButtonGroup>
+                )
+                : (
+                  <ButtonGroup className="btn btn-danger" onClick={ saveFavorite }>
+                    <img
+                      data-testid="favorite-btn"
+                      src={ WhiteHeartIcon }
+                      alt="white heart"
+                    />
+                  </ButtonGroup>
+                )
+            }
+            {
+              isCopy && <Alert>Link copied!</Alert>
+            }
             {suggestions.length > 0 && (
               <Carousel
+                className="carousel"
                 interval={ null }
               >
                 <Carousel.Item>
