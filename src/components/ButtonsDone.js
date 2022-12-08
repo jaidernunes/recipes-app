@@ -29,6 +29,7 @@ function ButtonsDone() {
       </button>
       <button
         type="button"
+        className="filterMeal"
         data-testid="filter-by-meal-btn"
         onClick={ meals }
       >
@@ -36,6 +37,7 @@ function ButtonsDone() {
       </button>
       <button
         type="button"
+        className="filterDrink"
         data-testid="filter-by-drink-btn"
         onClick={ drinks }
       >

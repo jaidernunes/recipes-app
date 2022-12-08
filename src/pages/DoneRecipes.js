@@ -45,7 +45,7 @@ function DoneRecipes() {
 
   useEffect(() => {
     const InfoLocalSotrage = () => {
-      const local = JSON.parse(localStorage.getItem('doneRecipes')).doneRecipes1 || [];
+      const local = JSON.parse(localStorage.getItem('doneRecipes')).doneRecipes1;
       setDoneRecipes(local);
     };
     InfoLocalSotrage();
@@ -96,7 +96,6 @@ function DoneRecipes() {
                 className="btnShare"
               />
             </button>
-            { buttonShare === 'sim' && (<p>Link copied!</p>)}
             {done.type === 'drink'
               ? (
                 <p
@@ -124,6 +123,7 @@ function DoneRecipes() {
           </div>
         ))
       }
+      { buttonShare === 'sim' && (<p>Link copied!</p>)}
     </div>
   );
 }
