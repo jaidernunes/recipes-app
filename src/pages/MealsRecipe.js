@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { Carousel, Button } from 'react-bootstrap';
+import { Carousel, Button, Alert } from 'react-bootstrap';
+import copy from 'clipboard-copy';
 import RecipeCard from '../components/RecipeCard';
 import Recipe from '../components/Recipe';
 import { getMealDetails } from '../services/detailsAPI';
@@ -19,6 +20,7 @@ function MealsRecipe() {
   const [suggestions, setSuggestions] = useState([]);
   const [recipe, setRecipe] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isCopy, setIsCopy] = useState(false);
 
   const defineRecipe = (meal) => {
     const ingredientsArr = [];
@@ -91,6 +93,11 @@ function MealsRecipe() {
     setIsFavorite(false);
   };
 
+  const shareOnClick = () => {
+    setIsCopy(true);
+    copy(`http://localhost:3000/meals/${id}`);
+  };
+
   useEffect(() => {
     const fetchMealAndSuggestions = async () => {
       const getMeal = await getMealDetails(id);
@@ -119,6 +126,7 @@ function MealsRecipe() {
             />
             <Button
               data-testid="share-btn"
+              onClick={ shareOnClick }
             >
               <img src={ ShareLogo } alt="share logo" />
             </Button>
@@ -142,6 +150,9 @@ function MealsRecipe() {
                     />
                   </Button>
                 )
+            }
+            {
+              isCopy && <Alert>Link copied!</Alert>
             }
             {suggestions.length > 0 && (
               <Carousel
