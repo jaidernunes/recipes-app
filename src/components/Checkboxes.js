@@ -31,7 +31,7 @@ function Checkboxes({ recipeData }) {
   const [forceRender, setForceRender] = useState(0);
 
   useState(() => {
-    const localChecks = JSON.parse(window.localStorage.getItem('inProgressRecipes'));
+    const localChecks = JSON.parse(window.localStorage.getItem('ingredientsChecked'));
 
     if (localChecks) {
       setBoxChecked(localChecks);
@@ -68,7 +68,7 @@ function Checkboxes({ recipeData }) {
               setBoxChecked(newObj);
 
               window.localStorage
-                .setItem('inProgressRecipes', JSON.stringify(boxChecked));
+                .setItem('ingredientsChecked', JSON.stringify(boxChecked));
             } }
             checked={ boxChecked[index] }
           />
