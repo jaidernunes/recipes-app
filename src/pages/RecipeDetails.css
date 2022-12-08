@@ -10,7 +10,7 @@ img {
   width: 10rem;
 }
 
-button {
+.start-recipe {
   bottom: 0;
   position: fixed;
 }

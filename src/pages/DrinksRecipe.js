@@ -126,6 +126,7 @@ function DrinksRecipe() {
               </Carousel>
             )}
             <Button
+              className="start-recipe"
               data-testid="start-recipe-btn"
               onClick={ startRecipeOnClick }
             >
