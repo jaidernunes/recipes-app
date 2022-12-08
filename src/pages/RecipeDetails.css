@@ -14,3 +14,7 @@ img {
   bottom: 0;
   position: fixed;
 }
+
+.carousel {
+  margin-right: 30px;
+}

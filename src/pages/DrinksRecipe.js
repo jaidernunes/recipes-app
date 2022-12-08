@@ -6,7 +6,11 @@ import Recipe from '../components/Recipe';
 import { getCocktailDetails } from '../services/detailsAPI';
 import { fetchMeals } from '../services/recipesAPI';
 import './RecipeDetails.css';
-import { readInProgress, saveInProgress } from '../services/localStorage';
+import { readInProgress, saveInProgress,
+  readFavoriteRecipes, saveFavoriteRecipes } from '../services/localStorage';
+import ShareLogo from '../images/shareIcon.svg';
+import WhiteHeartIcon from '../images/whiteHeartIcon.svg';
+import BlackHeartIcon from '../images/blackHeartIcon.svg';
 
 function DrinksRecipe() {
   const numberSuggestions = 6;
@@ -14,6 +18,7 @@ function DrinksRecipe() {
   const { id } = useParams();
   const [suggestions, setSuggestions] = useState([]);
   const [recipe, setRecipe] = useState([]);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const defineRecipe = (drink) => {
     const ingredientsArr = [];
@@ -40,17 +45,6 @@ function DrinksRecipe() {
     }]);
   };
 
-  useEffect(() => {
-    const fetchRecipeAndSuggestions = async () => {
-      const getDrink = await getCocktailDetails(id);
-      const getMealsList = await fetchMeals();
-      const meals = getMealsList.slice(0, numberSuggestions);
-      setSuggestions(meals);
-      defineRecipe(getDrink);
-    };
-    fetchRecipeAndSuggestions();
-  }, []);
-
   const startRecipeOnClick = () => {
     history.push(`/drinks/${id}/in-progress`);
     const localProgress = readInProgress();
@@ -64,6 +58,49 @@ function DrinksRecipe() {
     const isInProgress = keysId.some((keyId) => keyId === id);
     return isInProgress;
   };
+
+  const saveFavorite = () => {
+    setIsFavorite(true);
+    const localFavorites = readFavoriteRecipes();
+    const drinkId = id;
+    localFavorites.push({
+      id: drinkId,
+      type: 'drink',
+      nationality: '',
+      category: recipe[0].recipeCategory,
+      alcoholicOrNot: recipe[0].strAlcoholic,
+      name: recipe[0].recipeTitle,
+      image: recipe[0].recipeImage,
+    });
+    saveFavoriteRecipes(localFavorites);
+  };
+
+  const getFavorites = () => {
+    const favorites = readFavoriteRecipes();
+    const getFavorite = favorites.some((favorite) => favorite.id === id);
+    if (getFavorite) {
+      setIsFavorite(true);
+    }
+  };
+
+  const removeFavorite = () => {
+    const favorites = readFavoriteRecipes();
+    const newFavorites = favorites.filter((favorite) => favorite.id !== id);
+    saveFavoriteRecipes(newFavorites);
+    setIsFavorite(false);
+  };
+
+  useEffect(() => {
+    const fetchRecipeAndSuggestions = async () => {
+      const getDrink = await getCocktailDetails(id);
+      const getMealsList = await fetchMeals();
+      const meals = getMealsList.slice(0, numberSuggestions);
+      setSuggestions(meals);
+      defineRecipe(getDrink);
+    };
+    fetchRecipeAndSuggestions();
+    getFavorites();
+  }, []);
 
   return (
     <div>
@@ -82,13 +119,29 @@ function DrinksRecipe() {
             <Button
               data-testid="share-btn"
             >
-              Compartilhar
+              <img src={ ShareLogo } alt="share logo" />
             </Button>
-            <Button
-              data-testid="favorite-btn"
-            >
-              Favoritar
-            </Button>
+            {
+              isFavorite
+                ? (
+                  <Button onClick={ removeFavorite }>
+                    <img
+                      data-testid="favorite-btn"
+                      src={ BlackHeartIcon }
+                      alt="black heart"
+                    />
+                  </Button>
+                )
+                : (
+                  <Button onClick={ saveFavorite }>
+                    <img
+                      data-testid="favorite-btn"
+                      src={ WhiteHeartIcon }
+                      alt="white heart"
+                    />
+                  </Button>
+                )
+            }
             {suggestions.length > 0 && (
               <Carousel
                 interval={ null }
