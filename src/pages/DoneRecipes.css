@@ -6,3 +6,7 @@
 .img {
   width: 50%;
 }
+
+h3 {
+  animation-duration: hide 2s 2s forwards;
+}

@@ -56,9 +56,9 @@ function DoneRecipes() {
       <Header />
       <ButtonsDone />
       {
-        doneRecipes?.map((done, index) => (
+        doneRecipes?.map((done) => (
           <div
-            key={ index }
+            key={ done.id }
           >
             <button
               type="button"
@@ -83,7 +83,7 @@ function DoneRecipes() {
               {done.doneDate}
             </p>
             <button
-              type="submit"
+              type="button"
               onClick={ () => {
                 copy(`http://localhost:3000/${done.type}s/${done.id}`);
                 setButtonShare('sim');
@@ -123,7 +123,7 @@ function DoneRecipes() {
           </div>
         ))
       }
-      { buttonShare === 'sim' && (<p>Link copied!</p>)}
+      { buttonShare === 'sim' && (<div>Link copied!</div>)}
     </div>
   );
 }
