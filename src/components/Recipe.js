@@ -15,7 +15,9 @@ function Recipe({ title, image, category, measures, ingredients,
         width="300"
       />
       <h2 data-testid="recipe-category">
-        {`Category: ${alcoholic} ${category}`}
+        {alcoholic !== undefined
+          ? `Category: ${alcoholic} ${category}`
+          : `Category: ${category}`}
       </h2>
       <ul>
         Ingredients:

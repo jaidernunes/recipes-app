@@ -51,7 +51,9 @@ function MealsRecipe() {
   const startRecipeOnClick = () => {
     history.push(`/meals/${id}/in-progress`);
     const localProgress = readInProgress();
-    localProgress.meals[id] = recipe[0].recipeIngredients;
+    const ingredients = recipe[0].recipeIngredients;
+    const getProgressIngredients = ingredients.map(() => false);
+    localProgress.meals[id] = getProgressIngredients;
     saveInProgress(localProgress);
   };
 
