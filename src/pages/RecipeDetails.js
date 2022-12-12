@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import MealsRecipe from './MealsRecipe';
-import DrinksRecipe from './DrinksRecipe';
+import MealsRecipe from '../components/MealsRecipe';
+import DrinksRecipe from '../components/DrinksRecipe';
 
 function RecipeDetails() {
   // const { history } = useHistory();

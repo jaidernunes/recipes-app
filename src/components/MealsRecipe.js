@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { Carousel, Button, Alert, ButtonGroup } from 'react-bootstrap';
 import copy from 'clipboard-copy';
-import RecipeCard from '../components/RecipeCard';
-import Recipe from '../components/Recipe';
+import RecipeCard from './RecipeCard';
+import Recipe from './Recipe';
 import { getMealDetails } from '../services/detailsAPI';
 import { fetchDrinks } from '../services/recipesAPI';
-import './RecipeDetails.css';
+import '../pages/RecipeDetails.css';
 import { readInProgress, saveInProgress,
   readFavoriteRecipes, saveFavoriteRecipes } from '../services/localStorage';
 import ShareLogo from '../images/shareIcon.svg';
@@ -164,8 +164,10 @@ function MealsRecipe() {
                 <Carousel.Item>
                   <RecipeCard
                     index={ 0 }
+                    redirect={ () => history.push(`/drinks/${suggestions[0].idDrink}`) }
                     photo={ suggestions[0].strDrinkThumb }
                     name={ suggestions[0].strDrink }
+                    redirect2={ () => history.push(`/drinks/${suggestions[1].idDrink}`) }
                     index2={ 1 }
                     photo2={ suggestions[1].strDrinkThumb }
                     name2={ suggestions[1].strDrink }
@@ -174,8 +176,10 @@ function MealsRecipe() {
                 <Carousel.Item>
                   <RecipeCard
                     index={ 2 }
+                    redirect={ () => history.push(`/drinks/${suggestions[2].idDrink}`) }
                     photo={ suggestions[2].strDrinkThumb }
                     name={ suggestions[2].strDrink }
+                    redirect2={ () => history.push(`/drinks/${suggestions[3].idDrink}`) }
                     index2={ 3 }
                     photo2={ suggestions[3].strDrinkThumb }
                     name2={ suggestions[3].strDrink }
@@ -184,8 +188,10 @@ function MealsRecipe() {
                 <Carousel.Item>
                   <RecipeCard
                     index={ 4 }
+                    redirect={ () => history.push(`/drinks/${suggestions[4].idDrink}`) }
                     photo={ suggestions[4].strDrinkThumb }
                     name={ suggestions[4].strDrink }
+                    redirect2={ () => history.push(`/drinks/${suggestions[5].idDrink}`) }
                     index2={ 5 }
                     photo2={ suggestions[5].strDrinkThumb }
                     name2={ suggestions[5].strDrink }

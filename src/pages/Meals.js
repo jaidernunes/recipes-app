@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Card } from 'react-bootstrap';
 import recipesContext from '../context/RecipesContext';
 import Header from '../components/Header';
 
@@ -7,10 +8,10 @@ function Meals() {
   const number = 12;
 
   return (
-    <main>
+    <main className="list-recipes">
       <Header />
       { mealsRequest?.slice(0, number).map((e, index) => (
-        <div
+        <Card
           key={ index }
           data-testid={ `${index}-recipe-card` }
         >
@@ -24,7 +25,7 @@ function Meals() {
           >
             { e.strMeal }
           </p>
-        </div>
+        </Card>
       ))}
     </main>
   );
