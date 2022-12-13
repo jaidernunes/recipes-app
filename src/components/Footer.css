@@ -1,5 +1,5 @@
 .footer {
-  background: #41197F;
+  background: rgb(65, 25, 127);
   bottom: 0;
   height: 52px;
   left: 0;
@@ -8,14 +8,14 @@
 }
 
 .drink {
-  background: #FCC436;
+  background: rgb(252, 196, 54);
   bottom: 5px;
   left: 56.51px;
   position: absolute;
 }
 
 .meal {
-  background: #FCC436;
+  background: rgb(252, 196, 54);
   bottom: 5px;
   left: 81.91%;
   position: absolute;
