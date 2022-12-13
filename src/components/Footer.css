@@ -1,0 +1,22 @@
+.footer {
+  background: #41197F;
+  bottom: 0;
+  height: 52px;
+  left: 0;
+  position: fixed;
+  width: 100%;
+}
+
+.drink {
+  background: #FCC436;
+  bottom: 5px;
+  left: 56.51px;
+  position: absolute;
+}
+
+.meal {
+  background: #FCC436;
+  bottom: 5px;
+  left: 81.91%;
+  position: absolute;
+}
