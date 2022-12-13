@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import recipesContext from '../context/RecipesContext';
 import Header from '../components/Header';
@@ -28,11 +28,6 @@ function Meals() {
           >
             { e.strMeal }
           </p>
-          <Button
-            onClick={ () => history.push(`/meals/${e.idMeal}`) }
-          >
-            Ver detalhes
-          </Button>
         </Card>
       ))}
     </main>

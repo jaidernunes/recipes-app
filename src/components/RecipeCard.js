@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 function RecipeCard({ photo, name, index, redirect, redirect2, name2, photo2, index2 }) {
   return (
     <div className="row">
       <div className="col-sm-6">
-        <Card>
+        <Card onClick={ redirect }>
           <img
             src={ photo }
             className="card-img-top"
@@ -22,12 +22,11 @@ function RecipeCard({ photo, name, index, redirect, redirect2, name2, photo2, in
             >
               {name}
             </h5>
-            <Button onClick={ redirect }>Ver detalhes</Button>
           </div>
         </Card>
       </div>
       <div className="col-sm-6">
-        <Card>
+        <Card onClick={ redirect2 }>
           <img
             src={ photo2 }
             className="card-img-top"
@@ -43,7 +42,6 @@ function RecipeCard({ photo, name, index, redirect, redirect2, name2, photo2, in
             >
               {name2}
             </h5>
-            <Button onClick={ redirect2 }>Ver detalhes</Button>
           </div>
         </Card>
       </div>
