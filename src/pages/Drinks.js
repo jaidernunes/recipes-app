@@ -3,6 +3,7 @@ import { Card } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import recipesContext from '../context/RecipesContext';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 function Drinks() {
   const history = useHistory();
@@ -30,6 +31,7 @@ function Drinks() {
           </p>
         </Card>
       ))}
+      <Footer />
     </main>
   );
 }
