@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
-import { Card } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 import recipesContext from '../context/RecipesContext';
 import Header from '../components/Header';
 
 function Drinks() {
+  const history = useHistory();
   const { drinksRequest } = useContext(recipesContext);
   const number = 12;
 
@@ -12,6 +14,7 @@ function Drinks() {
       <Header />
       { drinksRequest?.slice(0, number).map((e, index) => (
         <Card
+          onClick={ () => history.push(`/drinks/${e.idDrink}`) }
           key={ index }
           data-testid={ `${index}-recipe-card` }
         >
@@ -25,6 +28,11 @@ function Drinks() {
           >
             { e.strDrink }
           </p>
+          <Button
+            onClick={ () => history.push(`/drinks/${e.idDrink}`) }
+          >
+            Ver detalhes
+          </Button>
         </Card>
       ))}
     </main>
