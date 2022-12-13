@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import recipesContext from '../context/RecipesContext';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 function Meals() {
   const { mealsRequest } = useContext(recipesContext);
@@ -26,6 +27,7 @@ function Meals() {
           </p>
         </div>
       ))}
+      <Footer />
     </main>
   );
 }
