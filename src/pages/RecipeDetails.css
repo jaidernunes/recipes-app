@@ -7,7 +7,7 @@ img {
 }
 
 .card {
-  width: 10rem;
+  width: 15rem;
 }
 
 .start-recipe {
@@ -17,4 +17,9 @@ img {
 
 .carousel {
   margin-right: 30px;
+}
+
+.list-recipes {
+  display: flex;
+  flex-wrap: wrap;
 }
