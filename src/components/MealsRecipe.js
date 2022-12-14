@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { Carousel, Button, Alert, ButtonGroup } from 'react-bootstrap';
+import { Carousel, Alert, ButtonGroup } from 'react-bootstrap';
 import copy from 'clipboard-copy';
 import RecipeCard from './RecipeCard';
 import Recipe from './Recipe';
@@ -126,16 +126,17 @@ function MealsRecipe() {
               instructions={ recipe[0].recipeInstructions }
               video={ recipe[0].recipeVideo }
             />
-            <Button
+            <ButtonGroup
+              className="share-button"
               data-testid="share-btn"
               onClick={ shareOnClick }
             >
               <img src={ ShareLogo } alt="share logo" />
-            </Button>
+            </ButtonGroup>
             {
               isFavorite
                 ? (
-                  <ButtonGroup className="btn btn-danger" onClick={ removeFavorite }>
+                  <ButtonGroup className="favorite-button" onClick={ removeFavorite }>
                     <img
                       data-testid="favorite-btn"
                       src={ BlackHeartIcon }
@@ -144,7 +145,7 @@ function MealsRecipe() {
                   </ButtonGroup>
                 )
                 : (
-                  <ButtonGroup className="btn btn-danger" onClick={ saveFavorite }>
+                  <ButtonGroup className="favorite-button" onClick={ saveFavorite }>
                     <img
                       data-testid="favorite-btn"
                       src={ WhiteHeartIcon }
@@ -156,6 +157,7 @@ function MealsRecipe() {
             {
               isCopy && <Alert>Link copied!</Alert>
             }
+            <h2 className="suggestions-title">Recommended</h2>
             {suggestions.length > 0 && (
               <Carousel
                 className="carousel"
@@ -199,13 +201,13 @@ function MealsRecipe() {
                 </Carousel.Item>
               </Carousel>
             )}
-            <Button
+            <ButtonGroup
               className="start-recipe"
               data-testid="start-recipe-btn"
               onClick={ startRecipeOnClick }
             >
               { inProgress() ? 'Continue Recipe' : 'Start Recipe' }
-            </Button>
+            </ButtonGroup>
           </>
         )}
     </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import copy from 'clipboard-copy';
-import { Carousel, ButtonGroup, Alert, Button } from 'react-bootstrap';
+import { Carousel, ButtonGroup, Alert } from 'react-bootstrap';
 import RecipeCard from './RecipeCard';
 import Recipe from './Recipe';
 import { getCocktailDetails } from '../services/detailsAPI';
@@ -125,16 +125,17 @@ function DrinksRecipe() {
               video={ recipe[0].recipeVideo }
               alcoholic={ recipe[0].recipeAlcoholic }
             />
-            <Button
+            <ButtonGroup
+              className="share-button"
               onClick={ shareOnClick }
               data-testid="share-btn"
             >
               <img src={ ShareLogo } alt="share logo" />
-            </Button>
+            </ButtonGroup>
             {
               isFavorite
                 ? (
-                  <ButtonGroup className="btn btn-danger" onClick={ removeFavorite }>
+                  <ButtonGroup className="favorite-button" onClick={ removeFavorite }>
                     <img
                       data-testid="favorite-btn"
                       src={ BlackHeartIcon }
@@ -143,7 +144,7 @@ function DrinksRecipe() {
                   </ButtonGroup>
                 )
                 : (
-                  <ButtonGroup className="btn btn-danger" onClick={ saveFavorite }>
+                  <ButtonGroup className="favorite-button" onClick={ saveFavorite }>
                     <img
                       data-testid="favorite-btn"
                       src={ WhiteHeartIcon }
@@ -197,13 +198,13 @@ function DrinksRecipe() {
                 </Carousel.Item>
               </Carousel>
             )}
-            <Button
+            <ButtonGroup
               className="start-recipe"
               data-testid="start-recipe-btn"
               onClick={ startRecipeOnClick }
             >
               { inProgress() ? 'Continue Recipe' : 'Start Recipe' }
-            </Button>
+            </ButtonGroup>
           </>
         )}
     </div>
