@@ -6,8 +6,8 @@
 }
 
 .recipes {
-  background: #FFFFFF;
-  border: 1px solid #B1B1B1;
+  background: white;
+  border: 1px solid rgb(177, 177, 177);
   border-radius: 5px;
   display: flex;
   flex-direction: row;
@@ -36,7 +36,7 @@
 }
 
 .name {
-  color: #1A1B1C;
+  color: rgb(26, 27, 28);
   font-family: 'Epilogue';
   font-size: 12px;
   font-style: normal;
@@ -50,7 +50,7 @@
 }
 
 .nationality {
-  color: #797D86;
+  color: rgb(121, 125, 134);
   font-family: 'Epilogue';
   font-size: 9px;
   font-style: normal;
@@ -62,7 +62,7 @@
 }
 
 .date {
-  color: #1A1B1C;
+  color: rgb(26, 27, 28);
   font-family: 'Epilogue';
   font-size: 9px;
   font-style: normal;
@@ -81,7 +81,7 @@
 }
 
 .tag {
-  background: #D9D9D9;
+  background: rgb(217, 217, 217);
   border-radius: 10px;
   font-family: 'Epilogue';
   font-size: 9px;
@@ -93,7 +93,7 @@
 
 .btnShare {
   align-content: flex-start;
-  background: #FCC436;
+  background: rgb(252, 196, 54);
   border-radius: 5px 0 0 5px;
   height: 20px;
   width: 20px;

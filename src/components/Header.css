@@ -1,4 +1,5 @@
 .header {
+
   /* align-items: center;
   display: flex;
   justify-content: space-around;
@@ -32,7 +33,7 @@ button {
 }
 
 .pageTitle {
-  color: #41197F;
+  color: rgb(65, 25, 127);
   font-family: 'Epilogue';
   font-size: 20px;
   font-style: normal;
