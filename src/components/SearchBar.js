@@ -5,17 +5,13 @@ import './SearchBar.css';
 
 function SearchBar() {
   const [query, setQuery] = useState('');
-  const [typeOfSearch, setTypeOfSearch] = useState('i');
+  const [typeOfSearch, setTypeOfSearch] = useState('');
   const { path } = useRouteMatch();
   const history = useHistory();
   const { setSearch } = useContext(RecipesContext);
 
   function searchAnswer(arr) {
     if (path === '/meals' && arr.meals) {
-      // if (!arr.meals) {
-      //   global.alert('Sorry, we haven\'t found any recipes for these filters.');
-      // }
-
       if (arr.meals.length === 1) {
         history.push(`${path}/${arr.meals[0].idMeal}`);
       }
@@ -23,15 +19,11 @@ function SearchBar() {
       if (arr.meals.length > 1) {
         setSearch(arr);
       }
-    } else {
+    } if (arr.meals === null) {
       global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
 
     if (path === '/drinks' && arr.drinks) {
-      // if (!arr.drinks) {
-      //   global.alert('Sorry, we haven\'t found any recipes for these filters.');
-      // }
-
       if (arr.drinks.length === 1) {
         history.push(`${path}/${arr.drinks[0].idDrink}`);
       }
@@ -39,7 +31,7 @@ function SearchBar() {
       if (arr.drinks.length > 1) {
         setSearch(arr);
       }
-    } else {
+    } if (arr.drinks === null) {
       global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
   }
@@ -62,10 +54,6 @@ function SearchBar() {
     } catch (error) {
       searchAnswer([]);
     }
-
-    // if (json.meals.length === 1) {
-    //   history.push(`${path}/${json.meals[0].idMeal}`);
-    // }
   }
 
   return (
