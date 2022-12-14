@@ -3,13 +3,21 @@ import recipesContext from '../context/RecipesContext';
 import Header from '../components/Header';
 
 function Meals() {
-  const { mealsRequest } = useContext(recipesContext);
+  const { mealsRequest, search } = useContext(recipesContext);
   const number = 12;
+  // console.log(search);
+
+  const renderMealsOrSearch = () => {
+    if (search.length === 0) {
+      return mealsRequest;
+    }
+    return search.meals;
+  };
 
   return (
     <main>
       <Header />
-      { mealsRequest?.slice(0, number).map((e, index) => (
+      { renderMealsOrSearch()?.slice(0, number).map((e, index) => (
         <div
           key={ index }
           data-testid={ `${index}-recipe-card` }
