@@ -22,12 +22,9 @@ function RecipeInProgress() {
   const {
     recipeType,
     setRecipeType,
-    progressState,
     setProgressState,
-    boxChecked,
     manyChecked,
   } = useContext(RecipesContext);
-  // const [singularRecipe, setSingularRecipe] = useState('');
 
   const fetchMeal = async () => {
     let getRecipe = recipe;
@@ -68,7 +65,7 @@ function RecipeInProgress() {
         recipeInstructions: recipe[0].strInstructions,
         recipeNationality: recipe[0].strArea,
         recipeCategorySingle: recipe[0].strCategory,
-        // recipeTags: recipe[0].strTags.split(','),
+        recipeTags: recipe[0].strTags.split(','),
       };
     } else if (recipe[0].strDrink) {
       recipeInfo = {
@@ -107,7 +104,7 @@ function RecipeInProgress() {
 
   const saveDone = () => {
     const localDone = readDoneRecipes();
-    console.log(localDone);
+    const day = new Date();
 
     localDone.push({
       id,
@@ -117,7 +114,7 @@ function RecipeInProgress() {
       alcoholicOrNot: recipeType === 'meals' ? '' : defineRecipe().recipeAlcoholic,
       name: defineRecipe().recipeTitle,
       image: defineRecipe().recipeImage,
-      doneDate: new Date(),
+      doneDate: day,
       tags: defineRecipe().recipeTags,
     });
 
@@ -162,7 +159,7 @@ function RecipeInProgress() {
     }
 
     setProgressState(localChecks);
-    console.log(recipeType);
+    // console.log(recipeType);
   }, []);
 
   return (
@@ -203,7 +200,11 @@ function RecipeInProgress() {
             {
               isFavorite
                 ? (
-                  <ButtonGroup className="btn btn-danger" onClick={ removeFavorite }>
+                  <ButtonGroup
+                    className="btn btn-danger"
+                    onClick={ removeFavorite }
+                    data-testid="favoriteButton"
+                  >
                     <img
                       data-testid="favorite-btn"
                       src={ BlackHeartIcon }
@@ -212,7 +213,11 @@ function RecipeInProgress() {
                   </ButtonGroup>
                 )
                 : (
-                  <ButtonGroup className="btn btn-danger" onClick={ saveFavorite }>
+                  <ButtonGroup
+                    className="btn btn-danger"
+                    onClick={ saveFavorite }
+                    data-testid="favoriteButton"
+                  >
                     <img
                       data-testid="favorite-btn"
                       src={ WhiteHeartIcon }
@@ -225,7 +230,7 @@ function RecipeInProgress() {
               isCopy && <Alert>Link copied!</Alert>
             }
             <Button
-              className="finish-recipe"
+              className="start-recipe"
               data-testid="finish-recipe-btn"
               onClick={ saveDone }
               disabled={ defineRecipe().recipeIngredients.length !== manyChecked }
