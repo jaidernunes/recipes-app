@@ -1,0 +1,76 @@
+.logo {
+  filter: drop-shadow(0.786px 13.357px 10.214px rgba(33, 18, 55, 0.2));
+  height: 157.25px;
+  left: 81px;
+  position: absolute;
+  top: 79.17px;
+  width: 198px;
+}
+
+.tomato-image {
+  filter: drop-shadow(0 7px 15px rgba(68, 73, 85, 0.25));
+  left: 0;
+  position: absolute;
+  top: 200px;
+}
+
+.square-purple {
+  background: #41197f;
+  height: 388px;
+  left: 0;
+  top: 0;
+  width: 360px;
+}
+
+.login-title {
+  color: #41197f;
+  font-family: Epilogue , sans-serif;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 500;
+  height: 21px;
+  left: 89px;
+  letter-spacing: 0.165em;
+  line-height: 20px;
+  position: absolute;
+  text-align: center;
+  text-transform: uppercase;
+  top: 524px;
+  width: 182px;
+}
+
+.input-email {
+  border: 0.5px solid #41197f;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 40px;
+  left: 42px;
+  position: absolute;
+  top: 564px;
+  width: 276px;
+}
+
+.input-password {
+  border: 0.5px solid #41197f;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 40px;
+  left: 42px;
+  position: absolute;
+  top: 613px;
+  width: 276px;
+}
+
+.button-submit {
+  background: #fcc436;
+  border-radius: 5px;
+  color: white;
+  font-family: Epilogue , sans-serif;
+  font-weight: 700;
+  height: 40px;
+  left: 42px;
+  margin-bottom: 20px;
+  position: absolute;
+  top: 662px;
+  width: 276px;
+}
