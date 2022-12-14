@@ -17,12 +17,12 @@
   width: 147px;
 }
 
-/* banner */
 .recipe-photo {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35));
   border-radius: 0;
   height: 161px;
   left: -2px;
+  object-fit: cover;
   top: 0;
   width: 362px;
 }
@@ -40,9 +40,6 @@
   top: 25px;
   width: 72px;
 }
-
-/* .category-icon {
-} */
 
 .instructions-title {
   color: #1a1b1c;
