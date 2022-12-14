@@ -1,12 +1,100 @@
 .done {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
   width: 360px;
 }
 
-.img {
-  width: 50%;
+.recipes {
+  background: #FFFFFF;
+  border: 1px solid #B1B1B1;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  height: 135px;
+  left: 19px;
+  margin: 5px;
+  width: 350px;
 }
 
-h3 {
-  animation-duration: hide 2s 2s forwards;
+.img {
+  border-radius: 5px 0 0 5px;
+  height: 130px;
+  left: 19px;
+  width: 163.35px;
+}
+
+.info {
+  align-content: space-around;
+  border-radius: 5px 0 0 5px;
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  justify-content: flex-start;
+  left: 15px;
+  width: 130px;
+}
+
+.name {
+  color: #1A1B1C;
+  font-family: 'Epilogue';
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  height: 24px;
+  left: 203px;
+  line-height: 12px;
+  margin-top: 10px;
+  text-align: start;
+  width: 100px;
+}
+
+.nationality {
+  color: #797D86;
+  font-family: 'Epilogue';
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 9px;
+  padding: 6px;
+  text-align: start;
+  width: 100px;
+}
+
+.date {
+  color: #1A1B1C;
+  font-family: 'Epilogue';
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 400;
+  left: 202px;
+  line-height: 9px;
+  padding-left: 5px;
+  text-align: start;
+  width: 150px;
+}
+
+.tags {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.tag {
+  background: #D9D9D9;
+  border-radius: 10px;
+  font-family: 'Epilogue';
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  width: 38px;
+}
+
+.btnShare {
+  align-content: flex-start;
+  background: #FCC436;
+  border-radius: 5px 0 0 5px;
+  height: 20px;
+  width: 20px;
 }
