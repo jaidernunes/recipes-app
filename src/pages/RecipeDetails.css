@@ -2,24 +2,83 @@ h3 {
   color: black;
 }
 
-img {
-  text-align: center;
+.card {
+  background: white;
+  border: 0.518px solid #b1b1b1;
+  border-radius: 5px;
+  width: 10rem;
 }
 
-.card {
-  width: 15rem;
+.card-title {
+  font-family: Epilogue , sans-serif;
 }
 
 .start-recipe {
+  background: #fcc436;
+  border-radius: 5px;
   bottom: 0;
+  color: white;
+  font-family: Epilogue , sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  height: 40px;
+  left: 13px;
   position: fixed;
+  width: 336px;
 }
 
 .carousel {
-  margin-right: 30px;
+  height: 195.21px;
+  width: 336px;
 }
 
 .list-recipes {
   display: flex;
   flex-wrap: wrap;
+}
+
+.suggestions-title {
+  color: #1a1b1c;
+  font-family: Epilogue , sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  height: 21px;
+  left: 23px;
+  line-height: 20px;
+  margin-bottom: 8px;
+  margin-left: 20px;
+  margin-top: 30px;
+  top: 1151px;
+  width: 205px;
+}
+
+.favorite-button {
+  bottom: 97.27%;
+  color: #fcc436;
+  height: 20.3px;
+  left: 85.28%;
+  position: absolute;
+  top: 20px;
+  width: 22.89px;
+}
+
+.share-button {
+  bottom: 97.22%;
+  color: #fcc436;
+  height: 20px;
+  left: 76.67%;
+  position: absolute;
+  right: 17.77%;
+  top: 20px;
+  width: 20px;
+}
+
+.btnstart {
+  align-items: center;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  width: 100%;
 }

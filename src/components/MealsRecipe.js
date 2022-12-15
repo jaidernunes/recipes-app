@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { Carousel, Button, Alert, ButtonGroup } from 'react-bootstrap';
+import { Carousel, Alert, ButtonGroup } from 'react-bootstrap';
 import copy from 'clipboard-copy';
 import RecipeCard from './RecipeCard';
 import Recipe from './Recipe';
@@ -27,14 +27,23 @@ function MealsRecipe() {
     const measuresArr = [];
 
     Object.entries(meal[0]).forEach(([key, value]) => {
-      if (key.includes('strIngredient') && value !== null && value.length > 0) {
+      if (key.includes('strIngredient')
+        && value !== null
+        && value.length > 0
+        && value !== '') {
         ingredientsArr.push(value);
       }
 
-      if (key.includes('strMeasure') && value !== null && value.length > 0) {
+      if (key.includes('strMeasure')
+        && value !== null
+        && value.length > 0
+        && value !== ' ') {
         measuresArr.push(value);
       }
     });
+
+    const youtube = meal[0].strYoutube.split('watch?v=');
+    const embed = `${youtube[0]}embed/${youtube[1]}`;
 
     setRecipe([{
       recipeTitle: meal[0].strMeal,
@@ -42,7 +51,7 @@ function MealsRecipe() {
       recipeIngredients: ingredientsArr,
       recipeMeasures: measuresArr,
       recipeCategory: meal[0].strCategory,
-      recipeVideo: meal[0].strYoutube,
+      recipeVideo: embed,
       recipeInstructions: meal[0].strInstructions,
       recipeNationality: meal[0].strArea,
     }]);
@@ -126,16 +135,17 @@ function MealsRecipe() {
               instructions={ recipe[0].recipeInstructions }
               video={ recipe[0].recipeVideo }
             />
-            <Button
+            <ButtonGroup
+              className="share-button"
               data-testid="share-btn"
               onClick={ shareOnClick }
             >
               <img src={ ShareLogo } alt="share logo" />
-            </Button>
+            </ButtonGroup>
             {
               isFavorite
                 ? (
-                  <ButtonGroup className="btn btn-danger" onClick={ removeFavorite }>
+                  <ButtonGroup className="favorite-button" onClick={ removeFavorite }>
                     <img
                       data-testid="favorite-btn"
                       src={ BlackHeartIcon }
@@ -144,7 +154,7 @@ function MealsRecipe() {
                   </ButtonGroup>
                 )
                 : (
-                  <ButtonGroup className="btn btn-danger" onClick={ saveFavorite }>
+                  <ButtonGroup className="favorite-button" onClick={ saveFavorite }>
                     <img
                       data-testid="favorite-btn"
                       src={ WhiteHeartIcon }
@@ -156,6 +166,7 @@ function MealsRecipe() {
             {
               isCopy && <Alert>Link copied!</Alert>
             }
+            <h2 className="suggestions-title">Recommended</h2>
             {suggestions.length > 0 && (
               <Carousel
                 className="carousel"
@@ -199,13 +210,15 @@ function MealsRecipe() {
                 </Carousel.Item>
               </Carousel>
             )}
-            <Button
+            <ButtonGroup
               className="start-recipe"
               data-testid="start-recipe-btn"
               onClick={ startRecipeOnClick }
             >
-              { inProgress() ? 'Continue Recipe' : 'Start Recipe' }
-            </Button>
+              { inProgress() ? (
+                <p className="btnstart">Continue Recipe</p>
+              ) : <p className="btnstart">Start Recipe</p> }
+            </ButtonGroup>
           </>
         )}
     </div>
