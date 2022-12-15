@@ -19,7 +19,7 @@ function DoneRecipes() {
 
   useEffect(() => {
     const InfoLocalSotrage = () => {
-      const local = JSON.parse(localStorage.getItem('doneRecipes'));
+      const local = readDoneRecipes();
       setDoneRecipes(local);
     };
     InfoLocalSotrage();

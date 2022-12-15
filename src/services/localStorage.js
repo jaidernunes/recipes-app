@@ -22,12 +22,7 @@ export const saveFavoriteRecipes = (getInProgress) => localStorage
   .setItem('favoriteRecipes', JSON.stringify(getInProgress));
 
 export const readDoneRecipes = () => (
-  JSON.parse(localStorage.getItem('favoriteRecipes')));
-// export const readDoneRecipes = () => {
-//   const abc = localStorage.getItem('doneRecipes');
-//   const parset = JSON.parse(abc);
-//   return parset;
-// };
+  JSON.parse(localStorage.getItem('doneRecipes')));
 
 export const saveDoneRecipes = (getInProgress) => {
   localStorage.setItem('doneRecipes', JSON.stringify(getInProgress));

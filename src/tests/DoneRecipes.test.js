@@ -10,7 +10,7 @@ const data = '23/06/2020';
 const horizontalImage = '0-horizontal-image';
 const horizontalName = '0-horizontal-name';
 const horizontalShare = '0-horizontal-share-btn';
-const doneRecipes1 = [
+const doneRecipes = [
   {
     id: '52771',
     type: 'meal',
@@ -34,7 +34,7 @@ const doneRecipes1 = [
     tags: [],
   },
 ];
-localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes1));
+localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
 
 describe('1 - Implemente os elementos da tela de receitas feitas respeitando os atributos descritos no protótipo', () => {
   it('Todos os data-testids estão disponíveis', () => {
