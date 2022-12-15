@@ -1,6 +1,8 @@
 // import { func } from 'prop-types';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import RecipesContext from '../context/RecipesContext';
 import './Checkboxes.css';
 
 function Checkboxes({ recipeData }) {
@@ -26,15 +28,16 @@ function Checkboxes({ recipeData }) {
     19: false,
     20: false,
   };
-  const [boxChecked, setBoxChecked] = useState(initialObj);
+  const { id } = useParams();
+  const { recipeType, progressState, setManyChecked } = useContext(RecipesContext);
   const [recipeObj] = useState(recipeData);
+  const [boxChecked, setBoxChecked] = useState(initialObj);
   const [forceRender, setForceRender] = useState(0);
 
   useState(() => {
-    const localChecks = JSON.parse(window.localStorage.getItem('ingredientsChecked'));
-
-    if (localChecks) {
-      setBoxChecked(localChecks);
+    // console.log(progressState[recipeType][id]);
+    if (progressState[recipeType][id]) {
+      setBoxChecked(progressState[recipeType][id]);
     } else {
       setBoxChecked(initialObj);
     }
@@ -42,8 +45,10 @@ function Checkboxes({ recipeData }) {
     setForceRender(forceRender + 1);
   }, []);
 
-  useState(() => {
-    console.log('update state');
+  useEffect(() => {
+    const completed = Object.values(boxChecked)
+      .filter((el) => el === true).length;
+    setManyChecked(completed);
   }, [forceRender]);
 
   return (
@@ -67,8 +72,15 @@ function Checkboxes({ recipeData }) {
               setForceRender(forceRender + 1);
               setBoxChecked(newObj);
 
+              const localProgress = progressState;
+              localProgress[recipeType][id] = boxChecked;
+
               window.localStorage
-                .setItem('ingredientsChecked', JSON.stringify(boxChecked));
+                .setItem('inProgressRecipes', JSON.stringify(localProgress));
+
+              // const completed = Object.values(boxChecked)
+              //   .filter((el) => el === true).length;
+              // setManyChecked(completed);
             } }
             checked={ boxChecked[index] }
           />

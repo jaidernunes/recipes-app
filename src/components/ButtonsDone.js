@@ -8,7 +8,7 @@ import './ButtonsDone.css';
 function ButtonsDone() {
   const { setDoneRecipes } = useContext(RecipesContext);
 
-  const storage = JSON.parse(localStorage.getItem('doneRecipes')).doneRecipes1;
+  const storage = JSON.parse(localStorage.getItem('doneRecipes'));
 
   const all = () => {
     setDoneRecipes(storage);

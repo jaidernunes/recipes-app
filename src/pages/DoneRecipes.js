@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import RecipesContext from '../context/RecipesContext';
 import shareIcon from '../images/shareIcon.svg';
 import './DoneRecipes.css';
+import { readDoneRecipes } from '../services/localStorage';
 
 function DoneRecipes() {
   const {
@@ -16,36 +17,9 @@ function DoneRecipes() {
   } = useContext(RecipesContext);
   const history = useHistory();
 
-  const doneRecipes1 = [
-    {
-      id: '52771',
-      type: 'meal',
-      nationality: 'Italian',
-      category: 'Vegetarian',
-      alcoholicOrNot: '',
-      name: 'Spicy Arrabiata Penne',
-      image: 'https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg',
-      doneDate: '23/06/2020',
-      tags: ['Pasta', 'Curry'],
-    },
-    {
-      id: '178319',
-      type: 'drink',
-      nationality: '',
-      category: 'Cocktail',
-      alcoholicOrNot: 'Alcoholic',
-      name: 'Aquamarine',
-      image: 'https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg',
-      doneDate: '23/06/2020',
-      tags: [],
-    },
-  ];
-
-  localStorage.setItem('doneRecipes', JSON.stringify({ doneRecipes1 }));
-
   useEffect(() => {
     const InfoLocalSotrage = () => {
-      const local = JSON.parse(localStorage.getItem('doneRecipes')).doneRecipes1;
+      const local = readDoneRecipes();
       setDoneRecipes(local);
     };
     InfoLocalSotrage();

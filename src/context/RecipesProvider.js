@@ -12,6 +12,11 @@ function RecipesProvider({ children }) {
   const [mealsRequest, setMealsRequest] = useState([]);
   const [drinksRequest, setDrinksRequest] = useState([]);
 
+  // recipes in progress
+  const [recipeType, setRecipeType] = useState('');
+  const [progressState, setProgressState] = useState({});
+  const [manyChecked, setManyChecked] = useState(0);
+
   useEffect(() => {
     const requestMeals = async () => {
       const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
@@ -37,10 +42,15 @@ function RecipesProvider({ children }) {
     setButtonShare,
     mealsRequest,
     drinksRequest,
-    isFavorite,
-    setIsFavorite,
-  }), [doneRecipes, buttonShare, drinksRequest, mealsRequest, search, isFavorite,
-  ]);
+    recipeType,
+    setRecipeType,
+    progressState,
+    setProgressState,
+    manyChecked,
+    setManyChecked,
+  }), [doneRecipes, buttonShare, drinksRequest, mealsRequest,
+    progressState, recipeType, manyChecked, setIsFavorite,
+    setSearch, search, isFavorite]);
 
   return (
     <RecipesContext.Provider value={ providerProps }>
