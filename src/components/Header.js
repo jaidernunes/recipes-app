@@ -88,6 +88,19 @@ function Header() {
               className="logoRecipesApp"
             />
           </div>
+          {['/meals', '/drinks'].includes(path) && (
+            <button
+              className="search"
+              type="button"
+              onClick={ toggle }
+            >
+              <img
+                data-testid="search-top-btn"
+                src={ SearchLogo }
+                alt="search"
+              />
+            </button>
+          )}
           <Link to="/profile">
             <img
               data-testid="profile-top-btn"
@@ -97,20 +110,6 @@ function Header() {
           </Link>
         </div>
         <h1 data-testid="page-title" className="pageTitle">{showTitle()}</h1>
-        {['/meals', '/drinks'].includes(path) && (
-          <button
-            className="search"
-            type="button"
-            onClick={ toggle }
-          >
-            <img
-              data-testid="search-top-btn"
-              src={ SearchLogo }
-              alt="search"
-            />
-
-          </button>
-        )}
       </div>
       {showSearchBar && <SearchBar />}
     </>
