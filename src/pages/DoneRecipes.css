@@ -37,7 +37,7 @@
 
 .name {
   color: rgb(26, 27, 28);
-  font-family: 'Epilogue';
+  font-family: Epilogue , sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 700;
@@ -51,7 +51,7 @@
 
 .nationality {
   color: rgb(121, 125, 134);
-  font-family: 'Epilogue';
+  font-family: Epilogue , sans-serif;
   font-size: 9px;
   font-style: normal;
   font-weight: 300;
@@ -63,7 +63,7 @@
 
 .date {
   color: rgb(26, 27, 28);
-  font-family: 'Epilogue';
+  font-family: Epilogue , sans-serif;
   font-size: 9px;
   font-style: normal;
   font-weight: 400;
@@ -83,7 +83,7 @@
 .tag {
   background: rgb(217, 217, 217);
   border-radius: 10px;
-  font-family: 'Epilogue';
+  font-family: Epilogue , sans-serif;
   font-size: 9px;
   font-style: normal;
   font-weight: 400;
