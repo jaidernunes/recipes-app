@@ -5,6 +5,7 @@ import RecipesContext from './RecipesContext';
 function RecipesProvider({ children }) {
   const [doneRecipes, setDoneRecipes] = useState([]);
   const [buttonShare, setButtonShare] = useState([]);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   // estado da primeira requisição
   const [mealsRequest, setMealsRequest] = useState([]);
@@ -33,7 +34,9 @@ function RecipesProvider({ children }) {
     setButtonShare,
     mealsRequest,
     drinksRequest,
-  }), [doneRecipes, buttonShare, drinksRequest, mealsRequest,
+    isFavorite,
+    setIsFavorite,
+  }), [doneRecipes, buttonShare, drinksRequest, mealsRequest, isFavorite,
   ]);
 
   return (

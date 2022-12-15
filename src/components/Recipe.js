@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Recipe.css';
+import DrinkRecipes from '../images/RecipeDetails/DrinkRecipes.png';
+import MealsRecipes from '../images/RecipeDetails/MealsRecipes.png';
 
 function Recipe({ title, image, category, measures, ingredients,
   instructions, video, alcoholic }) {
@@ -17,9 +19,20 @@ function Recipe({ title, image, category, measures, ingredients,
       />
       <h2 className="category-title" data-testid="recipe-category">
         {alcoholic !== undefined
-          ? `${alcoholic} ${category}`
-          : `${category}`}
+          ? (
+            <div className="DrinkRecipes">
+              <img src={ DrinkRecipes } alt="DrinkRecipes" />
+              { category }
+            </div>
+          )
+          : (
+            <div className="MealsRecipes">
+              <img src={ MealsRecipes } alt="MealsRecipes" />
+              { category }
+            </div>
+          )}
       </h2>
+
       <h2 className="ingredients-title">Ingredients</h2>
       <div className="ingredients-list">
         <ul>
@@ -32,7 +45,7 @@ function Recipe({ title, image, category, measures, ingredients,
         </ul>
       </div>
       <h2 className="instructions-title">Instructions</h2>
-      <div className="instructions-item">
+      <div className="instructions-item1">
         <p data-testid="instructions" className="instructions-text">
           { instructions }
         </p>

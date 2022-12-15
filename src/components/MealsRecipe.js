@@ -42,19 +42,19 @@ function MealsRecipe() {
       }
     });
 
+    const youtube = meal[0].strYoutube.split('watch?v=');
+    const embed = `${youtube[0]}embed/${youtube[1]}`;
+
     setRecipe([{
       recipeTitle: meal[0].strMeal,
       recipeImage: meal[0].strMealThumb,
       recipeIngredients: ingredientsArr,
       recipeMeasures: measuresArr,
       recipeCategory: meal[0].strCategory,
-      recipeVideo: meal[0].strYoutube,
+      recipeVideo: embed,
       recipeInstructions: meal[0].strInstructions,
       recipeNationality: meal[0].strArea,
     }]);
-
-    console.log(ingredientsArr);
-    console.log(measuresArr);
   };
 
   const startRecipeOnClick = () => {
@@ -115,7 +115,6 @@ function MealsRecipe() {
       const getDrinksList = await fetchDrinks();
       const drinks = getDrinksList.slice(0, numberSuggestions);
       setSuggestions(drinks);
-      console.log(getMeal);
       defineRecipe(getMeal);
     };
     fetchMealAndSuggestions();
@@ -216,7 +215,9 @@ function MealsRecipe() {
               data-testid="start-recipe-btn"
               onClick={ startRecipeOnClick }
             >
-              { inProgress() ? 'Continue Recipe' : 'Start Recipe' }
+              { inProgress() ? (
+                <p className="btnstart">Continue Recipe</p>
+              ) : <p className="btnstart">Start Recipe</p> }
             </ButtonGroup>
           </>
         )}

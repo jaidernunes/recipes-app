@@ -40,11 +40,11 @@
   font-style: normal;
   font-weight: 700;
   height: 11px;
-  left: 63.01px;
+  left: 20px;
   line-height: 12px;
   position: absolute;
-  top: 25px;
-  width: 72px;
+  top: 15px;
+  width: 100%;
 }
 
 .instructions-title {
@@ -57,13 +57,14 @@
   margin-top: 30px;
 }
 
-.instructions-item {
+.instructions-item1 {
   background: white;
   border: 0.554px solid #b1b1b1;
   border-radius: 5.351px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .instructions-text {
@@ -72,7 +73,7 @@
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  height: 368px;
+  /* height: 368px; */
   left: 30px;
   line-height: 16px;
   margin-left: 13px;
@@ -103,6 +104,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  padding-top: 15px;
   margin-bottom: 20px;
 }
 
@@ -129,4 +131,8 @@
   left: 12px;
   top: 450px;
   width: 336px;
+}
+
+.MealsRecipes .drinkRecipe {
+  width: 200px;
 }

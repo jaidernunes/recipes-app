@@ -23,22 +23,14 @@ h3 {
   font-style: normal;
   font-weight: 700;
   height: 40px;
-  left: 12px;
-  line-height: 1.25rem;
-  margin: auto;
-  padding: 0;
+  left: 13px;
   position: fixed;
-  text-align: center;
-  text-transform: uppercase;
   width: 336px;
 }
 
 .carousel {
   height: 195.21px;
-  left: 12px;
-  position: absolute;
-  top: 1151px;
-  width: 336.33px;
+  width: 336px;
 }
 
 .list-recipes {
@@ -55,7 +47,9 @@ h3 {
   height: 21px;
   left: 23px;
   line-height: 20px;
-  position: absolute;
+  margin-bottom: 8px;
+  margin-left: 20px;
+  margin-top: 30px;
   top: 1151px;
   width: 205px;
 }
@@ -66,7 +60,7 @@ h3 {
   height: 20.3px;
   left: 85.28%;
   position: absolute;
-  top: 19px;
+  top: 20px;
   width: 22.89px;
 }
 
@@ -79,4 +73,12 @@ h3 {
   right: 17.77%;
   top: 20px;
   width: 20px;
+}
+
+.btnstart {
+  align-items: center;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  width: 100%;
 }

@@ -1,12 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap') ;
+
 .done {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
   width: 360px;
 }
 
-.img {
-  width: 50%;
+.recipes {
+  background: white;
+  border: 1px solid rgb(177, 177, 177);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  height: 135px;
+  left: 19px;
+  margin: 5px;
+  width: 350px;
 }
 
-h3 {
-  animation-duration: hide 2s 2s forwards;
+.img {
+  border-radius: 5px 0 0 5px;
+  height: 130px;
+  left: 19px;
+  width: 163.35px;
+}
+
+.info {
+  align-content: space-around;
+  border-radius: 5px 0 0 5px;
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  justify-content: flex-start;
+  left: 15px;
+  width: 130px;
+}
+
+.name {
+  color: rgb(26, 27, 28);
+  font-family: Epilogue , sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  height: 24px;
+  left: 203px;
+  line-height: 12px;
+  margin-top: 10px;
+  text-align: start;
+  width: 100px;
+}
+
+.nationality {
+  color: rgb(121, 125, 134);
+  font-family: Epilogue , sans-serif;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 9px;
+  padding: 6px;
+  text-align: start;
+  width: 100px;
+}
+
+.date {
+  color: rgb(26, 27, 28);
+  font-family: Epilogue , sans-serif;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 400;
+  left: 202px;
+  line-height: 9px;
+  padding-left: 5px;
+  text-align: start;
+  width: 150px;
+}
+
+.tags {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.tag {
+  background: rgb(217, 217, 217);
+  border-radius: 10px;
+  font-family: Epilogue , sans-serif;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  width: 38px;
+}
+
+.btnShare {
+  align-content: flex-start;
+  background: rgb(252, 196, 54);
+  border-radius: 5px 0 0 5px;
+  height: 20px;
+  width: 20px;
 }
