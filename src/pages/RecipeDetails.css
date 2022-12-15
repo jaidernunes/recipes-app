@@ -6,10 +6,11 @@ h3 {
   background: white;
   border: 0.518px solid #b1b1b1;
   border-radius: 5px;
-  height: 166.12px;
-  left: 12.12px;
-  top: 125.1px;
-  width: 163.2px;
+  width: 10rem;
+}
+
+.card-title {
+  font-family: Epilogue , sans-serif;
 }
 
 .start-recipe {

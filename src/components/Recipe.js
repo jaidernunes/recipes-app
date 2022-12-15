@@ -23,7 +23,6 @@ function Recipe({ title, image, category, measures, ingredients,
       <h2 className="ingredients-title">Ingredients</h2>
       <div className="ingredients-list">
         <ul>
-          Ingredients:
           {measures.map((measure, index) => (
             <li data-testid={ `${index}-ingredient-name-and-measure` } key={ index }>
               {measure}
@@ -33,16 +32,20 @@ function Recipe({ title, image, category, measures, ingredients,
         </ul>
       </div>
       <h2 className="instructions-title">Instructions</h2>
-      <p data-testid="instructions" className="instructions-text">
-        {`Instructions: ${instructions}`}
-      </p>
-      <h2 className="video-title">Video</h2>
-      <iframe
-        className="video"
-        data-testid="video"
-        src={ video }
-        title={ title }
-      />
+      <div className="instructions-item">
+        <p data-testid="instructions" className="instructions-text">
+          { instructions }
+        </p>
+      </div>
+      <div className="video">
+        <h2 className="video-title">Video</h2>
+        <iframe
+          className="video-frame"
+          data-testid="video"
+          src={ video }
+          title={ title }
+        />
+      </div>
     </div>
   );
 }

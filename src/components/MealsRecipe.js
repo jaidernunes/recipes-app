@@ -27,11 +27,17 @@ function MealsRecipe() {
     const measuresArr = [];
 
     Object.entries(meal[0]).forEach(([key, value]) => {
-      if (key.includes('strIngredient') && value !== null && value.length > 0) {
+      if (key.includes('strIngredient')
+        && value !== null
+        && value.length > 0
+        && value !== '') {
         ingredientsArr.push(value);
       }
 
-      if (key.includes('strMeasure') && value !== null && value.length > 0) {
+      if (key.includes('strMeasure')
+        && value !== null
+        && value.length > 0
+        && value !== ' ') {
         measuresArr.push(value);
       }
     });
@@ -46,6 +52,9 @@ function MealsRecipe() {
       recipeInstructions: meal[0].strInstructions,
       recipeNationality: meal[0].strArea,
     }]);
+
+    console.log(ingredientsArr);
+    console.log(measuresArr);
   };
 
   const startRecipeOnClick = () => {
@@ -106,6 +115,7 @@ function MealsRecipe() {
       const getDrinksList = await fetchDrinks();
       const drinks = getDrinksList.slice(0, numberSuggestions);
       setSuggestions(drinks);
+      console.log(getMeal);
       defineRecipe(getMeal);
     };
     fetchMealAndSuggestions();
