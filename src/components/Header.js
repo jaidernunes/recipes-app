@@ -4,6 +4,13 @@ import ProfileLogo from '../images/profileIcon.svg';
 import SearchLogo from '../images/searchIcon.svg';
 import './Header.css';
 import SearchBar from './SearchBar';
+import DoneRecipes from '../images/Profile/DoneRecipes.png';
+import bebida from '../images/Header/bebida.png';
+import Perfil from '../images/Header/Perfil.png';
+import prato from '../images/Header/prato.png';
+import Favorite from '../images/Profile/Favorite.png';
+import IconeRecipes from '../images/Header/IconeRecipes.png';
+import logoRecipesApp from '../images/Header/logoRecipesApp.png';
 
 function Header() {
   const { path } = useRouteMatch();
@@ -12,15 +19,50 @@ function Header() {
   function showTitle() {
     switch (path) {
     case '/meals':
-      return 'Meals';
+      return (
+        <p>
+          <img src={ prato } alt="prato" />
+          <br />
+          <br />
+          Meals
+        </p>
+      );
     case '/drinks':
-      return 'Drinks';
+      return (
+        <p>
+          <img src={ bebida } alt="bebida" />
+          <br />
+          <br />
+          Drinks
+        </p>
+      );
     case '/profile':
-      return 'Profile';
+      return (
+        <p>
+          <img src={ Perfil } alt="Perfil" />
+          <br />
+          <br />
+          Profile
+        </p>
+      );
     case '/done-recipes':
-      return 'Done Recipes';
+      return (
+        <p>
+          <img src={ DoneRecipes } alt="DoneRecipes" />
+          <br />
+          <br />
+          Done Recipes
+        </p>
+      );
     case '/favorite-recipes':
-      return 'Favorite Recipes';
+      return (
+        <p>
+          <img src={ Favorite } alt="Favorite" />
+          <br />
+          <br />
+          Favorite Recipes
+        </p>
+      );
     default:
       return 'nao encontrado';
     }
@@ -33,15 +75,32 @@ function Header() {
   return (
     <>
       <div className="header">
-        <Link to="/profile">
-          <img data-testid="profile-top-btn" src={ ProfileLogo } alt="profile" />
-        </Link>
-        <h1 data-testid="page-title">{showTitle()}</h1>
+        <div className="faixa">
+          <div>
+            <img
+              src={ IconeRecipes }
+              alt="Icone Recipes"
+              className="iconeRecipes"
+            />
+            <img
+              src={ logoRecipesApp }
+              alt="Logo Recipes App"
+              className="logoRecipesApp"
+            />
+          </div>
+          <Link to="/profile">
+            <img
+              data-testid="profile-top-btn"
+              src={ ProfileLogo }
+              alt="profile"
+            />
+          </Link>
+        </div>
+        <h1 data-testid="page-title" className="pageTitle">{showTitle()}</h1>
         {['/meals', '/drinks'].includes(path) && (
           <button
             type="button"
             onClick={ toggle }
-
           >
             <img
               data-testid="search-top-btn"

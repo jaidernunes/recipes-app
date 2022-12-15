@@ -6,6 +6,8 @@ function RecipesProvider({ children }) {
   const [doneRecipes, setDoneRecipes] = useState([]);
   const [buttonShare, setButtonShare] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [search, setSearch] = useState([]);
+
 
   // estado da primeira requisição
   const [mealsRequest, setMealsRequest] = useState([]);
@@ -28,6 +30,8 @@ function RecipesProvider({ children }) {
   }, []);
 
   const providerProps = useMemo(() => ({
+    search,
+    setSearch,
     doneRecipes,
     setDoneRecipes,
     buttonShare,
@@ -36,7 +40,7 @@ function RecipesProvider({ children }) {
     drinksRequest,
     isFavorite,
     setIsFavorite,
-  }), [doneRecipes, buttonShare, drinksRequest, mealsRequest, isFavorite,
+  }), [doneRecipes, buttonShare, drinksRequest, mealsRequest, search, isFavorite,
   ]);
 
   return (

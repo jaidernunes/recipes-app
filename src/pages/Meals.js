@@ -6,14 +6,22 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 function Meals() {
+  const { mealsRequest, search } = useContext(recipesContext);
   const history = useHistory();
-  const { mealsRequest } = useContext(recipesContext);
   const number = 12;
+  // console.log(search);
+
+  const renderMealsOrSearch = () => {
+    if (search.length === 0) {
+      return mealsRequest;
+    }
+    return search.meals;
+  };
 
   return (
     <main className="list-recipes">
       <Header />
-      { mealsRequest?.slice(0, number).map((e, index) => (
+      { renderMealsOrSearch()?.slice(0, number).map((e, index) => (
         <Card
           onClick={ () => history.push(`/meals/${e.idMeal}`) }
           key={ index }

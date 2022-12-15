@@ -6,14 +6,21 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 function Drinks() {
+  const { drinksRequest, search } = useContext(recipesContext);
   const history = useHistory();
-  const { drinksRequest } = useContext(recipesContext);
   const number = 12;
+
+  const renderDrinksOrSearch = () => {
+    if (search.length === 0) {
+      return drinksRequest;
+    }
+    return search.drinks;
+  };
 
   return (
     <main className="list-recipes">
       <Header />
-      { drinksRequest?.slice(0, number).map((e, index) => (
+      { renderDrinksOrSearch()?.slice(0, number).map((e, index) => (
         <Card
           onClick={ () => history.push(`/drinks/${e.idDrink}`) }
           key={ index }
