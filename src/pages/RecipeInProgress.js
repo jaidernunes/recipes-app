@@ -56,6 +56,7 @@ function RecipeInProgress() {
 
     if (recipe[0].strMeal) {
       recipeInfo = {
+        recipeId: recipe[0].idMeal,
         recipeTitle: recipe[0].strMeal,
         recipeImage: recipe[0].strMealThumb,
         recipeIngredients: ingredientsArr,

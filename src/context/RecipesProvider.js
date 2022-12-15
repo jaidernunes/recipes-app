@@ -5,6 +5,7 @@ import RecipesContext from './RecipesContext';
 function RecipesProvider({ children }) {
   const [doneRecipes, setDoneRecipes] = useState([]);
   const [buttonShare, setButtonShare] = useState([]);
+  const [search, setSearch] = useState([]);
 
   // estado da primeira requisição
   const [mealsRequest, setMealsRequest] = useState([]);
@@ -32,6 +33,8 @@ function RecipesProvider({ children }) {
   }, []);
 
   const providerProps = useMemo(() => ({
+    search,
+    setSearch,
     doneRecipes,
     setDoneRecipes,
     buttonShare,

@@ -1,16 +1,29 @@
 import React, { useContext } from 'react';
+import { Card } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 import recipesContext from '../context/RecipesContext';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 function Meals() {
-  const { mealsRequest } = useContext(recipesContext);
+  const { mealsRequest, search } = useContext(recipesContext);
+  const history = useHistory();
   const number = 12;
+  // console.log(search);
+
+  const renderMealsOrSearch = () => {
+    if (search.length === 0) {
+      return mealsRequest;
+    }
+    return search.meals;
+  };
 
   return (
-    <main>
+    <main className="list-recipes">
       <Header />
-      { mealsRequest?.slice(0, number).map((e, index) => (
-        <div
+      { renderMealsOrSearch()?.slice(0, number).map((e, index) => (
+        <Card
+          onClick={ () => history.push(`/meals/${e.idMeal}`) }
           key={ index }
           data-testid={ `${index}-recipe-card` }
         >
@@ -24,8 +37,9 @@ function Meals() {
           >
             { e.strMeal }
           </p>
-        </div>
+        </Card>
       ))}
+      <Footer />
     </main>
   );
 }

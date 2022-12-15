@@ -1,5 +1,9 @@
 import React, { useContext } from 'react';
 import RecipesContext from '../context/RecipesContext';
+import All from '../images/DoneRecipes/All.png';
+import Drinks from '../images/DoneRecipes/Drinks.png';
+import Foods from '../images/DoneRecipes/Foods.png';
+import './ButtonsDone.css';
 
 function ButtonsDone() {
   const { setDoneRecipes } = useContext(RecipesContext);
@@ -19,13 +23,14 @@ function ButtonsDone() {
   };
 
   return (
-    <div>
+    <div className="buttons">
       <button
         type="button"
         data-testid="filter-by-all-btn"
         onClick={ all }
+        className="all"
       >
-        All
+        <img src={ All } alt="All" />
       </button>
       <button
         type="button"
@@ -33,7 +38,7 @@ function ButtonsDone() {
         data-testid="filter-by-meal-btn"
         onClick={ meals }
       >
-        Meals
+        <img src={ Foods } alt="Foods" />
       </button>
       <button
         type="button"
@@ -41,7 +46,7 @@ function ButtonsDone() {
         data-testid="filter-by-drink-btn"
         onClick={ drinks }
       >
-        Drinks
+        <img src={ Drinks } alt="Drinks" />
       </button>
     </div>
   );

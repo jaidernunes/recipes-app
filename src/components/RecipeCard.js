@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
 
-function RecipeCard({ photo, name, index, name2, photo2, index2 }) {
+function RecipeCard({ photo, name, index, redirect, redirect2, name2, photo2, index2 }) {
   return (
     <div className="row">
       <div className="col-sm-6">
-        <Card>
+        <Card onClick={ redirect }>
           <img
             src={ photo }
             className="card-img-top"
@@ -22,13 +22,11 @@ function RecipeCard({ photo, name, index, name2, photo2, index2 }) {
             >
               {name}
             </h5>
-            <p className="card-text">Exemplo</p>
-            {/* <a href={ meal.mealId } className="btn btn-primary">Ver detalhes</a> */}
           </div>
         </Card>
       </div>
       <div className="col-sm-6">
-        <Card>
+        <Card onClick={ redirect2 }>
           <img
             src={ photo2 }
             className="card-img-top"
@@ -44,8 +42,6 @@ function RecipeCard({ photo, name, index, name2, photo2, index2 }) {
             >
               {name2}
             </h5>
-            <p className="card-text">Exemplo</p>
-            {/* <a href={ meal.mealId } className="btn btn-primary">Ver detalhes</a> */}
           </div>
         </Card>
       </div>
@@ -54,6 +50,8 @@ function RecipeCard({ photo, name, index, name2, photo2, index2 }) {
 }
 
 RecipeCard.propTypes = {
+  redirect: PropTypes.func.isRequired,
+  redirect2: PropTypes.func.isRequired,
   photo: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
