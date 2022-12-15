@@ -99,6 +99,7 @@ function Header() {
         <h1 data-testid="page-title" className="pageTitle">{showTitle()}</h1>
         {['/meals', '/drinks'].includes(path) && (
           <button
+            className="search"
             type="button"
             onClick={ toggle }
           >

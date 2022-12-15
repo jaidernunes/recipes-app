@@ -6,7 +6,7 @@
   margin: 20px 0;
 } */
 
-/* .header {
+.header {
   align-items: center;
   display: flex;
   height: 100%;
@@ -14,8 +14,9 @@
   left: 0;
   top: 0;
   width: 360px;
-  width: 90%;
-} */
+
+  /* width: 90%; */
+}
 
 
 button {

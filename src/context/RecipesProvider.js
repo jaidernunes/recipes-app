@@ -49,7 +49,8 @@ function RecipesProvider({ children }) {
     manyChecked,
     setManyChecked,
   }), [doneRecipes, buttonShare, drinksRequest, mealsRequest,
-    progressState, recipeType, manyChecked, setIsFavorite, search, isFavorite]);
+    progressState, recipeType, manyChecked, setIsFavorite,
+    setSearch, search, isFavorite]);
 
   return (
     <RecipesContext.Provider value={ providerProps }>
