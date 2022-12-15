@@ -73,7 +73,6 @@
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  /* height: 368px; */
   left: 30px;
   line-height: 16px;
   margin-left: 13px;
@@ -104,8 +103,8 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  padding-top: 15px;
   margin-bottom: 20px;
+  padding-top: 15px;
 }
 
 .video-title {

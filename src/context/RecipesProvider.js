@@ -8,7 +8,6 @@ function RecipesProvider({ children }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [search, setSearch] = useState([]);
 
-
   // estado da primeira requisição
   const [mealsRequest, setMealsRequest] = useState([]);
   const [drinksRequest, setDrinksRequest] = useState([]);

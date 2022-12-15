@@ -22,7 +22,7 @@ function Recipe({ title, image, category, measures, ingredients,
           ? (
             <div className="DrinkRecipes">
               <img src={ DrinkRecipes } alt="DrinkRecipes" />
-              { category }
+              {`${alcoholic} ${category}`}
             </div>
           )
           : (
