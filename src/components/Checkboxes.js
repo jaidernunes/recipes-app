@@ -54,7 +54,7 @@ function Checkboxes({ recipeData }) {
   return (
     <div>
       Ingredients:
-      {forceRender > 0 && recipeObj.recipeMeasures.map((measure, index) => (
+      {forceRender > 0 && recipeObj.recipeIngredients.map((measure, index) => (
         <label
           key={ index }
           className={ boxChecked[index] ? 'checked' : 'unchecked' }
@@ -77,14 +77,10 @@ function Checkboxes({ recipeData }) {
 
               window.localStorage
                 .setItem('inProgressRecipes', JSON.stringify(localProgress));
-
-              // const completed = Object.values(boxChecked)
-              //   .filter((el) => el === true).length;
-              // setManyChecked(completed);
             } }
             checked={ boxChecked[index] }
           />
-          { `${measure} of ${recipeObj.recipeIngredients[index]}`}
+          { `${recipeObj.recipeMeasures[index]} of ${measure}`}
         </label>
       ))}
     </div>
