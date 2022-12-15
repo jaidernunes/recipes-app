@@ -1,0 +1,17 @@
+.row {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 50px;
+  padding: 0;
+  width: 360px;
+}
+
+.card1 {
+  margin: 10px;
+  width: 150px;
+}
+
+.card2 {
+  margin: 10px;
+  width: 150px;
+}

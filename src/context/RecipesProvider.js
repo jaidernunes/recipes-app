@@ -5,6 +5,7 @@ import RecipesContext from './RecipesContext';
 function RecipesProvider({ children }) {
   const [doneRecipes, setDoneRecipes] = useState([]);
   const [buttonShare, setButtonShare] = useState([]);
+  const [isFavorite, setIsFavorite] = useState(false);
   const [search, setSearch] = useState([]);
 
   // estado da primeira requisição
@@ -48,7 +49,7 @@ function RecipesProvider({ children }) {
     manyChecked,
     setManyChecked,
   }), [doneRecipes, buttonShare, drinksRequest, mealsRequest,
-    progressState, recipeType, manyChecked]);
+    progressState, recipeType, manyChecked, setIsFavorite, search, isFavorite]);
 
   return (
     <RecipesContext.Provider value={ providerProps }>
