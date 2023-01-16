@@ -5,11 +5,18 @@ import RecipesContext from './RecipesContext';
 function RecipesProvider({ children }) {
   const [doneRecipes, setDoneRecipes] = useState([]);
   const [buttonShare, setButtonShare] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+  const [isFavorite, setIsFavorite] = useState(false);
   const [search, setSearch] = useState([]);
 
   // estado da primeira requisição
   const [mealsRequest, setMealsRequest] = useState([]);
   const [drinksRequest, setDrinksRequest] = useState([]);
+
+  // recipes in progress
+  const [recipeType, setRecipeType] = useState('');
+  const [progressState, setProgressState] = useState({});
+  const [manyChecked, setManyChecked] = useState(0);
 
   useEffect(() => {
     const requestMeals = async () => {
@@ -36,8 +43,19 @@ function RecipesProvider({ children }) {
     setButtonShare,
     mealsRequest,
     drinksRequest,
-  }), [doneRecipes, buttonShare, drinksRequest, mealsRequest, search,
-  ]);
+    recipeType,
+    setRecipeType,
+    progressState,
+    setProgressState,
+    manyChecked,
+    setManyChecked,
+    isFavorite,
+    setIsFavorite,
+    favorites,
+    setFavorites,
+  }), [doneRecipes, buttonShare, drinksRequest, mealsRequest, favorites,
+    progressState, recipeType, manyChecked, setIsFavorite,
+    setSearch, search, isFavorite]);
 
   return (
     <RecipesContext.Provider value={ providerProps }>
