@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap') ;
+
+.recipe {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.recipe-title {
+  color: white;
+  font-family: Epilogue , sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 900;
+  height: 42px;
+  left: 109.01px;
+  letter-spacing: 0.105em;
+  line-height: 20px;
+  position: absolute;
+  text-align: center;
+  text-transform: uppercase;
+  top: 81px;
+  width: 147px;
+}
+
+.recipe-photo {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35));
+  border-radius: 0;
+  height: 161px;
+  left: -2px;
+  object-fit: cover;
+  top: 0;
+  width: 362px;
+}
+
+.category-title {
+  color: #fcc436;
+  font-family: Epilogue , sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  height: 11px;
+  left: 20px;
+  line-height: 12px;
+  position: absolute;
+  top: 15px;
+  width: 100%;
+}
+
+.instructions-title {
+  color: #1a1b1c;
+  font-family: Epilogue , sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  margin-left: 20px;
+  margin-top: 30px;
+}
+
+.instructions-item1 {
+  background: white;
+  border: 0.554px solid #b1b1b1;
+  border-radius: 5.351px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.instructions-text {
+  color: #1a1b1b;
+  font-family: Epilogue , sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  left: 30px;
+  line-height: 16px;
+  margin-left: 13px;
+  margin-top: 20px;
+  top: 445px;
+  width: 301px;
+}
+
+.ingredients-title {
+  color: #1a1b1c;
+  font-family: Epilogue , sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  height: 21px;
+  left: 23.01px;
+  line-height: 20px;
+  margin-left: 20px;
+  margin-top: 30px;
+  top: 197px;
+  width: 142.8px;
+}
+
+.ingredients-list {
+  background: white;
+  border: 0.554px solid #b1b1b1;
+  border-radius: 5.351px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  padding-top: 15px;
+}
+
+.video-title {
+  color: #1a1b1c;
+  font-family: Epilogue , sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  height: 21px;
+  left: 23.01px;
+  line-height: 20px;
+  margin-left: 20px;
+  margin-top: 30px;
+  top: 882px;
+  width: 142.8px;
+}
+
+.video-frame {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35));
+  border-radius: 0;
+  display: flex;
+  height: 205.09px;
+  left: 12px;
+  top: 450px;
+  width: 336px;
+}
+
+.MealsRecipes .drinkRecipe {
+  width: 200px;
+}

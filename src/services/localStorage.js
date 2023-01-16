@@ -6,6 +6,10 @@ if (!JSON.parse(localStorage.getItem('favoriteRecipes'))) {
   localStorage.setItem('favoriteRecipes', JSON.stringify([]));
 }
 
+if (!JSON.parse(localStorage.getItem('doneRecipes'))) {
+  localStorage.setItem('doneRecipes', JSON.stringify([]));
+}
+
 export const readInProgress = () => JSON.parse(localStorage.getItem('inProgressRecipes'));
 
 export const saveInProgress = (getInProgress) => localStorage
@@ -16,3 +20,10 @@ export const readFavoriteRecipes = () => (
 
 export const saveFavoriteRecipes = (getInProgress) => localStorage
   .setItem('favoriteRecipes', JSON.stringify(getInProgress));
+
+export const readDoneRecipes = () => (
+  JSON.parse(localStorage.getItem('doneRecipes')));
+
+export const saveDoneRecipes = (getInProgress) => {
+  localStorage.setItem('doneRecipes', JSON.stringify(getInProgress));
+};
