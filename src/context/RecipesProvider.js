@@ -10,6 +10,7 @@ function RecipesProvider({ children }) {
   const [search, setSearch] = useState([]);
   const [mealsCategory, setMealsCategory] = useState([]);
   const [drinksCategory, setDrinksCategory] = useState([]);
+  const [categoryList, setCategoryList] = useState([]);
 
   // estado da primeira requisição
   const [mealsRequest, setMealsRequest] = useState([]);
@@ -76,7 +77,9 @@ function RecipesProvider({ children }) {
     setMealsCategory,
     drinksCategory,
     setDrinksCategory,
-  }), [doneRecipes, buttonShare, drinksRequest, mealsRequest, favorites,
+    categoryList,
+    setCategoryList,
+  }), [doneRecipes, buttonShare, drinksRequest, mealsRequest, favorites, categoryList,
     progressState, recipeType, manyChecked, setIsFavorite, mealsCategory,
     drinksCategory, setSearch, search, isFavorite]);
 

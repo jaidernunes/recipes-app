@@ -11,6 +11,8 @@ function Meals() {
     search,
     setSearch,
     mealsCategory,
+    categoryList,
+    setCategoryList,
   } = useContext(recipesContext);
   const history = useHistory();
   const number = 12;
@@ -30,7 +32,14 @@ function Meals() {
           <button
             type="button"
             data-testid={ `${meals.strCategory}-category-filter` }
-            onClick={ () => requestMealsCategory(meals.strCategory) }
+            onClick={ () => {
+              if (categoryList.length === 0) {
+                requestMealsCategory(meals.strCategory);
+                setCategoryList(meals.strCategory);
+              } else {
+                setSearch('');
+              }
+            } }
           >
             {meals.strCategory}
           </button>
