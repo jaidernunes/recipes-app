@@ -8,6 +8,9 @@ function RecipesProvider({ children }) {
   const [favorites, setFavorites] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
   const [search, setSearch] = useState([]);
+  const [mealsCategory, setMealsCategory] = useState([]);
+  const [drinksCategory, setDrinksCategory] = useState([]);
+  const [categoryList, setCategoryList] = useState([]);
 
   // estado da primeira requisição
   const [mealsRequest, setMealsRequest] = useState([]);
@@ -30,8 +33,24 @@ function RecipesProvider({ children }) {
       const result = await response.json();
       setDrinksRequest(result.drinks);
     };
+    const categoryMeals = async () => {
+      const response = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
+      const result = await response.json();
+      const numberCategory = 5;
+      setMealsCategory(result.meals.slice(0, numberCategory));
+    };
+
+    const categoryDrinks = async () => {
+      const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list');
+      const result = await response.json();
+      setDrinksCategory(result.drinks);
+      const numberCategory = 5;
+      setDrinksCategory(result.drinks.slice(0, numberCategory));
+    };
     requestMeals();
     requestDrinks();
+    categoryMeals();
+    categoryDrinks();
   }, []);
 
   const providerProps = useMemo(() => ({
@@ -42,6 +61,7 @@ function RecipesProvider({ children }) {
     buttonShare,
     setButtonShare,
     mealsRequest,
+    setMealsRequest,
     drinksRequest,
     recipeType,
     setRecipeType,
@@ -53,9 +73,15 @@ function RecipesProvider({ children }) {
     setIsFavorite,
     favorites,
     setFavorites,
-  }), [doneRecipes, buttonShare, drinksRequest, mealsRequest, favorites,
-    progressState, recipeType, manyChecked, setIsFavorite,
-    setSearch, search, isFavorite]);
+    mealsCategory,
+    setMealsCategory,
+    drinksCategory,
+    setDrinksCategory,
+    categoryList,
+    setCategoryList,
+  }), [doneRecipes, buttonShare, drinksRequest, mealsRequest, favorites, categoryList,
+    progressState, recipeType, manyChecked, setIsFavorite, mealsCategory,
+    drinksCategory, setSearch, search, isFavorite]);
 
   return (
     <RecipesContext.Provider value={ providerProps }>

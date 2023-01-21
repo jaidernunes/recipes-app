@@ -6,22 +6,53 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 function Meals() {
-  const { mealsRequest, search } = useContext(recipesContext);
+  const {
+    mealsRequest,
+    search,
+    setSearch,
+    mealsCategory,
+    categoryList,
+    setCategoryList,
+  } = useContext(recipesContext);
   const history = useHistory();
   const number = 12;
-  // console.log(search);
 
-  const renderMealsOrSearch = () => {
-    if (search.length === 0) {
-      return mealsRequest;
-    }
-    return search.meals;
+  const requestMealsCategory = async (category) => {
+    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`);
+    const result = await response.json();
+    // console.log(result);
+    setSearch(result);
   };
 
   return (
     <main className="list-recipes">
       <Header />
-      { renderMealsOrSearch()?.slice(0, number).map((e, index) => (
+      { mealsCategory.map((meals, index) => (
+        <div key={ index }>
+          <button
+            type="button"
+            data-testid={ `${meals.strCategory}-category-filter` }
+            onClick={ () => {
+              if (categoryList.length === 0) {
+                requestMealsCategory(meals.strCategory);
+                setCategoryList(meals.strCategory);
+              } else {
+                setSearch('');
+              }
+            } }
+          >
+            {meals.strCategory}
+          </button>
+        </div>
+      )) }
+      <button
+        type="button"
+        data-testid="All-category-filter"
+        onClick={ () => setSearch('') }
+      >
+        All
+      </button>
+      { search.length === 0 ? mealsRequest.slice(0, number).map((e, index) => (
         <Card
           onClick={ () => history.push(`/meals/${e.idMeal}`) }
           key={ index }
@@ -38,7 +69,24 @@ function Meals() {
             { e.strMeal }
           </p>
         </Card>
-      ))}
+      ))
+        : search.meals.slice(0, number).map((e, index) => (
+          <Card
+            onClick={ () => history.push(`/meals/${e.idMeal}`) }
+            key={ index }
+            data-testid={ `${index}-recipe-card` }
+          >
+            <img
+              src={ e.strMealThumb }
+              alt={ e.strMeal }
+              data-testid={ `${index}-card-img` }
+            />
+            <p
+              data-testid={ `${index}-card-name` }
+            >
+              { e.strMeal }
+            </p>
+          </Card>)) }
       <Footer />
     </main>
   );
