@@ -52,38 +52,42 @@ function Checkboxes({ recipeData }) {
   }, [forceRender]);
 
   return (
-    <div>
-      Ingredients:
-      {forceRender > 0 && recipeObj.recipeIngredients.map((measure, index) => (
-        <label
-          key={ index }
-          className={ boxChecked[index] ? 'checked' : 'unchecked' }
-          htmlFor={ `ingredient-${index}` }
-          data-testid={ `${index}-ingredient-step` }
-        >
-          <input
-            type="checkbox"
-            name={ index }
-            id={ `ingredient-${index}` }
-            onChange={ (e) => {
-              const newObj = boxChecked;
-              newObj[index] = e.target.checked;
+    <>
+      <h2 className="ingredients-title">Ingredients</h2>
+      <div className="ingredients-list">
+        {forceRender > 0 && recipeObj.recipeIngredients.map((measure, index) => (
+          <label
+            key={ index }
+            className={ boxChecked[index] ? 'checked' : 'unchecked' }
+            htmlFor={ `ingredient-${index}` }
+            data-testid={ `${index}-ingredient-step` }
+          >
+            <input
+              type="checkbox"
+              className="checkbox"
+              name={ index }
+              id={ `ingredient-${index}` }
+              onChange={ (e) => {
+                const newObj = boxChecked;
+                newObj[index] = e.target.checked;
 
-              setForceRender(forceRender + 1);
-              setBoxChecked(newObj);
+                setForceRender(forceRender + 1);
+                setBoxChecked(newObj);
 
-              const localProgress = progressState;
-              localProgress[recipeType][id] = boxChecked;
+                const localProgress = progressState;
+                localProgress[recipeType][id] = boxChecked;
 
-              window.localStorage
-                .setItem('inProgressRecipes', JSON.stringify(localProgress));
-            } }
-            checked={ boxChecked[index] }
-          />
-          { `${recipeObj.recipeMeasures[index]} of ${measure}`}
-        </label>
-      ))}
-    </div>
+                window.localStorage
+                  .setItem('inProgressRecipes', JSON.stringify(localProgress));
+              } }
+              checked={ boxChecked[index] }
+            />
+            <span className="ingredient-text" />
+            { `${recipeObj.recipeMeasures[index]} of ${measure}`}
+          </label>
+        ))}
+      </div>
+    </>
   );
 }
 

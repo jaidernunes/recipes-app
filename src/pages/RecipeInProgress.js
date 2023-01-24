@@ -5,7 +5,7 @@ import copy from 'clipboard-copy';
 import Checkboxes from '../components/Checkboxes';
 import RecipesContext from '../context/RecipesContext';
 import { getCocktailDetails, getMealDetails } from '../services/detailsAPI';
-// import './RecipeInProgress.css';
+import './RecipeDetails.css';
 import { readDoneRecipes, readFavoriteRecipes, saveDoneRecipes,
   saveFavoriteRecipes } from '../services/localStorage';
 import ShareLogo from '../images/shareIcon.svg';
@@ -106,7 +106,6 @@ function RecipeInProgress() {
   const saveDone = () => {
     const localDone = readDoneRecipes();
     const day = new Date();
-
     localDone.push({
       id,
       type: recipeType === 'meals' ? 'meal' : 'drink',
@@ -153,14 +152,11 @@ function RecipeInProgress() {
 
     if (pathname.includes('meals')) {
       setRecipeType('meals');
-      // setSingularRecipe('meal');
     } else {
       setRecipeType('drinks');
-      // setSingularRecipe('drink');
     }
 
     setProgressState(localChecks);
-    // console.log(recipeType);
   }, []);
 
   return (
@@ -168,44 +164,17 @@ function RecipeInProgress() {
       {recipe.length > 0
         && (
           <>
-            <h1 data-testid="recipe-title">
-              {`Recipe: ${defineRecipe().recipeTitle}`}
-            </h1>
-            <img
-              data-testid="recipe-photo"
-              src={ defineRecipe().recipeImage }
-              alt={ defineRecipe().recipeTitle }
-              width="300"
-            />
-            <h2 data-testid="recipe-category">
-              { `Category: ${defineRecipe().recipeCategory}`}
-            </h2>
-
-            <Checkboxes recipeData={ defineRecipe() } />
-
-            <p data-testid="instructions">
-              { `Instructions: ${defineRecipe().recipeInstructions}`}
-            </p>
-            <iframe
-              data-testid="video"
-              src={ defineRecipe().recipeVideo }
-              title={ defineRecipe().recipeTitle }
-            />
-
-            <Button
+            <ButtonGroup
+              className="share-button"
               data-testid="share-btn"
               onClick={ shareOnClick }
             >
               <img src={ ShareLogo } alt="share logo" />
-            </Button>
+            </ButtonGroup>
             {
               isFavorite
                 ? (
-                  <ButtonGroup
-                    className="btn btn-danger"
-                    onClick={ removeFavorite }
-                    data-testid="favoriteButton"
-                  >
+                  <ButtonGroup className="favorite-button" onClick={ removeFavorite }>
                     <img
                       data-testid="favorite-btn"
                       src={ BlackHeartIcon }
@@ -214,11 +183,7 @@ function RecipeInProgress() {
                   </ButtonGroup>
                 )
                 : (
-                  <ButtonGroup
-                    className="btn btn-danger"
-                    onClick={ saveFavorite }
-                    data-testid="favoriteButton"
-                  >
+                  <ButtonGroup className="favorite-button" onClick={ saveFavorite }>
                     <img
                       data-testid="favorite-btn"
                       src={ WhiteHeartIcon }
@@ -230,6 +195,35 @@ function RecipeInProgress() {
             {
               isCopy && <Alert>Link copied!</Alert>
             }
+
+            <h1
+              className="recipe-title"
+              data-testid="recipe-title"
+            >
+              {defineRecipe().recipeTitle}
+            </h1>
+            <h2 className="recipe-title" data-testid="recipe-category">
+              <br />
+              <br />
+              {defineRecipe().recipeCategory}
+            </h2>
+            <img
+              className="recipe-photo"
+              data-testid="recipe-photo"
+              src={ defineRecipe().recipeImage }
+              alt={ defineRecipe().recipeTitle }
+              width="300"
+            />
+
+            <Checkboxes recipeData={ defineRecipe() } />
+
+            <h2 className="instructions-title">Instructions</h2>
+            <div className="instructions-item1">
+              <p data-testid="instructions" className="instructions-text">
+                {defineRecipe().recipeInstructions}
+              </p>
+            </div>
+
             <Button
               className="start-recipe"
               data-testid="finish-recipe-btn"
