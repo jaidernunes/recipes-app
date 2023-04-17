@@ -1,9 +1,11 @@
 .searchBar {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
   margin: 15px 0;
 }
 
 .search {
+  display: flex;
   margin-right: 20px;
 }

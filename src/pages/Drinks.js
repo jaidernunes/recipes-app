@@ -4,6 +4,12 @@ import { useHistory } from 'react-router-dom';
 import recipesContext from '../context/RecipesContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import All from '../images/CategoriesDrinks/All.png';
+import OrdinaryDrink from '../images/CategoriesDrinks/drink.png';
+import Cocktail from '../images/CategoriesDrinks/cocktail.png';
+import Shake from '../images/CategoriesDrinks/shake.png';
+import Other from '../images/CategoriesDrinks/other.png';
+import Cocoa from '../images/CategoriesDrinks/cocoa.png';
 
 function Drinks() {
   const {
@@ -23,6 +29,23 @@ function Drinks() {
     setSearch(result);
   };
 
+  const getCategoryIcon = (category) => {
+    switch (category) {
+    case 'Ordinary Drink':
+      return <img src={ OrdinaryDrink } alt={ category } />;
+    case 'Cocktail':
+      return <img src={ Cocktail } alt={ category } />;
+    case 'Shake':
+      return <img src={ Shake } alt={ category } />;
+    case 'Other / Unknown':
+      return <img src={ Other } alt={ category } />;
+    case 'Cocoa':
+      return <img src={ Cocoa } alt={ category } />;
+    default:
+      return All;
+    }
+  };
+
   return (
     <main className="list-recipes">
       <Header />
@@ -40,7 +63,7 @@ function Drinks() {
               }
             } }
           >
-            {drink.strCategory}
+            { getCategoryIcon(drink.strCategory) }
           </button>
         </div>
       )) }
@@ -49,7 +72,7 @@ function Drinks() {
         data-testid="All-category-filter"
         onClick={ () => setSearch('') }
       >
-        All
+        <img src={ All } alt="drink" />
       </button>
       { search.length === 0 ? drinksRequest.slice(0, number).map((e, index) => (
         <Card

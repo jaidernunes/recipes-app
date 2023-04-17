@@ -4,6 +4,12 @@ import { useHistory } from 'react-router-dom';
 import recipesContext from '../context/RecipesContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Beef from '../images/CategoriesMeals/beef.png';
+import All from '../images/CategoriesMeals/All.png';
+import Goat from '../images/CategoriesMeals/goat.png';
+import Chicken from '../images/CategoriesMeals/chicken.png';
+import Dessert from '../images/CategoriesMeals/dessert.png';
+import Breakfast from '../images/CategoriesMeals/breakfast.png';
 
 function Meals() {
   const {
@@ -24,6 +30,23 @@ function Meals() {
     setSearch(result);
   };
 
+  const getCategoryIcon = (category) => {
+    switch (category) {
+    case 'Beef':
+      return <img src={ Beef } alt={ category } />;
+    case 'Breakfast':
+      return <img src={ Breakfast } alt={ category } />;
+    case 'Chicken':
+      return <img src={ Chicken } alt={ category } />;
+    case 'Dessert':
+      return <img src={ Dessert } alt={ category } />;
+    case 'Goat':
+      return <img src={ Goat } alt={ category } />;
+    default:
+      return All;
+    }
+  };
+
   return (
     <main className="list-recipes">
       <Header />
@@ -41,7 +64,7 @@ function Meals() {
               }
             } }
           >
-            {meals.strCategory}
+            { getCategoryIcon(meals.strCategory) }
           </button>
         </div>
       )) }
@@ -50,7 +73,7 @@ function Meals() {
         data-testid="All-category-filter"
         onClick={ () => setSearch('') }
       >
-        All
+        <img src={ All } alt="meal" />
       </button>
       { search.length === 0 ? mealsRequest.slice(0, number).map((e, index) => (
         <Card
