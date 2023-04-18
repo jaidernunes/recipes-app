@@ -30,7 +30,7 @@ function Login() {
   };
 
   return (
-    <>
+    <div className="container">
       <div className="square-purple">
         <img
           src={ logoRecipesApp }
@@ -44,7 +44,7 @@ function Login() {
         />
       </div>
       <h1 className="login-title">Login</h1>
-      <form action="">
+      <form action="" className="form-login">
         <input
           className="input-email"
           type="text"
@@ -73,7 +73,7 @@ function Login() {
           ENTER
         </button>
       </form>
-    </>
+    </div>
   );
 }
 

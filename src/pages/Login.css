@@ -1,24 +1,39 @@
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+}
+
 .logo {
   filter: drop-shadow(0.786px 13.357px 10.214px rgba(33, 18, 55, 0.2));
   height: 157.25px;
-  left: 81px;
-  position: absolute;
-  top: 79.17px;
+  margin-bottom: 20px;
   width: 198px;
 }
 
 .tomato-image {
   filter: drop-shadow(0 7px 15px rgba(68, 73, 85, 0.25));
-  left: 0;
-  position: absolute;
-  top: 200px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  margin: 20px 0;
+}
+
+.form-login {
+  display: flex;
+  flex-direction: column;
 }
 
 .square-purple {
+  align-items: center;
   background: #41197f;
+  display: flex;
+  flex-direction: column;
   height: 388px;
-  left: 0;
-  top: 0;
+  justify-content: center;
   width: 360px;
 }
 
@@ -28,15 +43,11 @@
   font-size: 20px;
   font-style: italic;
   font-weight: 500;
-  height: 21px;
-  left: 89px;
   letter-spacing: 0.165em;
   line-height: 20px;
-  position: absolute;
+  margin-bottom: 20px;
   text-align: center;
   text-transform: uppercase;
-  top: 524px;
-  width: 182px;
 }
 
 .input-email {
@@ -44,9 +55,7 @@
   border-radius: 5px;
   box-sizing: border-box;
   height: 40px;
-  left: 42px;
-  position: absolute;
-  top: 564px;
+  margin-bottom: 20px;
   width: 276px;
 }
 
@@ -55,9 +64,7 @@
   border-radius: 5px;
   box-sizing: border-box;
   height: 40px;
-  left: 42px;
-  position: absolute;
-  top: 613px;
+  margin-bottom: 20px;
   width: 276px;
 }
 
@@ -68,9 +75,6 @@
   font-family: Epilogue , sans-serif;
   font-weight: 700;
   height: 40px;
-  left: 42px;
   margin-bottom: 20px;
-  position: absolute;
-  top: 662px;
   width: 276px;
 }
