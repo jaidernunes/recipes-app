@@ -2,15 +2,43 @@ h3 {
   color: black;
 }
 
-.card {
+/* .card {
   background: white;
   border: 0.518px solid #b1b1b1;
   border-radius: 5px;
+  height: 10rem;
+  margin: 5px;
   width: 10rem;
 }
 
 .card-title {
   font-family: Epilogue , sans-serif;
+} */
+
+.card {
+  background: white;
+  border: 0.518px solid #b1b1b1;
+  border-radius: 5px;
+  height: 10rem;
+  margin: 5px;
+  overflow: hidden;
+  position: relative;
+  width: 10rem;
+}
+
+.card p {
+  background-color: white;
+  bottom: -18px;
+  left: 0;
+  padding: 5px;
+  position: absolute;
+  right: 0;
+}
+
+.card img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
 }
 
 .start-recipe {
@@ -36,6 +64,7 @@ h3 {
 .list-recipes {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .suggestions-title {
