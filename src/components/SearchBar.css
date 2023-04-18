@@ -1,11 +1,76 @@
 .searchBar {
+  align-items: center;
+  background-color: #41197f;
+  border: 2px transparent #b1b1b1;
+  border-radius: 10px;
+  box-sizing: border-box;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  flex-direction: column;
+  height: 95px;
+  justify-content: flex-start;
   margin: 15px 0;
+  max-width: 350px;
+  position: relative;
+  width: 100%;
 }
 
 .search {
+  left: 0;
+  position: absolute;
+  top: -22px;
+  width: 100%;
+}
+
+/* stylelint-disable-next-line selector-no-qualifying-type */
+.search-options input[ type = 'radio' ] {
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.search-input {
+  background: white;
+  border: 1px solid #b1b1b1;
+  border-radius: 10px;
+  box-sizing: border-box;
+  height: 40px;
+  outline: none;
+  padding: 0 10px;
+  width: 100%;
+}
+
+.search-options {
+  align-items: center;
+  color: white;
   display: flex;
-  margin-right: 20px;
+  font-family: Epilogue , sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  justify-content: space-around;
+  line-height: 9px;
+  margin-top: 30px;
+  width: 280px;
+}
+
+.search-button {
+  align-items: center;
+  background-color: #fcc436;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: white;
+  display: flex;
+  font-family: Epilogue , sans-serif;
+  font-size: 12px;
+  font-weight: 650;
+  height: 29px;
+  justify-content: center;
+  letter-spacing: 0.07em;
+  line-height: 12px;
+  margin-top: 10px;
+  transition: background-color 0.2s ease-in-out;
+  width: 170px;
+}
+
+.search-button:hover {
+  background-color: #f5b81e;
 }

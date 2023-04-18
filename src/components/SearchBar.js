@@ -67,7 +67,7 @@ function SearchBar() {
           onChange={ (e) => setQuery(e.target.value) }
         />
       </div>
-      <div>
+      <div className="search-options">
         <label htmlFor="ingredient">
           <input
             type="radio"
@@ -90,7 +90,7 @@ function SearchBar() {
             value="s"
             checked={ typeOfSearch === 's' }
           />
-          Nome
+          Name
         </label>
         <label htmlFor="firstLetter">
           <input
@@ -102,16 +102,18 @@ function SearchBar() {
             value="f"
             checked={ typeOfSearch === 'f' }
           />
-          Primeira Letra
+          First letter
         </label>
-        <button
-          data-testid="exec-search-btn"
-          type="button"
-          onClick={ searchRecipe }
-        >
-          Pesquisar
-        </button>
       </div>
+
+      <button
+        className="search-button"
+        data-testid="exec-search-btn"
+        type="button"
+        onClick={ searchRecipe }
+      >
+        SEARCH
+      </button>
     </div>
   );
 }
