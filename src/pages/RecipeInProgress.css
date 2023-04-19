@@ -35,10 +35,10 @@ h3 {
   width: 336px;
 }
 
-.list-recipes {
+/* .list-recipes {
   display: flex;
   flex-wrap: wrap;
-}
+} */
 
 .suggestions-title {
   color: #1a1b1c;

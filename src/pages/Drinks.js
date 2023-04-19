@@ -10,6 +10,7 @@ import Cocktail from '../images/CategoriesDrinks/cocktail.png';
 import Shake from '../images/CategoriesDrinks/shake.png';
 import Other from '../images/CategoriesDrinks/other.png';
 import Cocoa from '../images/CategoriesDrinks/cocoa.png';
+import './Recipes.css';
 
 function Drinks() {
   const {
@@ -49,50 +50,35 @@ function Drinks() {
   return (
     <main className="list-recipes">
       <Header />
-      { drinksCategory.map((drink, index) => (
-        <div key={ index }>
-          <button
-            type="button"
-            data-testid={ `${drink.strCategory}-category-filter` }
-            onClick={ () => {
-              if (categoryList.length === 0) {
-                requestDrinksCategory(drink.strCategory);
-                setCategoryList(drink.strCategory);
-              } else {
-                setSearch('');
-              }
-            } }
-          >
-            { getCategoryIcon(drink.strCategory) }
-          </button>
-        </div>
-      )) }
-      <button
-        type="button"
-        data-testid="All-category-filter"
-        onClick={ () => setSearch('') }
-      >
-        <img src={ All } alt="drink" />
-      </button>
-      { search.length === 0 ? drinksRequest.slice(0, number).map((e, index) => (
-        <Card
-          onClick={ () => history.push(`/drinks/${e.idDrink}`) }
-          key={ index }
-          data-testid={ `${index}-recipe-card` }
+      <div className="filter-options">
+        { drinksCategory.map((drink, index) => (
+          <div key={ index }>
+            <button
+              type="button"
+              data-testid={ `${drink.strCategory}-category-filter` }
+              onClick={ () => {
+                if (categoryList.length === 0) {
+                  requestDrinksCategory(drink.strCategory);
+                  setCategoryList(drink.strCategory);
+                } else {
+                  setSearch('');
+                }
+              } }
+            >
+              { getCategoryIcon(drink.strCategory) }
+            </button>
+          </div>
+        )) }
+        <button
+          type="button"
+          data-testid="All-category-filter"
+          onClick={ () => setSearch('') }
         >
-          <img
-            src={ e.strDrinkThumb }
-            alt={ e.strDrink }
-            data-testid={ `${index}-card-img` }
-          />
-          <p
-            data-testid={ `${index}-card-name` }
-          >
-            { e.strDrink }
-          </p>
-        </Card>
-      ))
-        : search.drinks.slice(0, number).map((e, index) => (
+          <img src={ All } alt="drink" />
+        </button>
+      </div>
+      <div className="items-list">
+        { search.length === 0 ? drinksRequest.slice(0, number).map((e, index) => (
           <Card
             onClick={ () => history.push(`/drinks/${e.idDrink}`) }
             key={ index }
@@ -108,7 +94,26 @@ function Drinks() {
             >
               { e.strDrink }
             </p>
-          </Card>)) }
+          </Card>
+        ))
+          : search.drinks.slice(0, number).map((e, index) => (
+            <Card
+              onClick={ () => history.push(`/drinks/${e.idDrink}`) }
+              key={ index }
+              data-testid={ `${index}-recipe-card` }
+            >
+              <img
+                src={ e.strDrinkThumb }
+                alt={ e.strDrink }
+                data-testid={ `${index}-card-img` }
+              />
+              <p
+                data-testid={ `${index}-card-name` }
+              >
+                { e.strDrink }
+              </p>
+            </Card>)) }
+      </div>
       <Footer />
     </main>
   );
