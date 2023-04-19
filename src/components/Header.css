@@ -33,9 +33,7 @@ button {
   display: flex;
   height: 52px;
   justify-content: space-around;
-  left: 0;
-  top: 0;
-  width: 360px;
+  width: 100vw;
 }
 
 .pageTitle {

@@ -15,10 +15,7 @@
 }
 
 .search {
-  left: 0;
-  position: absolute;
-  top: -22px;
-  width: 100%;
+  background-color: #fcdc36;
 }
 
 /* stylelint-disable-next-line selector-no-qualifying-type */
