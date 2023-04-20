@@ -2,19 +2,6 @@ h3 {
   color: black;
 }
 
-/* .card {
-  background: white;
-  border: 0.518px solid #b1b1b1;
-  border-radius: 5px;
-  height: 10rem;
-  margin: 5px;
-  width: 10rem;
-}
-
-.card-title {
-  font-family: Epilogue , sans-serif;
-} */
-
 .card {
   background: white;
   border: 0.518px solid #b1b1b1;
@@ -40,6 +27,21 @@ h3 {
   object-fit: cover;
   width: 100%;
 }
+
+/* .start-recipe {
+  background: #fcc436;
+  border-radius: 5px;
+  bottom: 0;
+  color: white;
+  font-family: Epilogue , sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  height: 40px;
+  left: 13px;
+  position: fixed;
+  width: 336px;
+} */
 
 .start-recipe {
   background: #fcc436;
@@ -87,7 +89,7 @@ h3 {
   bottom: 97.27%;
   color: #fcc436;
   height: 20.3px;
-  left: 85.28%;
+  left: 320px;
   position: absolute;
   top: 20px;
   width: 22.89px;
@@ -97,9 +99,8 @@ h3 {
   bottom: 97.22%;
   color: #fcc436;
   height: 20px;
-  left: 76.67%;
+  left: 285px;
   position: absolute;
-  right: 17.77%;
   top: 20px;
   width: 20px;
 }

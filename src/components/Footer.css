@@ -9,14 +9,14 @@
 
 .drink {
   background: rgb(65, 25, 127);
-  bottom: 10px;
+  bottom: 5px;
   left: 10%;
   position: absolute;
 }
 
 .meal {
   background: rgb(65, 25, 127);
-  bottom: 10px;
-  left: 80%;
+  bottom: 5px;
   position: absolute;
+  right: 10%;
 }
