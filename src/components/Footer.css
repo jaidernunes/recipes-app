@@ -3,8 +3,12 @@
   bottom: 0;
   height: 52px;
   left: 0;
+
+  /* width: 100vw; */
+  margin: auto;
+  max-width: 768px;
   position: fixed;
-  width: 100vw;
+  right: 0;
 }
 
 .drink {

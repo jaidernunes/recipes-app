@@ -3,6 +3,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  left: 0;
+  margin: auto;
+  max-width: 768px;
+  right: 0;
 }
 
 .filter-options {
@@ -17,7 +21,7 @@
   flex-wrap: wrap;
   justify-content: center;
   margin-right: 10px;
-  width: 800px;
+  width: 90%;
 }
 
 @media ( max-width : 400px ) {

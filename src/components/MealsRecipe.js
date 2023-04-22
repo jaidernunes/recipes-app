@@ -1,8 +1,11 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { Carousel, Alert, ButtonGroup } from 'react-bootstrap';
+import {
+  // Carousel,
+  Alert, ButtonGroup } from 'react-bootstrap';
 import copy from 'clipboard-copy';
-import RecipeCard from './RecipeCard';
+// import RecipeCard from './RecipeCard';
 import Recipe from './Recipe';
 import { getMealDetails } from '../services/detailsAPI';
 import { fetchDrinks } from '../services/recipesAPI';
@@ -104,9 +107,15 @@ function MealsRecipe() {
     setIsFavorite(false);
   };
 
+  // const shareOnClick = () => {
+  //   setIsCopy(true);
+  //   copy(`http://localhost:3000/meals/${id}`);
+  // };
+
   const shareOnClick = () => {
-    setIsCopy(true);
-    copy(`http://localhost:3000/meals/${id}`);
+    const shareUrl = window.location.href;
+    navigator.clipboard.writeText(shareUrl);
+    alert('Link copied to clipboard!');
   };
 
   useEffect(() => {
@@ -162,11 +171,14 @@ function MealsRecipe() {
                     />
                   </ButtonGroup>
                 )
+
             }
+
             {
               isCopy && <Alert>Link copied!</Alert>
             }
-            <h2 className="suggestions-title">Recommended</h2>
+
+            {/* <h2 className="suggestions-title">Recommended</h2>
             {suggestions.length > 0 && (
               <Carousel
                 className="carousel"
@@ -209,16 +221,19 @@ function MealsRecipe() {
                   />
                 </Carousel.Item>
               </Carousel>
-            )}
-            <ButtonGroup
-              className="start-recipe"
-              data-testid="start-recipe-btn"
-              onClick={ startRecipeOnClick }
-            >
-              { inProgress() ? (
-                <p className="btnstart">Continue Recipe</p>
-              ) : <p className="btnstart">Start Recipe</p> }
-            </ButtonGroup>
+            )} */}
+
+            <div className="parent-container">
+              <ButtonGroup
+                className="start-recipe"
+                data-testid="start-recipe-btn"
+                onClick={ startRecipeOnClick }
+              >
+                { inProgress() ? (
+                  <p className="btnstart">Continue Recipe</p>
+                ) : <p className="btnstart">Start Recipe</p> }
+              </ButtonGroup>
+            </div>
           </>
         )}
     </div>

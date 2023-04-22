@@ -31,13 +31,15 @@
   padding-left: 6px;
 }
 
-.ingredients-list {
+/* .ingredients-list {
   background: white;
   border: 0.554px solid #b1b1b1;
   border-radius: 5.351px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  padding-bottom: 11px;
+  padding-bottom: 1px;
+  padding-right: 15px;
   padding-top: 15px;
-}
+} */
+

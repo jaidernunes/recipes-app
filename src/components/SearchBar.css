@@ -6,7 +6,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  height: 95px;
+  height: 107px;
   justify-content: flex-start;
   margin: 15px 0;
   max-width: 350px;
@@ -15,7 +15,9 @@
 }
 
 .search {
-  background-color: #fcdc36;
+
+  /* background-color: #fcdc36; */
+  width: 100%;
 }
 
 /* stylelint-disable-next-line selector-no-qualifying-type */
@@ -45,7 +47,7 @@
   font-weight: 400;
   justify-content: space-around;
   line-height: 9px;
-  margin-top: 30px;
+  margin-top: 8px;
   width: 280px;
 }
 
@@ -63,7 +65,7 @@
   justify-content: center;
   letter-spacing: 0.07em;
   line-height: 12px;
-  margin-top: 10px;
+  margin-top: 8px;
   transition: background-color 0.2s ease-in-out;
   width: 170px;
 }

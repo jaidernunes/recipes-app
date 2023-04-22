@@ -8,7 +8,7 @@ function RecipeDetails() {
   const { pathname } = useLocation();
 
   return (
-    <div>
+    <div className="recipe-container">
       {
         pathname.includes('meals') ? <MealsRecipe /> : <DrinksRecipe />
       }

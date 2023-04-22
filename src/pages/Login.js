@@ -14,7 +14,7 @@ function Login() {
     const handleLoginValidator = () => {
       const minimumPassword = 6;
       const emailValidator = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+$/i;
-      if (emailValidator.test(email) && password.length > minimumPassword) {
+      if (emailValidator.test(email) && password.length >= minimumPassword) {
         setLoginValidator(false);
       } else {
         setLoginValidator('disabled');
@@ -51,6 +51,7 @@ function Login() {
           name="emailInput"
           id="emailInput"
           data-testid="email-input"
+          placeholder="Insert valid email"
           onChange={ ({ target }) => setEmail(target.value) }
         />
 
@@ -60,6 +61,7 @@ function Login() {
           name="passwordInput"
           id="passwordInput"
           data-testid="password-input"
+          placeholder="Insert 6 digit password"
           onChange={ ({ target }) => setPassword(target.value) }
         />
         <button

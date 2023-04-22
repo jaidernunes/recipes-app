@@ -76,7 +76,7 @@ function Header() {
     <>
       <div className="header">
         <div className="faixa">
-          <div>
+          <div className="header-logo">
             <img
               src={ IconeRecipes }
               alt="Icone Recipes"
@@ -90,7 +90,7 @@ function Header() {
           </div>
           {['/meals', '/drinks'].includes(path) && (
             <button
-              className="search"
+              className="search-top-btn"
               type="button"
               onClick={ toggle }
             >
@@ -101,13 +101,17 @@ function Header() {
               />
             </button>
           )}
-          <Link to="/profile">
+          <Link
+            to="/profile"
+            className="profile-btn"
+          >
             <img
               data-testid="profile-top-btn"
               src={ ProfileLogo }
               alt="profile"
             />
           </Link>
+
         </div>
         <h1 data-testid="page-title" className="pageTitle">{showTitle()}</h1>
       </div>

@@ -215,23 +215,26 @@ function RecipeInProgress() {
               width="300"
             />
 
-            <Checkboxes recipeData={ defineRecipe() } />
+            <div className="align-self-left">
+              <Checkboxes recipeData={ defineRecipe() } />
 
-            <h2 className="instructions-title">Instructions</h2>
-            <div className="instructions-item1">
-              <p data-testid="instructions" className="instructions-text">
-                {defineRecipe().recipeInstructions}
-              </p>
+              <h2 className="instructions-title">Instructions</h2>
+              <div className="instructions-item1">
+                <p data-testid="instructions" className="instructions-text">
+                  {defineRecipe().recipeInstructions}
+                </p>
+              </div>
             </div>
-
-            <Button
-              className="start-recipe"
-              data-testid="finish-recipe-btn"
-              onClick={ saveDone }
-              disabled={ defineRecipe().recipeIngredients.length !== manyChecked }
-            >
-              FINISH RECIPE
-            </Button>
+            <div className="parent-container">
+              <Button
+                className="start-recipe"
+                data-testid="finish-recipe-btn"
+                onClick={ saveDone }
+                disabled={ defineRecipe().recipeIngredients.length !== manyChecked }
+              >
+                FINISH RECIPE
+              </Button>
+            </div>
           </>
         )}
     </div>

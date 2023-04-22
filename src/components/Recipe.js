@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Recipe.css';
+// import './Recipe.css';
 import DrinkRecipes from '../images/RecipeDetails/DrinkRecipes.png';
 import MealsRecipes from '../images/RecipeDetails/MealsRecipes.png';
 
 function Recipe({ title, image, category, measures, ingredients,
   instructions, video, alcoholic }) {
   return (
-    <div className="recipe">
+    <div className="recipe parent-container">
       <h1 data-testid="recipe-title" className="recipe-title">
         { title }
       </h1>
@@ -33,31 +33,39 @@ function Recipe({ title, image, category, measures, ingredients,
           )}
       </h2>
 
-      <h2 className="ingredients-title">Ingredients</h2>
-      <div className="ingredients-list">
-        <ul>
-          {measures.map((measure, index) => (
-            <li data-testid={ `${index}-ingredient-name-and-measure` } key={ index }>
-              {measure}
-              {' of '}
-              {ingredients[index]}
-            </li>))}
-        </ul>
+      <div className="align-self-left">
+        <h2 className="ingredients-title">Ingredients</h2>
+        <div className="ingredients-list">
+          <ul>
+            {measures.map((measure, index) => (
+              <li data-testid={ `${index}-ingredient-name-and-measure` } key={ index }>
+                {measure}
+                {' of '}
+                {ingredients[index]}
+              </li>))}
+          </ul>
+        </div>
       </div>
-      <h2 className="instructions-title">Instructions</h2>
-      <div className="instructions-item1">
-        <p data-testid="instructions" className="instructions-text">
-          { instructions }
-        </p>
+
+      <div className="align-self-left">
+        <h2 className="instructions-title">Instructions</h2>
+        <div className="instructions-item1">
+          <p data-testid="instructions" className="instructions-text">
+            { instructions }
+          </p>
+        </div>
       </div>
-      <div className="video">
+
+      <div className="align-self-left">
         <h2 className="video-title">Video</h2>
-        <iframe
-          className="video-frame"
-          data-testid="video"
-          src={ video }
-          title={ title }
-        />
+        <div className="video-container">
+          <iframe
+            className="video-frame"
+            data-testid="video"
+            src={ video }
+            title={ title }
+          />
+        </div>
       </div>
     </div>
   );

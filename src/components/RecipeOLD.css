@@ -74,18 +74,12 @@
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
-
-  /* left: 30px; */
   line-height: 16px;
   margin: 15px;
-
-  /* margin-left: 13px;
-  margin-top: 20px; */
   top: 445px;
   width: 90%;
   word-wrap: break-word;
 
-  /* width: 301px; */
 }
 
 .ingredients-title {
@@ -116,7 +110,7 @@
 }
 
 .video {
-  align-items: center; /* Center child element vertically */
+  align-items: center;
   display: flex;
   flex-direction: column;
 }
@@ -146,6 +140,11 @@
   width: 336px;
 }
 
+
+.MealsRecipes .drinkRecipe {
+  width: 200px;
+}
+
 /* .video-frame {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35));
   border-radius: 0;
@@ -157,7 +156,3 @@
   transform: translate(-50%, -50%);
   width: 336px;
 } */
-
-.MealsRecipes .drinkRecipe {
-  width: 200px;
-}

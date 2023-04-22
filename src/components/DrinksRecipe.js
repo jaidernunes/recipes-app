@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars
 import copy from 'clipboard-copy';
-import { Carousel, ButtonGroup, Alert } from 'react-bootstrap';
-import RecipeCard from './RecipeCard';
+import {
+  // Carousel,
+  ButtonGroup, Alert } from 'react-bootstrap';
+// import RecipeCard from './RecipeCard';
 import Recipe from './Recipe';
 import { getCocktailDetails } from '../services/detailsAPI';
 import { fetchMeals } from '../services/recipesAPI';
 // import './RecipeDetails.css';
+import '../pages/RecipeDetails.css';
 import { readInProgress, saveInProgress,
   readFavoriteRecipes, saveFavoriteRecipes } from '../services/localStorage';
 import ShareLogo from '../images/shareIcon.svg';
@@ -17,9 +21,11 @@ function DrinksRecipe() {
   const numberSuggestions = 6;
   const history = useHistory();
   const { id } = useParams();
+  // eslint-disable-next-line no-unused-vars
   const [suggestions, setSuggestions] = useState([]);
   const [recipe, setRecipe] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [isCopy, setIsCopy] = useState(false);
 
   const defineRecipe = (drink) => {
@@ -93,9 +99,15 @@ function DrinksRecipe() {
     setIsFavorite(false);
   };
 
+  // const shareOnClick = () => {
+  //   setIsCopy(true);
+  //   copy(`http://localhost:3000/drinks/${id}`);
+  // };
+
   const shareOnClick = () => {
-    setIsCopy(true);
-    copy(`http://localhost:3000/drinks/${id}`);
+    const shareUrl = window.location.href;
+    navigator.clipboard.writeText(shareUrl);
+    alert('Link copied to clipboard!');
   };
 
   useEffect(() => {
@@ -127,8 +139,8 @@ function DrinksRecipe() {
             />
             <ButtonGroup
               className="share-button"
-              onClick={ shareOnClick }
               data-testid="share-btn"
+              onClick={ shareOnClick }
             >
               <img src={ ShareLogo } alt="share logo" />
             </ButtonGroup>
@@ -156,7 +168,7 @@ function DrinksRecipe() {
             {
               isCopy && <Alert>Link copied!</Alert>
             }
-            {suggestions.length > 0 && (
+            {/* {suggestions.length > 0 && (
               <Carousel
                 interval={ null }
               >
@@ -197,14 +209,25 @@ function DrinksRecipe() {
                   />
                 </Carousel.Item>
               </Carousel>
-            )}
-            <ButtonGroup
-              className="start-recipe"
-              data-testid="start-recipe-btn"
-              onClick={ startRecipeOnClick }
-            >
-              { inProgress() ? 'Continue Recipe' : 'Start Recipe' }
-            </ButtonGroup>
+            )} */}
+            <div className="parent-container">
+              <ButtonGroup
+                className="start-recipe"
+                data-testid="start-recipe-btn"
+                onClick={ startRecipeOnClick }
+              >
+                { inProgress() ? (
+                  <p className="btnstart">Continue Recipe</p>
+                ) : <p className="btnstart">Start Recipe</p> }
+              </ButtonGroup>
+              {/* <ButtonGroup
+                className="start-recipe"
+                data-testid="start-recipe-btn"
+                onClick={ startRecipeOnClick }
+              >
+                { inProgress() ? 'Continue Recipe' : 'Start Recipe' }
+              </ButtonGroup> */}
+            </div>
           </>
         )}
     </div>
