@@ -2,7 +2,7 @@
 
 This project is a web recipe app that uses React Hooks and Context API. It was developed as a group project, using agile methodologies (scrum and kanban), as the final challenge of the front-end module at [Trybe](https://betrybe.com).
 
-##Summary
+## Summary
 
 - [About the project](#About the project)
   - [Context](#man_technologist-contexto)
@@ -20,7 +20,6 @@ This project is a web recipe app that uses React Hooks and Context API. It was d
   - [Development challenges](#development-challenges)
 - [Developers](#developers)
 - [Acknowledgments](#acknowledgments)
-
 
 <br/>
 
@@ -50,7 +49,7 @@ The sprint lasted for 9 days in December 2022.
 Styling:
 <a href="https://www.figma.com/file/9WXNFMewKRBC5ZawU1EXYG/%5BProjeto%5D%5BFrontend%5D-Recipes-App?node-id=0%3A1&t=flL48tUQI6vmnPEY-1" target="_blank">Figma</a>
 
-Deploy: <a href="https://ligiabicalho.github.io/app-receitas/" target="_blank">https://ligiabicalho.github.io/app-receitas/</a>
+Deploy: <a href="https://ligiabicalho.github.io/app-receitas/" target="_blank">https://jaidernunes.github.io/recipes-app/</a>
 
 <p align="right"><a href="#sparkles-project-recipes-app">(Back to top)</a></p>
 
@@ -65,8 +64,7 @@ Deploy: <a href="https://ligiabicalho.github.io/app-receitas/" target="_blank">h
 - React Hooks
 - Context API
 - clipboard-copy library
-
-### Testing
+### Tests
 - Jest
 - React Testing Library
 
@@ -81,8 +79,8 @@ Requests were made using only `fetch`, as instructed to avoid conflicts with req
     The endpoints are quite rich, you can [see them here](https://www.themealdb.com/api.php).
 
     The response model for a `meal` is as follows:
-      <details>
-      <summary><b>See response model for a meal</b></summary>
+      
+    <details><summary><b>See response model for a meal</b></summary>
     ```json
       {
         "meals":[
@@ -142,26 +140,26 @@ Requests were made using only `fetch`, as instructed to avoid conflicts with req
         ]
       }
     ```
-</details>
+  </details>
 
   The ingredients follow a logical order where their name (<code>strIngredient1</code>) and quantity (<code>strMeasure1</code>) have the same number at the end (1, in this case).
 
-It is possible to list all `categories`, `nationalities` (referred to as "areas" in the API), and `ingredients`:
+  It is possible to list all `categories`, `nationalities` (referred to as "areas" in the API), and `ingredients`:
 
-```json
-categories: https://www.themealdb.com/api/json/v1/1/list.php?c=list
-nationalities: https://www.themealdb.com/api/json/v1/1/list.php?a=list
-ingredients: https://www.themealdb.com/api/json/v1/1/list.php?i=list
-```
+  ```json
+  categories: https://www.themealdb.com/api/json/v1/1/list.php?c=list
+  nationalities: https://www.themealdb.com/api/json/v1/1/list.php?a=list
+  ingredients: https://www.themealdb.com/api/json/v1/1/list.php?i=list
+  ```
 
-The ingredient photos come from a standardized endpoint with the following logic:
-```
-https://www.themealdb.com/images/ingredients/${ingredient-name}-Small.png  
+  The ingredient photos come from a standardized endpoint with the following logic:
+  ```
+  https://www.themealdb.com/images/ingredients/${ingredient-name}-Small.png  
 
-// Example with "Lime":
-https://www.themealdb.com/images/ingredients/Lime-Small.png
-```
-</details>
+  // Example with "Lime":
+  https://www.themealdb.com/images/ingredients/Lime-Small.png
+  ```
+  </details>
     
 
 * <details><summary><b>The CocktailDB API</b></summary>
@@ -171,69 +169,69 @@ https://www.themealdb.com/images/ingredients/Lime-Small.png
 
   The responses follow the same structure, with some specifics related to drinks (such as being alcoholic or not, for example).
 
-  <details><summary><b>See response model for drinks</b></summary>
- ```json
-      {
-        "drinks":[
-            {
-              "idDrink":"17256",
-              "strDrink":"Martinez 2",
-              "strDrinkAlternate":null,
-              "strDrinkES":null,
-              "strDrinkDE":null,
-              "strDrinkFR":null,
-              "strDrinkZH-HANS":null,
-              "strDrinkZH-HANT":null,
-              "strTags":null,
-              "strVideo":null,
-              "strCategory":"Cocktail",
-              "strIBA":null,
-              "strAlcoholic":"Alcoholic",
-              "strGlass":"Cocktail glass",
-              "strInstructions":"Add all ingredients to a mixing glass and fill with ice.\r\n\r\nStir until chilled, and strain into a chilled coupe glass.",
-              "strInstructionsES":null,
-              "strInstructionsDE":"Alle Zutaten in ein Mischglas geben und mit Eis f\u00fcllen. Bis zum Abk\u00fchlen umr\u00fchren und in ein gek\u00fchltes Coup\u00e9glas abseihen.",
-              "strInstructionsFR":null,
-              "strInstructionsZH-HANS":null,
-              "strInstructionsZH-HANT":null,
-              "strDrinkThumb":"https:\/\/www.thecocktaildb.com\/images\/media\/drink\/fs6kiq1513708455.jpg",
-              "strIngredient1":"Gin",
-              "strIngredient2":"Sweet Vermouth",
-              "strIngredient3":"Maraschino Liqueur",
-              "strIngredient4":"Angostura Bitters",
-              "strIngredient5":null,
-              "strIngredient6":null,
-              "strIngredient7":null,
-              "strIngredient8":null,
-              "strIngredient9":null,
-              "strIngredient10":null,
-              "strIngredient11":null,
-              "strIngredient12":null,
-              "strIngredient13":null,
-              "strIngredient14":null,
-              "strIngredient15":null,
-              "strMeasure1":"1 1\/2 oz",
-              "strMeasure2":"1 1\/2 oz",
-              "strMeasure3":"1 tsp",
-              "strMeasure4":"2 dashes",
-              "strMeasure5":null,
-              "strMeasure6":null,
-              "strMeasure7":null,
-              "strMeasure8":null,
-              "strMeasure9":null,
-              "strMeasure10":null,
-              "strMeasure11":null,
-              "strMeasure12":null,
-              "strMeasure13":null,
-              "strMeasure14":null,
-              "strMeasure15":null,
-              "strCreativeCommonsConfirmed":"No",
-              "dateModified":"2017-12-19 18:34:15"
-            }
-        ]
-      }
-    ```
-</details>
+    <details><summary><b>See response model for drinks</b></summary>
+    ```json
+        {
+          "drinks":[
+              {
+                "idDrink":"17256",
+                "strDrink":"Martinez 2",
+                "strDrinkAlternate":null,
+                "strDrinkES":null,
+                "strDrinkDE":null,
+                "strDrinkFR":null,
+                "strDrinkZH-HANS":null,
+                "strDrinkZH-HANT":null,
+                "strTags":null,
+                "strVideo":null,
+                "strCategory":"Cocktail",
+                "strIBA":null,
+                "strAlcoholic":"Alcoholic",
+                "strGlass":"Cocktail glass",
+                "strInstructions":"Add all ingredients to a mixing glass and fill with ice.\r\n\r\nStir until chilled, and strain into a chilled coupe glass.",
+                "strInstructionsES":null,
+                "strInstructionsDE":"Alle Zutaten in ein Mischglas geben und mit Eis f\u00fcllen. Bis zum Abk\u00fchlen umr\u00fchren und in ein gek\u00fchltes Coup\u00e9glas abseihen.",
+                "strInstructionsFR":null,
+                "strInstructionsZH-HANS":null,
+                "strInstructionsZH-HANT":null,
+                "strDrinkThumb":"https:\/\/www.thecocktaildb.com\/images\/media\/drink\/fs6kiq1513708455.jpg",
+                "strIngredient1":"Gin",
+                "strIngredient2":"Sweet Vermouth",
+                "strIngredient3":"Maraschino Liqueur",
+                "strIngredient4":"Angostura Bitters",
+                "strIngredient5":null,
+                "strIngredient6":null,
+                "strIngredient7":null,
+                "strIngredient8":null,
+                "strIngredient9":null,
+                "strIngredient10":null,
+                "strIngredient11":null,
+                "strIngredient12":null,
+                "strIngredient13":null,
+                "strIngredient14":null,
+                "strIngredient15":null,
+                "strMeasure1":"1 1\/2 oz",
+                "strMeasure2":"1 1\/2 oz",
+                "strMeasure3":"1 tsp",
+                "strMeasure4":"2 dashes",
+                "strMeasure5":null,
+                "strMeasure6":null,
+                "strMeasure7":null,
+                "strMeasure8":null,
+                "strMeasure9":null,
+                "strMeasure10":null,
+                "strMeasure11":null,
+                "strMeasure12":null,
+                "strMeasure13":null,
+                "strMeasure14":null,
+                "strMeasure15":null,
+                "strCreativeCommonsConfirmed":"No",
+                "dateModified":"2017-12-19 18:34:15"
+              }
+          ]
+        }
+      ```
+  </details>
     
     The ingredients follow a logical order where its name (<code>strIngredient1</code>) and quantity (<code>strMeasure1</code>) have the same number at the end (1 in this case).
   
