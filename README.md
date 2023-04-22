@@ -83,7 +83,7 @@ Requests were made using only `fetch`, as instructed to avoid conflicts with req
     The response model for a `meal` is as follows:
       <details>
       <summary><b>See response model for a meal</b></summary>
- ```json
+    ```json
       {
         "meals":[
           {
@@ -142,8 +142,8 @@ Requests were made using only `fetch`, as instructed to avoid conflicts with req
         ]
       }
     ```
-  </details>
-  
+</details>
+
   The ingredients follow a logical order where their name (<code>strIngredient1</code>) and quantity (<code>strMeasure1</code>) have the same number at the end (1, in this case).
 
 It is possible to list all `categories`, `nationalities` (referred to as "areas" in the API), and `ingredients`:
@@ -161,6 +161,8 @@ https://www.themealdb.com/images/ingredients/${ingredient-name}-Small.png
 // Example with "Lime":
 https://www.themealdb.com/images/ingredients/Lime-Small.png
 ```
+</details>
+    
 
 * <details><summary><b>The CocktailDB API</b></summary>
   Quite similar (in fact, maintained by the same entity) to TheMealDB API, but focused on drinks.
@@ -231,11 +233,11 @@ https://www.themealdb.com/images/ingredients/Lime-Small.png
         ]
       }
     ```
-    </details>
+</details>
     
     The ingredients follow a logical order where its name (<code>strIngredient1</code>) and quantity (<code>strMeasure1</code>) have the same number at the end (1 in this case).
   
-  </details>
+</details>
 
   <p align="right"><a href="#sparkles-project-recipes-app">(Back to top)</a></p>
 
