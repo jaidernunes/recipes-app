@@ -273,91 +273,77 @@ npm run test-coverage
 
 We used the Kanban board on Trello to keep track of team progress.
 
-<details>
-  <summary><strong>Login Screen</strong></summary> 
-
-1. Create all elements that should respect the attributes described in the prototype for the login screen.
-2. Develop the screen so that the person can enter their email in the email input and their password in the password input.
-3. Develop the screen so that the form is only valid after a valid email and a password of more than 6 characters have been entered.
-4. After submitting the form, save the user's email in the `user` key in localStorage.
-5. Redirect the user to the main food recipe screen after successful login submission and validation.
-
+<details><summary><strong>Login Screen</strong></summary> 
+  1. Create all elements that should respect the attributes described in the prototype for the login screen.
+  2. Develop the screen so that the person can enter their email in the email input and their password in the password input.
+  3. Develop the screen so that the form is only valid after a valid email and a password of more than 6 characters have been entered.
+  4. After submitting the form, save the user's email in the `user` key in localStorage.
+  5. Redirect the user to the main food recipe screen after successful login submission and validation.
 </details>
 
-<details>
-  <summary><strong>Main food recipe screen</strong></summary> 
-
-6. Implement the header according to the needs of each screen.
-7. Redirect the user to the profile screen when clicking on the profile button.
-8. Develop the search button so that when clicked, the search bar should appear. It should work the same way to hide it.
-9. Implement the search bar elements respecting the attributes described in the prototype.
-10. Implement 3 radio buttons in the search bar: Ingredient, Name and First letter.
-11. Search the food API if the person is on the food page, and the drink API if they are on the drink page.
-12. If the search returns more than one recipe, render the first 12 found, displaying the image and name of each.
-13. Implement the bottom menu positioning it in a fixed way and containing 2 icons: one for food and one for drinks.
-14. Display the bottom menu only on the screens indicated in the prototype.
-15. Redirect the user to the correct screen when clicking on each icon in the bottom menu.
-16. Load the first 12 food or drink recipes, one on each card.
-17. Implement the category buttons to be used as a filter.
-18. Implement the recipe filter through the API when clicking on the category filter.
-19. Implement the filter as a toggle, which if selected again, the app should return the recipes without any filter.
-20. Redirect the user when clicking on the card to the details screen, which should change the route and contain the recipe id in the URL.
-21. Make a request to the API passing the `id` of the recipe that should be available in the URL parameters.
-
+<details><summary><strong>Main food recipe screen</strong></summary> 
+  6. Implement the header according to the needs of each screen.
+  7. Redirect the user to the profile screen when clicking on the profile button.
+  8. Develop the search button so that when clicked, the search bar should appear. It should work the same way to hide it.
+  9. Implement the search bar elements respecting the attributes described in the prototype.
+  10. Implement 3 radio buttons in the search bar: Ingredient, Name and First letter.
+  11. Search the food API if the person is on the food page, and the drink API if they are on the drink page.
+  12. If the search returns more than one recipe, render the first 12 found, displaying the image and name of each.
+  13. Implement the bottom menu positioning it in a fixed way and containing 2 icons: one for food and one for drinks.
+  14. Display the bottom menu only on the screens indicated in the prototype.
+  15. Redirect the user to the correct screen when clicking on each icon in the bottom menu.
+  16. Load the first 12 food or drink recipes, one on each card.
+  17. Implement the category buttons to be used as a filter.
+  18. Implement the recipe filter through the API when clicking on the category filter.
+  19. Implement the filter as a toggle, which if selected again, the app should return the recipes without any filter.
+  20. Redirect the user when clicking on the card to the details screen, which should change the route and contain the recipe id in the URL.
+  21. Make a request to the API passing the `id` of the recipe that should be available in the URL parameters.
 </details>
 
-<details>
-  <summary><strong>Recipe details screen</strong></summary> 
-
-22. Develop the screen so that it contains a recipe image, title, category in case of food and whether or not it is alcoholic in case of drinks, a list of ingredients followed by quantities, instructions, an embedded youtube video, and recommendations.
-23. Implement recommendations. For food recipes, the recommendation should be for drinks, and for drink recipes, the recommendation should be for food.
-24. Implement the 6 recommendation cards, showing only 2. The scroll is horizontal, similar to a carousel.
-25. Develop a button named "Start Recipe" that should be fixed at the bottom of the screen at all times.
-26. Implement the solution so that if the recipe has already been made, the "Start Recipe" button disappears.
-27. Redirect the user if the "Start Recipe" button is clicked, the route should change to the recipe in progress screen.
-
+<details><summary><strong>Recipe details screen</strong></summary> 
+  22. Develop the screen so that it contains a recipe image, title, category in case of food and whether or not it is alcoholic in case of drinks, a list of ingredients followed by quantities, instructions, an embedded youtube video, and recommendations.
+  23. Implement recommendations. For food recipes, the recommendation should be for drinks, and for drink recipes, the recommendation should be for food.
+  24. Implement the 6 recommendation cards, showing only 2. The scroll is horizontal, similar to a carousel.
+  25. Develop a button named "Start Recipe" that should be fixed at the bottom of the screen at all times.
+  26. Implement the solution so that if the recipe has already been made, the "Start Recipe" button disappears.
+  27. Redirect the user if the "Start Recipe" button is clicked, the route should change to the recipe in progress screen.
 </details>
 
-<details>
-  <summary><strong>Recipe in progress screen</strong></summary> 
-
-28. Develop the screen to contain an image of the recipe, the title, the category in case of food and whether it is alcoholic or not in case of drinks, a list of ingredients with their respective quantities and instructions.
-29. Develop a checkbox for each item in the ingredients list.
-30. Save the progress state, which should be maintained if the person refreshes the page or goes back to the same recipe.
-31. Implement the solution so that the "Finish Recipe" button can only be enabled when all ingredients are checked.
-
-<details>
-  <summary><strong>Screen for completed recipes</strong></summary> 
-
-32. Implement the elements of the screen for completed recipes respecting the attributes described in the prototype.
-33. Develop the screen so that, if the recipe on the card is a food, it must have: the photo of the recipe, name, category, nationality, the date on which the person made the recipe, the 2 first tags returned by the API, and a share button.
-34. Develop the screen so that, if the recipe on the card is a drink, it must have: the photo of the recipe, the name, whether it is alcoholic, the date on which the person made the recipe, and a share button.
-35. Develop the solution so that the share button must copy the URL of the recipe details screen to the clipboard.
-36. Implement 2 buttons that filter recipes by food or drink, and a third button that removes all filters.
-37. Redirect to the recipe details screen when the recipe's photo or name is clicked.
+<details><summary><strong>Recipe in progress screen</strong></summary> 
+  28. Develop the screen to contain an image of the recipe, the title, the category in case of food and whether it is alcoholic or not in case of drinks, a list of ingredients with their respective quantities and instructions.
+  29. Develop a checkbox for each item in the ingredients list.
+  30. Save the progress state, which should be maintained if the person refreshes the page or goes back to the same recipe.
+  31. Implement the solution so that the "Finish Recipe" button can only be enabled when all ingredients are checked.
 </details>
 
-<details>
-  <summary><strong>Screen for favorite recipes</strong></summary>
-
-38. Implement the elements of the screen for favorite recipes (cumulative with the attributes in common with the screen for completed recipes), respecting the attributes described in the prototype.
-39. Develop the screen so that, if the recipe on the card is a food, it must have: the photo of the recipe, name, category, nationality, a share button, and an "unfavorite" button.
-40. Develop the screen so that, if the recipe on the card is a drink, it must have: the photo of the recipe, name, whether it is alcoholic or not, a share button, and an "unfavorite" button.
-41. Develop the solution so that the share button must copy the URL of the recipe details screen to the clipboard.
-42. Develop the solution so that the "unfavorite" button must remove the recipe from the favorite recipes list in the `localStorage` and from the screen.
-43. Implement 2 buttons that filter recipes by food or drink, and a third button that removes all filters.
-44. Redirect the user when the recipe's photo or name is clicked, and the route should change to the details screen for that recipe.
+<details><summary><strong>Screen for completed recipes</strong></summary> 
+  32. Implement the elements of the screen for completed recipes respecting the attributes described in the prototype.
+  33. Develop the screen so that, if the recipe on the card is a food, it must have: the photo of the recipe, name, category, nationality, the date on which the person made the recipe, the 2 first tags returned by the API, and a share button.
+  34. Develop the screen so that, if the recipe on the card is a drink, it must have: the photo of the recipe, the name, whether it is alcoholic, the date on which the person made the recipe, and a share button.
+  35. Develop the solution so that the share button must copy the URL of the recipe details screen to the clipboard.
+  36. Implement 2 buttons that filter recipes by food or drink, and a third button that removes all filters.
+  37. Redirect to the recipe details screen when the recipe's photo or name is clicked.
 </details>
 
-<details>
-  <summary><strong>User profile screen</strong></summary>
+<details><summary><strong>Screen for favorite recipes</strong></summary>
 
-45. Implement the elements of the profile screen respecting the attributes described in the prototype.
-46. Implement the solution so that the user's email must be visible.
-47. Implement 3 buttons: one named "Done Recipes," one named "Favorite Recipes," and one named "Logout."
-48. Redirect the user when the "Done Recipes" button is clicked, and the route should change to the screen for completed recipes.
-49. Redirect the user when the "Favorite Recipes" button is clicked, and the route should change to the screen for favorite recipes.
-50. Redirect the user when the "Logout" button is clicked, the `localStorage` should be cleared, and the route should change to the login screen.
+  38. Implement the elements of the screen for favorite recipes (cumulative with the attributes in common with the screen for completed recipes), respecting the attributes described in the  prototype.
+  39. Develop the screen so that, if the recipe on the card is a food, it must have: the photo of the recipe, name, category, nationality, a share button, and an "unfavorite" button.  
+  40. Develop the screen so that, if the recipe on the card is a drink, it must have: the photo of the recipe, name, whether it is alcoholic or not, a share button, and an "unfavorite" butt on.
+  41. Develop the solution so that the share button must copy the URL of the recipe details screen to the clipboard.
+  42. Develop the solution so that the "unfavorite" button must remove the recipe from the favorite recipes list in the `localStorage` and from the screen.
+  43. Implement 2 buttons that filter recipes by food or drink, and a third button that removes all filters.
+  44. Redirect the user when the recipe's photo or name is clicked, and the route should change to the details screen for that recipe.
+</details>
+
+<details><summary><strong>User profile screen</strong></summary>
+
+  45. Implement the elements of the profile screen respecting the attributes described in the prototype.
+  46. Implement the solution so that the user's email must be visible.
+  47. Implement 3 buttons: one named "Done Recipes," one named "Favorite Recipes," and one named "Logout."
+  48. Redirect the user when the "Done Recipes" button is clicked, and the route should change to the screen for completed recipes.
+  49. Redirect the user when the "Favorite Recipes" button is clicked, and the route should change to the screen for favorite recipes.
+  50. Redirect the user when the "Logout" button is clicked, the `localStorage` should be cleared, and the route should change to the login screen.
 </details>
 
 <p align="right"><a href="#sparkles-project-recipes-app">(Back to top)</a></p>
@@ -376,7 +362,7 @@ It was up to the group to define the development priorities of the requirements,
   <tr>
     <td align="center">
       <a href="https://github.com/jaidernunes" target="_blank">
-        <img src="https://avatars.githubusercontent.com/u/NUMBER" width="100px" alt="Ligia Bicalho"/>
+        <img src="https://avatars.githubusercontent.com/u/NUMBER" width="100px" alt="Jaider Nunes"/>
       </a>
       <a href="https://linkedin.com/in/jaidernunes" target="_blank">
         <p>:information_source: Jaider Nunes</p>
