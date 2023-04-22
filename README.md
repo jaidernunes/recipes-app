@@ -4,12 +4,12 @@ This project is a web recipe app that uses React Hooks and Context API. It was d
 
 ## Summary
 
-- [About the project](#About the project)
+- [About the project](#about-the-project)
   - [Context](#man_technologist-contexto)
   - [Schedule](#schedule)
   - [Features](#features)
   - [Demo](#demo)
-- [Technologies used](#technologies used)  
+- [Technologies used](#technologies-used)  
   - [Front-end](#front-end)  
   - [Tests](#tests)  
 - [APIs](#gear-apis)
