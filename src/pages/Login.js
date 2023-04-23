@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import './Login.css';
 import logoRecipesApp from '../images/logoRecipesApp.svg';
@@ -28,6 +28,15 @@ function Login() {
     localStorage.setItem('user', JSON.stringify({ email }));
     history.push('/meals');
   };
+
+  const handleKeyPress = useCallback((event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault(); // prevent the default form submission
+      if (!loginValidator) { // check if the login button is enabled
+        handleLogin(); // call the handleLogin function
+      }
+    }
+  }, [loginValidator, handleLogin]);
 
   return (
     <div className="container">
@@ -63,6 +72,7 @@ function Login() {
           data-testid="password-input"
           placeholder="Insert 6 digit password"
           onChange={ ({ target }) => setPassword(target.value) }
+          onKeyPress={ handleKeyPress }
         />
         <button
           className="button-submit"
