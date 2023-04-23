@@ -44,12 +44,15 @@ The sprint lasted for 9 days in December 2022.
 - Access the user profile with favorite and completed recipes.
 
 ## Demo
-> *Screenshot SOON*
 
-Styling:
-<a href="https://www.figma.com/file/9WXNFMewKRBC5ZawU1EXYG/%5BProjeto%5D%5BFrontend%5D-Recipes-App?node-id=0%3A1&t=flL48tUQI6vmnPEY-1" target="_blank">Figma</a>
-
-Deploy: <a href="https://ligiabicalho.github.io/app-receitas/" target="_blank">https://jaidernunes.github.io/recipes-app/</a>
+Deploy: <a href="https://recipes-app-jaider.vercel.app/" target="_blank">Recipes App</a>
+<br />
+<img src="./public/readme/recipe-app-demo.gif" width="346px" alt="demo"/>
+<br />
+<a href="https://www.figma.com/file/9WXNFMewKRBC5ZawU1EXYG/%5BProjeto%5D%5BFrontend%5D-Recipes-App?node-id=0%3A1&t=flL48tUQI6vmnPEY-1" target="_blank">Figma:</a>
+<br />
+<img src="./public/readme/figma1.png" height="400px" alt="figma1"/>
+<img src="./public/readme/figma2.png" height="400px" alt="figma2"/>
 
 <p align="right"><a href="#sparkles-project-recipes-app">(Back to top)</a></p>
 
@@ -362,39 +365,33 @@ It was up to the group to define the development priorities of the requirements,
   <tr>
     <td align="center">
       <a href="https://github.com/jaidernunes" target="_blank">
-        <img src="https://avatars.githubusercontent.com/u/NUMBER" width="100px" alt="Jaider Nunes"/>
+        <img src="https://avatars.githubusercontent.com/u/62824768?v=4" width="180px" alt="Jaider Nunes"/>
       </a>
       <a href="https://linkedin.com/in/jaidernunes" target="_blank">
         <p>:information_source: Jaider Nunes</p>
       </a>
     </td>
     <td align="center">
-      <a href="https://github.com/" target="_blank">
-        <img src="https://avatars.githubusercontent.com/u/NUMBER?v=4" width="100px" alt="Joana dos Santos"/>
-        <p>Joana dos Santos</p>
+      <a href="https://github.com/joanamds" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/106452876?v=4" width="180px" alt="Joana dos Santos"/>
+        <p>Joana Santos</p>
       </a>
     </td>
     <td align="center">
-      <a href="https://github.com/kadu2229" target="_blank">
-        <img src="https://avatars.githubusercontent.com/u/?v=4" width="100px" alt="Mateus Melo"/>
+      <a href="https://github.com/mateusmsf94" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/62353112?v=4" width="180px" alt="Mateus Melo"/>
         <p>Mateus Melo</p>
       </a>
     </td>
     <td align="center">
-      <a href="https://github.com/sahdibernardi" target="_blank">
-        <img src="https://avatars.githubusercontent.com/u/?v=4" width="100px" alt="Priscilla Sartori"/>
+      <a href="https://github.com/priscilaSartori" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/104307222?v=4" width="180px" alt="Priscilla Sartori"/>
         <p>Priscilla Sartori</p>
       </a>
     </td>
     <td align="center">
-      <a href="https://github.com/PauloVitorMartins" target="_blank">
-        <img src="https://avatars.githubusercontent.com/u/?v=4" width="100px" alt="Igor Souza"/>
-        <p>Igor Souza</p>
-      </a>
-    </td>
-    <td align="center">
       <a href="https://github.com/trybe-tech-ops" target="_blank">
-        <img src="https://avatars.githubusercontent.com/u/?v=4" width="100px" alt="Trybe"/>
+        <img src="https://avatars.githubusercontent.com/u/82593112?v=4" width="180px" alt="Trybe"/>
         <p>Trybe</p>
       </a>
     </td>
