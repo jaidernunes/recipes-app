@@ -55,18 +55,23 @@ function Recipe({ title, image, category, measures, ingredients,
           </p>
         </div>
       </div>
-
-      <div className="align-self-left">
-        <h2 className="video-title">Video</h2>
-        <div className="video-container">
-          <iframe
-            className="video-frame"
-            data-testid="video"
-            src={ video }
-            title={ title }
-          />
-        </div>
-      </div>
+      {alcoholic !== undefined
+        ? (
+          <div />
+        )
+        : (
+          <div className="align-self-left">
+            <h2 className="video-title">Video</h2>
+            <div className="video-container">
+              <iframe
+                className="video-frame"
+                data-testid="video"
+                src={ video }
+                title={ title }
+              />
+            </div>
+          </div>
+        )}
     </div>
   );
 }
